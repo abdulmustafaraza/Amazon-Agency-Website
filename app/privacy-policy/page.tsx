@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 const sections = [
   {
     title: "Information We Collect",
-    body: "CompanyName may collect information such as your name, email address, business information submitted through forms, and website usage information.",
+    body: "ScopeScaler may collect information such as your name, email address, business information submitted through forms, and website usage information.",
   },
   {
     title: "How We Use Information",
@@ -12,7 +12,7 @@ const sections = [
   },
   {
     title: "Information Sharing",
-    body: "CompanyName does not sell personal information. Information may be shared only with service providers needed to operate the website or respond to requests.",
+    body: "ScopeScaler does not sell personal information. Information may be shared only with service providers needed to operate the website or respond to requests.",
   },
   {
     title: "Cookies and Analytics",
@@ -28,7 +28,7 @@ const sections = [
   },
   {
     title: "Contact",
-    body: "Questions about this Privacy Policy can be sent to hello@companyname.com.",
+    body: "Questions about this Privacy Policy can be sent to hello@scopescaler.com.",
   },
   {
     title: "Last Updated",
@@ -49,7 +49,7 @@ export default function PrivacyPolicyPage() {
             Privacy Policy
           </h1>
           <p className="mt-6 text-lg leading-8 text-[#C9C7E8]">
-            This Privacy Policy explains how CompanyName may collect, use, and
+            This Privacy Policy explains how ScopeScaler may collect, use, and
             protect information submitted through this website.
           </p>
           <p className="mt-5 border-l-2 border-[#8A3FFC] pl-4 text-sm leading-7 text-[#A8A5C8]">

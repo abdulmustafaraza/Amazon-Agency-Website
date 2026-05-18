@@ -159,26 +159,16 @@ export default function Footer() {
         <div className="grid items-start gap-12 lg:grid-cols-[1.25fr_0.7fr_1fr_1.15fr] lg:gap-16">
           <div>
             <Link
-              aria-label="CompanyName home"
+              aria-label="ScopeScaler home"
               className="inline-flex items-center gap-3"
               href="/"
             >
-              <svg
-                aria-hidden="true"
-                className="h-[34px] w-[30px] text-[#FF3CBF]"
-                fill="none"
-                viewBox="0 0 24 28"
-              >
-                <path
-                  d="M12 2L21 5.8V13.5C21 19.2 17.2 23.4 12 26C6.8 23.4 3 19.2 3 13.5V5.8L12 2Z"
-                  stroke="currentColor"
-                  strokeLinejoin="round"
-                  strokeWidth="2.4"
-                />
-              </svg>
-              <span className="text-[22px] font-extrabold leading-none text-[#FFFFFF]">
-                {siteContent.name}
-              </span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                alt="ScopeScaler"
+                className="h-[32px] w-auto object-contain md:h-[40px]"
+                src="/logos/scopescaler-logo.svg"
+              />
             </Link>
 
             <p className="mt-[22px] max-w-[280px] text-[15px] font-bold leading-6 text-[#FFFFFF]">

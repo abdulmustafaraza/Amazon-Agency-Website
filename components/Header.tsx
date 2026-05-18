@@ -16,24 +16,16 @@ export default function Header() {
     <header className="h-[72px] w-full border-b border-[rgba(255,255,255,0.10)] bg-[#030319]">
       <div className="site-container flex h-full items-center justify-between gap-8">
         <Link
-          aria-label="CompanyName home"
-          className="flex shrink-0 items-center gap-3 text-2xl font-extrabold text-[#FFFFFF]"
+          aria-label="ScopeScaler home"
+          className="flex shrink-0 items-center"
           href="/"
         >
-          <svg
-            aria-hidden="true"
-            className="h-7 w-6 text-[#FF3CBF]"
-            fill="none"
-            viewBox="0 0 24 28"
-          >
-            <path
-              d="M12 2L21 5.8V13.5C21 19.2 17.2 23.4 12 26C6.8 23.4 3 19.2 3 13.5V5.8L12 2Z"
-              stroke="currentColor"
-              strokeLinejoin="round"
-              strokeWidth="2.4"
-            />
-          </svg>
-          <span>CompanyName</span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            alt="ScopeScaler"
+            className="h-[34px] w-auto object-contain md:h-[44px]"
+            src="/logos/scopescaler-logo.svg"
+          />
         </Link>
 
         <nav

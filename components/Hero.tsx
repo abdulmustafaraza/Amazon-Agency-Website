@@ -38,7 +38,7 @@ export default function Hero() {
           </h1>
 
           <p className="mb-5 max-w-[620px] text-lg font-medium leading-[1.55] text-[#FFFFFF]">
-            CompanyName helps DTC ecommerce brands uncover marketplace leakage,
+            ScopeScaler helps DTC ecommerce brands uncover marketplace leakage,
             reduce customer confusion, and build a controlled Amazon presence
             when the channel makes strategic sense.
           </p>

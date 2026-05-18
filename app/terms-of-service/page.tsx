@@ -16,7 +16,7 @@ const sections = [
   },
   {
     title: "Intellectual Property",
-    body: "Website content, design, copy, and materials belong to CompanyName unless otherwise stated.",
+    body: "Website content, design, copy, and materials belong to ScopeScaler unless otherwise stated.",
   },
   {
     title: "User Submissions",
@@ -24,11 +24,11 @@ const sections = [
   },
   {
     title: "Third-Party Links",
-    body: "The website may link to external tools, calendars, or platforms. CompanyName is not responsible for third-party websites.",
+    body: "The website may link to external tools, calendars, or platforms. ScopeScaler is not responsible for third-party websites.",
   },
   {
     title: "Limitation of Liability",
-    body: "CompanyName is not liable for indirect losses from website use or reliance on general website information.",
+    body: "ScopeScaler is not liable for indirect losses from website use or reliance on general website information.",
   },
   {
     title: "Changes to Terms",
@@ -36,7 +36,7 @@ const sections = [
   },
   {
     title: "Contact",
-    body: "Questions about these Terms of Service can be sent to hello@companyname.com.",
+    body: "Questions about these Terms of Service can be sent to hello@scopescaler.com.",
   },
   {
     title: "Last Updated",
@@ -58,7 +58,7 @@ export default function TermsOfServicePage() {
           </h1>
           <p className="mt-6 text-lg leading-8 text-[#C9C7E8]">
             These Terms of Service explain the basic terms for using the
-            CompanyName website and requesting information about services.
+            ScopeScaler website and requesting information about services.
           </p>
           <p className="mt-5 border-l-2 border-[#8A3FFC] pl-4 text-sm leading-7 text-[#A8A5C8]">
             This page is a general template and should be reviewed before
