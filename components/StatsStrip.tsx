@@ -10,7 +10,11 @@ const numberGradients = [
   "linear-gradient(90deg, #D12BFF 0%, #FF4E64 100%)",
 ];
 
-function useCountUp(targetValue: number, shouldRun: boolean) {
+function useCountUp(
+  targetValue: number,
+  shouldRun: boolean,
+  prefersReducedMotion: boolean,
+) {
   const [displayValue, setDisplayValue] = useState(0);
 
   useEffect(() => {
@@ -18,8 +22,12 @@ function useCountUp(targetValue: number, shouldRun: boolean) {
       return;
     }
 
+    if (prefersReducedMotion) {
+      return;
+    }
+
     let animationFrame = 0;
-    const duration = 1200;
+    const duration = 1600;
     const startTime = performance.now();
 
     function animate(currentTime: number) {
@@ -36,36 +44,43 @@ function useCountUp(targetValue: number, shouldRun: boolean) {
     animationFrame = requestAnimationFrame(animate);
 
     return () => cancelAnimationFrame(animationFrame);
-  }, [shouldRun, targetValue]);
+  }, [prefersReducedMotion, shouldRun, targetValue]);
 
-  return displayValue;
+  return prefersReducedMotion && shouldRun ? targetValue : displayValue;
 }
 
 function StatItem({
   label,
   value,
+  prefix,
   suffix,
   shouldRun,
+  prefersReducedMotion,
   gradient,
 }: {
   label: string;
   value: number;
+  prefix: string;
   suffix: string;
   shouldRun: boolean;
+  prefersReducedMotion: boolean;
   gradient: string;
 }) {
-  const displayValue = useCountUp(value, shouldRun);
+  const displayValue = useCountUp(value, shouldRun, prefersReducedMotion);
 
   return (
-    <div className="text-center">
-      <p
-        className="block bg-clip-text text-[clamp(76px,9vw,138px)] font-black leading-[0.9] tracking-[-0.07em] text-transparent"
-        style={{ backgroundImage: gradient }}
-      >
-        {displayValue}
-        {suffix}
-      </p>
-      <p className="mx-auto mt-[22px] max-w-[280px] text-center text-base font-semibold leading-[1.45] text-[#F5F3FF] md:text-lg">
+    <div className="flex min-w-0 flex-col items-center overflow-visible text-center">
+      <div className="flex w-full justify-center overflow-visible">
+        <p
+          className="block overflow-visible whitespace-nowrap bg-clip-text text-center text-[clamp(52px,4.5vw,78px)] font-black leading-[0.95] tracking-[-0.035em] text-transparent"
+          style={{ backgroundImage: gradient }}
+        >
+          {prefix}
+          {displayValue}
+          {suffix}
+        </p>
+      </div>
+      <p className="mx-auto mt-[18px] max-w-[280px] text-center text-base font-bold leading-[1.45] text-[#F5F3FF] md:text-lg">
         {label}
       </p>
     </div>
@@ -75,12 +90,39 @@ function StatItem({
 export default function StatsStrip() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const [shouldRun, setShouldRun] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const animationFrame = requestAnimationFrame(() => {
+      setPrefersReducedMotion(mediaQuery.matches);
+    });
+
+    function handleChange(event: MediaQueryListEvent) {
+      setPrefersReducedMotion(event.matches);
+    }
+
+    mediaQuery.addEventListener("change", handleChange);
+
+    return () => {
+      cancelAnimationFrame(animationFrame);
+      mediaQuery.removeEventListener("change", handleChange);
+    };
+  }, []);
 
   useEffect(() => {
     const section = sectionRef.current;
 
     if (!section) {
       return;
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      const animationFrame = requestAnimationFrame(() => {
+        setShouldRun(true);
+      });
+
+      return () => cancelAnimationFrame(animationFrame);
     }
 
     const observer = new IntersectionObserver(
@@ -90,7 +132,7 @@ export default function StatsStrip() {
           observer.disconnect();
         }
       },
-      { threshold: 0.25 },
+      { threshold: 0.2 },
     );
 
     observer.observe(section);
@@ -124,21 +166,27 @@ export default function StatsStrip() {
           Our numbers say it all
         </h2>
 
-        <div className="grid grid-cols-1 items-start gap-11 md:grid-cols-2 md:gap-x-9 md:gap-y-14 lg:grid-cols-4 lg:gap-12">
+        <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-y-12 px-6 text-center sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-16 xl:gap-x-20">
           {stats.map((stat, index) => (
-            <div key={stat.label}>
-              <StatItem
-                gradient={numberGradients[index] ?? numberGradients[0]}
-                label={stat.label}
-                shouldRun={shouldRun}
-                suffix={stat.suffix}
-                value={stat.value}
-              />
-            </div>
+            <StatItem
+              gradient={numberGradients[index] ?? numberGradients[0]}
+              key={stat.label}
+              label={stat.label}
+              prefix={stat.prefix}
+              prefersReducedMotion={prefersReducedMotion}
+              shouldRun={shouldRun}
+              suffix={stat.suffix}
+              value={stat.value}
+            />
           ))}
         </div>
+
+        <p className="mx-auto mt-12 max-w-[900px] text-center text-sm leading-[1.6] text-[#B9B7D9] md:text-[15px]">
+          Based on prior ecommerce operations, Amazon Creator Connections
+          support, Sellercloud inventory workflows, and marketplace research
+          experience.
+        </p>
       </div>
     </section>
   );
 }
-

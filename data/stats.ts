@@ -1,22 +1,33 @@
-export const stats = [
+export type Stat = {
+  value: number;
+  prefix: string;
+  suffix: string;
+  label: string;
+};
+
+export const stats: Stat[] = [
   {
-    label: "Clients Supported",
-    value: 0,
+    value: 4,
+    prefix: "",
     suffix: "+",
+    label: "Years in Amazon & Ecommerce Operations",
   },
   {
-    label: "Projects Delivered",
-    value: 0,
-    suffix: "+",
+    value: 350,
+    prefix: "$",
+    suffix: "K+",
+    label: "Creator Campaign Sales Tracked",
   },
   {
-    label: "Marketplace Audits",
-    value: 0,
-    suffix: "+",
+    value: 20,
+    prefix: "",
+    suffix: "K+",
+    label: "SKUs Managed Across Channels",
   },
   {
-    label: "Content Assets Reviewed",
-    value: 0,
+    value: 100,
+    prefix: "",
     suffix: "+",
+    label: "Marketplace Audits & Brand Checks",
   },
 ];

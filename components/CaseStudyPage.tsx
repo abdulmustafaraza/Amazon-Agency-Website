@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import type React from "react";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
@@ -42,6 +41,39 @@ function SectionCard({
   );
 }
 
+function CaseStudyStats({ study }: { study: CaseStudy }) {
+  return (
+    <section className="border-b border-[rgba(255,255,255,0.10)] bg-[#080826] py-8 md:py-10">
+      <div className="site-container">
+        <div className="grid gap-4 md:grid-cols-3 md:gap-6">
+          {study.stats.map((stat) => (
+            <div
+              className="flex min-h-[150px] flex-col items-center justify-center rounded-[22px] border border-[rgba(255,255,255,0.10)] bg-[rgba(255,255,255,0.035)] px-6 py-8 text-center shadow-[0_18px_60px_rgba(109,53,255,0.10)]"
+              key={`${stat.value}-${stat.label ?? "stat"}`}
+            >
+              <p
+                className={[
+                  "font-black tracking-[-0.04em] text-[#FFFFFF]",
+                  stat.kind === "text"
+                    ? "text-[clamp(26px,2.4vw,38px)] leading-[1.1]"
+                    : "text-[clamp(42px,4vw,68px)] leading-none",
+                ].join(" ")}
+              >
+                {stat.value}
+              </p>
+              {stat.label ? (
+                <p className="mt-3.5 text-sm font-bold leading-[1.4] text-[#C9C7E8] md:text-base">
+                  {stat.label}
+                </p>
+              ) : null}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function CaseStudyPage({ study }: { study: CaseStudy }) {
   return (
     <>
@@ -63,24 +95,6 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
               <div className="mt-8">
                 <PillList items={study.tags} />
               </div>
-              <div className="mt-4">
-                <PillList items={study.proofPills} />
-              </div>
-
-              <div className="mt-9 flex flex-wrap gap-3">
-                <Link
-                  className="inline-flex rounded bg-[#6D35FF] px-7 py-4 text-xs font-extrabold uppercase tracking-[0.08em] text-[#FFFFFF] shadow-[0_18px_55px_rgba(209,43,255,0.24)] transition-colors hover:bg-[#8A3FFC]"
-                  href="/contact"
-                >
-                  Request a Free Leakage Audit {"\u2192"}
-                </Link>
-                <Link
-                  className="inline-flex rounded border border-[rgba(255,255,255,0.18)] px-7 py-4 text-xs font-extrabold uppercase tracking-[0.08em] text-[#FFFFFF] transition-colors hover:border-[#FF3CBF] hover:text-[#FF3CBF]"
-                  href="/#selected-work"
-                >
-                  Back to Selected Work {"\u2192"}
-                </Link>
-              </div>
             </div>
 
             <div className="relative min-h-[360px] overflow-hidden rounded-[18px] border border-[rgba(255,255,255,0.10)] bg-[#080826] shadow-[0_28px_90px_rgba(109,53,255,0.16)]">
@@ -96,6 +110,8 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
             </div>
           </div>
         </section>
+
+        <CaseStudyStats study={study} />
 
         <section className="py-20 md:py-[110px]">
           <div className="site-container grid gap-6 lg:grid-cols-2">
@@ -134,42 +150,53 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
           </div>
         </section>
 
-        {study.note ? (
+        {study.evidenceTitle && study.evidenceBody ? (
           <section className="pb-20 md:pb-[110px]">
             <div className="site-container">
               <div className="rounded-[18px] border border-[rgba(255,255,255,0.10)] bg-[radial-gradient(circle_at_80%_20%,rgba(209,43,255,0.18),transparent_32%),#080826] p-6 md:p-8">
                 <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-[#D12BFF]">
-                  IMPORTANT NOTE
+                  EVIDENCE
                 </p>
                 <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#FFFFFF]">
-                  {study.noteTitle}
+                  {study.evidenceTitle}
                 </h2>
                 <p className="mt-5 max-w-[900px] text-base leading-8 text-[#C9C7E8]">
-                  {study.note}
+                  {study.evidenceBody}
                 </p>
               </div>
             </div>
           </section>
         ) : null}
 
+        {study.examplesTitle && study.examples ? (
+          <section className="pb-20 md:pb-[110px]">
+            <div className="site-container">
+              <SectionCard eyebrow="EXAMPLES" title={study.examplesTitle}>
+                <ul className="grid gap-3 md:grid-cols-2">
+                  {study.examples.map((item) => (
+                    <li className="flex gap-3" key={item}>
+                      <span className="mt-3 h-1.5 w-1.5 flex-none rounded-full bg-[#10C8FF]" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </SectionCard>
+            </div>
+          </section>
+        ) : null}
+
         <section className="bg-[#080826] py-20 md:py-[96px]">
-          <div className="site-container text-center">
-            <h2 className="mx-auto max-w-[760px] text-4xl font-extrabold leading-tight tracking-[-0.04em] text-[#FFFFFF] md:text-6xl">
-              Start with marketplace evidence before choosing the next move.
-            </h2>
-            <div className="mt-9 flex flex-wrap justify-center gap-3">
-              <Link
-                className="inline-flex rounded bg-[#6D35FF] px-7 py-4 text-xs font-extrabold uppercase tracking-[0.08em] text-[#FFFFFF] transition-colors hover:bg-[#8A3FFC]"
-                href="/contact"
-              >
-                Request a Free Leakage Audit {"\u2192"}
-              </Link>
-              <Link
-                className="inline-flex rounded border border-[rgba(255,255,255,0.18)] px-7 py-4 text-xs font-extrabold uppercase tracking-[0.08em] text-[#FFFFFF] transition-colors hover:border-[#FF3CBF] hover:text-[#FF3CBF]"
-                href="/#selected-work"
-              >
-                Back to Selected Work {"\u2192"}
-              </Link>
+          <div className="site-container">
+            <div className="mx-auto max-w-[900px] rounded-[22px] border border-[rgba(255,255,255,0.10)] bg-[#101034] p-7 shadow-[0_22px_70px_rgba(209,43,255,0.12)] md:p-10">
+              <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-[#D12BFF]">
+                CASE STUDY TAKEAWAY
+              </p>
+              <h2 className="mt-4 text-3xl font-extrabold leading-tight tracking-[-0.03em] text-[#FFFFFF] md:text-4xl">
+                What this work shows
+              </h2>
+              <p className="mt-5 text-base leading-8 text-[#C9C7E8] md:text-lg">
+                {study.takeaway}
+              </p>
             </div>
           </div>
         </section>

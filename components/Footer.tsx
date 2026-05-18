@@ -32,6 +32,8 @@ const legalLinks = [
   { label: "Cookie Settings", href: "/privacy-policy" },
 ];
 
+const footerEmail = "ukasha@scopescaler.com";
+
 function GlobeIcon() {
   return (
     <svg
@@ -121,7 +123,7 @@ function EmailIcon() {
 const socialLinks = [
   { label: "Website", href: "/", icon: <GlobeIcon /> },
   { label: "Network", href: "/#selected-work", icon: <NetworkIcon /> },
-  { label: "Email", href: `mailto:${siteContent.email}`, icon: <EmailIcon /> },
+  { label: "Email", href: `mailto:${footerEmail}`, icon: <EmailIcon /> },
 ];
 
 export default function Footer() {
@@ -279,9 +281,9 @@ export default function Footer() {
             ) : null}
             <a
               className="mt-5 inline-flex text-[15px] font-semibold text-[#10C8FF] transition-colors duration-200 hover:!text-[#FF3CBF]"
-              href={`mailto:${siteContent.email}`}
+              href={`mailto:${footerEmail}`}
             >
-              {siteContent.email}
+              {footerEmail}
             </a>
           </div>
         </div>

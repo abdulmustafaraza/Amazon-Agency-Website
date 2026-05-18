@@ -2,12 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { caseStudies } from "@/data/portfolio";
 
-const categoryAccent: Record<string, string> = {
-  "US Beauty Retailer Marketplace Operations": "#10C8FF",
-  "Amazon Leakage & Brand-Control Research": "#D12BFF",
-  "Creator, Review & Conversion Systems": "#FF3CBF",
-};
-
 export default function SelectedWork() {
   return (
     <section
@@ -24,8 +18,8 @@ export default function SelectedWork() {
             conversion systems.
           </h2>
           <p className="mt-6 max-w-3xl text-base leading-8 text-[#C9C7E8] md:text-lg">
-            A focused look at real operational support, Amazon leakage research,
-            creator workflows, review systems, and ecommerce execution.
+            A focused look at creator campaign support, multi-channel ecommerce
+            operations, and Amazon leakage research.
           </p>
         </div>
 
@@ -47,33 +41,16 @@ export default function SelectedWork() {
                 <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(3,3,25,0.05)_0%,rgba(3,3,25,0.38)_65%,rgba(3,3,25,0.72)_100%),radial-gradient(circle_at_80%_20%,rgba(209,43,255,0.16),transparent_38%)]" />
               </div>
 
-              <div className="flex min-h-[360px] flex-1 flex-col p-6">
-                <p
-                  className="text-xs font-semibold uppercase leading-5 tracking-[0.12em]"
-                  style={{ color: categoryAccent[item.title] }}
-                >
-                  {item.category}
-                </p>
-                <h3 className="mt-4 text-xl font-semibold leading-7 text-[#FFFFFF]">
+              <div className="flex min-h-[300px] flex-1 flex-col p-6">
+                <h3 className="text-xl font-semibold leading-7 text-[#FFFFFF]">
                   {item.title}
                 </h3>
-                <p className="mt-4 text-sm leading-7 text-[#C9C7E8]">
+                <p className="mt-4 line-clamp-6 text-sm leading-7 text-[#C9C7E8]">
                   {item.description}
                 </p>
 
-                <div className="mb-7 mt-5 flex min-h-[64px] flex-wrap items-start gap-2">
-                  {item.proofPills.map((pill) => (
-                    <span
-                      className="inline-flex h-[30px] items-center justify-center whitespace-nowrap rounded-full border border-[rgba(255,255,255,0.14)] bg-[rgba(255,255,255,0.04)] px-3 text-[11px] font-medium leading-none text-[#C9C7E8]"
-                      key={pill}
-                    >
-                      {pill}
-                    </span>
-                  ))}
-                </div>
-
                 <Link
-                  className="mt-auto text-sm font-semibold text-[#FFFFFF] transition-colors group-hover:text-[#FF3CBF]"
+                  className="mt-auto pt-7 text-sm font-semibold text-[#FFFFFF] transition-colors group-hover:text-[#FF3CBF]"
                   href={`/case-studies/${item.slug}`}
                 >
                   View Case Study {"\u2192"}
