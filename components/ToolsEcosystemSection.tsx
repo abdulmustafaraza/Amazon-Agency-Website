@@ -10,21 +10,21 @@ type Tool = {
 const tools: Tool[] = [
   {
     name: "Amazon Seller Central",
-    logo: "/logos/tools/amazon-seller-central.svg",
+    logo: "/logos/tools/amazonsellercentral.svg",
   },
   { name: "Shopify", logo: "/logos/tools/shopify.svg" },
   { name: "Sellercloud", logo: "/logos/tools/sellercloud.svg" },
-  { name: "Helium 10", logo: "/logos/tools/helium10.svg" },
+  { name: "Helium 10", logo: "/logos/tools/helium-10.svg" },
   { name: "Keepa", logo: "/logos/tools/keepa.svg" },
   { name: "SellerAmp", logo: "/logos/tools/selleramp.svg" },
-  { name: "Jungle Scout", logo: "/logos/tools/jungle-scout.svg" },
-  { name: "Monday.com", logo: "/logos/tools/monday.svg" },
-  { name: "Google Sheets", logo: "/logos/tools/google-sheets.svg" },
+  { name: "Jungle Scout", logo: "/logos/tools/junglescout.svg" },
+  { name: "Monday.com", logo: "/logos/tools/monday.com.svg" },
+  { name: "Google Sheets", logo: "/logos/tools/googlesheet.svg" },
   { name: "Okendo", logo: "/logos/tools/okendo.svg" },
   { name: "Klaviyo", logo: "/logos/tools/klaviyo.svg" },
   {
-    name: "Amazon Creator Connections",
-    logo: "/logos/tools/amazon-creator-connections.svg",
+    name: "Amazon Influencer",
+    logo: "/logos/tools/amazoninfluencer.svg",
   },
 ];
 
@@ -38,18 +38,14 @@ function ToolLogo({
   onLogoError: (logo: string) => void;
 }) {
   if (hiddenLogo) {
-    return (
-      <span className="text-center text-[15px] font-bold leading-snug text-[#C9C7E8] opacity-[0.78] transition-all duration-200 group-hover:-translate-y-0.5 group-hover:text-[#FFFFFF] group-hover:opacity-100">
-        {tool.name}
-      </span>
-    );
+    return null;
   }
 
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
       alt={tool.name}
-      className="max-h-[42px] max-w-[150px] object-contain opacity-[0.72] grayscale brightness-[1.8] transition-all duration-200 group-hover:-translate-y-0.5 group-hover:opacity-100 group-hover:grayscale-0 group-hover:brightness-100"
+      className="h-auto max-h-[52px] w-auto max-w-[190px] object-contain opacity-[0.82] transition duration-300 group-hover:-translate-y-0.5 group-hover:opacity-100"
       onError={() => onLogoError(tool.logo)}
       src={tool.logo}
     />
@@ -81,10 +77,12 @@ export default function ToolsEcosystemSection() {
           </p>
         </div>
 
-        <div className="mx-auto mt-14 grid max-w-[1120px] grid-cols-2 items-center justify-items-center gap-x-8 gap-y-11 md:grid-cols-4 md:gap-x-10 md:gap-y-12 lg:grid-cols-6 lg:gap-x-12">
-          {tools.map((tool) => (
+        <div className="mx-auto mt-14 grid max-w-[1280px] grid-cols-2 items-center justify-items-center gap-x-10 gap-y-12 sm:grid-cols-3 lg:grid-cols-6">
+          {tools
+            .filter((tool) => !failedLogos.includes(tool.logo))
+            .map((tool) => (
             <div
-              className="group flex min-h-[48px] w-full items-center justify-center text-center"
+              className="group flex min-h-[82px] w-full items-center justify-center px-4 py-3 text-center"
               key={tool.name}
             >
               <ToolLogo
