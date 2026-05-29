@@ -1,10 +1,9 @@
 "use client";
 
+import CalendlyPopupButton from "@/components/CalendlyPopupButton";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { FormEvent, useState } from "react";
-
-const CAL_BOOKING_LINK = "https://cal.com/mustafa-raza-lggqfm/brandmeet";
 
 const serviceOptions = [
   "Free Leakage Audit",
@@ -22,6 +21,13 @@ const initialFormState = {
   serviceInterest: "Free Leakage Audit",
   message: "",
 };
+
+const nextSteps = [
+  "We reply within 24 hours",
+  "15-minute intro call to understand your brand",
+  "Audit delivered within 5-7 business days",
+  "Walkthrough call to review findings",
+];
 
 export default function ContactPage() {
   const [formData, setFormData] = useState(initialFormState);
@@ -195,14 +201,10 @@ export default function ContactPage() {
                     Thanks {"\u2014"} your request has been received. You can
                     now book a meeting using the calendar link below.
                   </p>
-                  <a
+                  <CalendlyPopupButton
                     className="mt-4 inline-flex rounded bg-[#6D35FF] px-5 py-3 text-sm font-extrabold text-[#FFFFFF] transition-colors hover:bg-[#8A3FFC]"
-                    href={CAL_BOOKING_LINK}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    Book a Meeting {"\u2192"}
-                  </a>
+                    text={"Book a Meeting \u2192"}
+                  />
                 </div>
               ) : null}
 
@@ -213,6 +215,35 @@ export default function ContactPage() {
                 Submit Request
               </button>
             </form>
+          </div>
+        </section>
+
+        <section className="bg-[#030319] py-20 md:py-[96px]">
+          <div className="site-container">
+            <div className="mb-10 max-w-[720px]">
+              <p className="mb-4 text-xs font-extrabold uppercase tracking-[0.18em] text-[#8A3FFC]">
+                PROCESS
+              </p>
+              <h2 className="text-3xl font-extrabold leading-tight tracking-[-0.03em] text-[#FFFFFF] md:text-5xl">
+                What happens next
+              </h2>
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              {nextSteps.map((step, index) => (
+                <article
+                  className="rounded-[16px] border border-[rgba(255,255,255,0.10)] bg-[#080826] p-6 shadow-[0_18px_60px_rgba(255,60,191,0.10)]"
+                  key={step}
+                >
+                  <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-[#10C8FF]">
+                    Step {index + 1}
+                  </p>
+                  <h3 className="mt-5 text-lg font-extrabold leading-7 text-[#FFFFFF]">
+                    {step}
+                  </h3>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -229,14 +260,10 @@ export default function ContactPage() {
                     managed through our booking calendar.
                   </p>
                 </div>
-                <a
+                <CalendlyPopupButton
                   className="inline-flex justify-center rounded bg-[#6D35FF] px-7 py-4 text-xs font-extrabold uppercase tracking-[0.08em] text-[#FFFFFF] transition-colors hover:bg-[#8A3FFC]"
-                  href={CAL_BOOKING_LINK}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  Book a Meeting {"\u2192"}
-                </a>
+                  text={"Book a Meeting \u2192"}
+                />
               </div>
             </div>
           </div>

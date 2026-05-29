@@ -12,16 +12,17 @@ export default function PortfolioPage() {
         <section className="border-b border-[rgba(255,255,255,0.10)] bg-[radial-gradient(circle_at_75%_18%,rgba(209,43,255,0.20),transparent_30%),linear-gradient(135deg,#080826_0%,#030319_62%,#030319_100%)] py-20 md:py-[110px]">
           <div className="site-container">
             <p className="mb-5 text-xs font-extrabold uppercase tracking-[0.18em] text-[#8A3FFC]">
-              SELECTED CASE STUDIES
+              TEAM EXPERIENCE
             </p>
             <h1 className="max-w-[900px] text-4xl font-extrabold leading-[1.04] tracking-[-0.04em] text-[#FFFFFF] md:text-6xl">
-              Real operational work across marketplace control and ecommerce
+              Prior team experience across marketplace control and ecommerce
               systems.
             </h1>
             <p className="mt-6 max-w-[760px] text-base leading-8 text-[#C9C7E8] md:text-lg">
               A focused look at marketplace operations, Amazon leakage
-              research, creator workflows, review systems, and conversion
-              support.
+              research, creator workflows, and multi-channel ecommerce support.
+              Drawn from our team&apos;s prior experience across DTC, beauty, and
+              marketplace operations.
             </p>
           </div>
         </section>
@@ -57,7 +58,7 @@ export default function PortfolioPage() {
                     className="mt-auto pt-7 text-sm font-semibold text-[#FFFFFF] transition-colors group-hover:text-[#FF3CBF]"
                     href={`/case-studies/${item.slug}`}
                   >
-                    View Case Study {"\u2192"}
+                    View Experience {"\u2192"}
                   </Link>
                 </div>
               </article>

@@ -1,3 +1,5 @@
+import CalendlyPopupButton from "@/components/CalendlyPopupButton";
+
 export default function PreFooterCTA() {
   return (
     <section
@@ -16,12 +18,10 @@ export default function PreFooterCTA() {
             Start with a focused review of Amazon search visibility, seller risk,
             and brand-control gaps.
           </p>
-          <a
+          <CalendlyPopupButton
             className="mt-8 inline-flex items-center justify-center rounded-full border border-[#6D35FF] bg-[#6D35FF] px-6 py-3 text-sm font-semibold text-[#FFFFFF] shadow-[0_18px_55px_rgba(209,43,255,0.28)] transition-colors hover:bg-[#8A3FFC]"
-            href="/contact"
-          >
-            Request a Free Leakage Audit {"\u2192"}
-          </a>
+            text={"Request a Free Leakage Audit \u2192"}
+          />
         </div>
       </div>
     </section>

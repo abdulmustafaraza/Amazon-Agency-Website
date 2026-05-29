@@ -1827,10 +1827,44 @@ input {
     margin-top: 30px;
   }
 
-  .button {
-    min-height: 50px;
-    padding: 0 20px;
-  }
+.button {
+  min-height: 50px;
+  padding: 0 20px;
+}
+}
+
+/* Calendly popup scrollbar cleanup */
+.calendly-overlay {
+  overflow: hidden !important;
+}
+
+.calendly-popup {
+  max-height: 92vh !important;
+  overflow: hidden !important;
+}
+
+.calendly-popup-content {
+  height: 92vh !important;
+  max-height: 92vh !important;
+  overflow: hidden !important;
+}
+
+.calendly-popup-content iframe {
+  height: 100% !important;
+  min-height: 700px;
+}
+
+.calendly-overlay::-webkit-scrollbar,
+.calendly-popup::-webkit-scrollbar,
+.calendly-popup-content::-webkit-scrollbar {
+  display: none;
+}
+
+.calendly-overlay,
+.calendly-popup,
+.calendly-popup-content {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* Hero headline line-locking */

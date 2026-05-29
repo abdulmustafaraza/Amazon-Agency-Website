@@ -1,3 +1,5 @@
+import CalendlyPopupButton from "@/components/CalendlyPopupButton";
+
 export default function Hero() {
   return (
     <section className="relative min-h-[760px] overflow-hidden bg-[#030319]">
@@ -50,12 +52,10 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-wrap items-center gap-3.5">
-            <a
+            <CalendlyPopupButton
               className="rounded bg-[#6D35FF] px-[30px] py-[15px] text-xs font-extrabold uppercase tracking-[0.08em] text-[#FFFFFF] transition-colors hover:bg-[#8A3FFC]"
-              href="/contact"
-            >
-              REQUEST A FREE LEAKAGE AUDIT
-            </a>
+              text="REQUEST A FREE LEAKAGE AUDIT"
+            />
             <a
               className="rounded border border-[rgba(255,255,255,0.18)] bg-transparent px-[30px] py-[15px] text-xs font-extrabold uppercase tracking-[0.08em] text-[#FFFFFF] transition-colors hover:border-[#FF3CBF] hover:text-[#FF3CBF]"
               href="#services"

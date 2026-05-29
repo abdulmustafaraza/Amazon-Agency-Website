@@ -34,7 +34,7 @@ const legalLinks = [
 
 const footerEmail = "ukasha@scopescaler.com";
 
-function GlobeIcon() {
+function InstagramIcon() {
   return (
     <svg
       aria-hidden="true"
@@ -43,52 +43,39 @@ function GlobeIcon() {
       viewBox="0 0 24 24"
     >
       <path
-        d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z"
+        d="M7.5 3.5H16.5C18.7091 3.5 20.5 5.29086 20.5 7.5V16.5C20.5 18.7091 18.7091 20.5 16.5 20.5H7.5C5.29086 20.5 3.5 18.7091 3.5 16.5V7.5C3.5 5.29086 5.29086 3.5 7.5 3.5Z"
         stroke="currentColor"
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="2"
       />
       <path
-        d="M3.6 9H20.4M3.6 15H20.4M12 3C14.1 5.35 15.2 8.35 15.2 12C15.2 15.65 14.1 18.65 12 21C9.9 18.65 8.8 15.65 8.8 12C8.8 8.35 9.9 5.35 12 3Z"
+        d="M12 15.5C13.933 15.5 15.5 13.933 15.5 12C15.5 10.067 13.933 8.5 12 8.5C10.067 8.5 8.5 10.067 8.5 12C8.5 13.933 10.067 15.5 12 15.5Z"
         stroke="currentColor"
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="2"
+      />
+      <path
+        d="M17.25 6.75H17.26"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeWidth="2.5"
       />
     </svg>
   );
 }
 
-function NetworkIcon() {
+function LinkedInIcon() {
   return (
     <svg
       aria-hidden="true"
       className="h-4 w-4"
-      fill="none"
+      fill="currentColor"
       viewBox="0 0 24 24"
     >
       <path
-        d="M8 7.5L16 4.5M8 16.5L16 19.5M8 12H16"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-      />
-      <path
-        d="M6 10C7.65685 10 9 8.65685 9 7C9 5.34315 7.65685 4 6 4C4.34315 4 3 5.34315 3 7C3 8.65685 4.34315 10 6 10Z"
-        stroke="currentColor"
-        strokeWidth="2"
-      />
-      <path
-        d="M18 8C19.6569 8 21 6.65685 21 5C21 3.34315 19.6569 2 18 2C16.3431 2 15 3.34315 15 5C15 6.65685 16.3431 8 18 8Z"
-        stroke="currentColor"
-        strokeWidth="2"
-      />
-      <path
-        d="M18 22C19.6569 22 21 20.6569 21 19C21 17.3431 19.6569 16 18 16C16.3431 16 15 17.3431 15 19C15 20.6569 16.3431 22 18 22Z"
-        stroke="currentColor"
-        strokeWidth="2"
+        d="M6.94 8.98H3.74V19.5H6.94V8.98ZM5.34 7.5C6.38 7.5 7.22 6.68 7.22 5.66C7.22 4.64 6.38 3.82 5.34 3.82C4.3 3.82 3.46 4.64 3.46 5.66C3.46 6.68 4.3 7.5 5.34 7.5ZM20.54 13.64C20.54 10.82 19.04 8.78 15.98 8.78C14.58 8.78 13.56 9.54 13.14 10.26H13.1V8.98H10.04V19.5H13.24V14.3C13.24 12.92 13.5 11.58 15.2 11.58C16.88 11.58 16.9 13.16 16.9 14.38V19.5H20.1V13.74C20.1 13.7 20.54 13.68 20.54 13.64Z"
       />
     </svg>
   );
@@ -121,8 +108,18 @@ function EmailIcon() {
 }
 
 const socialLinks = [
-  { label: "Website", href: "/", icon: <GlobeIcon /> },
-  { label: "Network", href: "/#selected-work", icon: <NetworkIcon /> },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/scopescaler/",
+    icon: <InstagramIcon />,
+    isExternal: true,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/scope-scaler-17b0a1411",
+    icon: <LinkedInIcon />,
+    isExternal: true,
+  },
   { label: "Email", href: `mailto:${footerEmail}`, icon: <EmailIcon /> },
 ];
 
@@ -184,12 +181,14 @@ export default function Footer() {
 
             <div className="mt-7 flex gap-3">
               {socialLinks.map((item) =>
-                item.href.startsWith("mailto:") ? (
+                item.href.startsWith("mailto:") || item.isExternal ? (
                   <a
                     aria-label={item.label}
                     className="flex h-9 w-9 items-center justify-center rounded-md border border-[rgba(255,255,255,0.10)] bg-[rgba(255,255,255,0.04)] text-[#A8A5C8] transition-colors duration-200 hover:border-[rgba(255,60,191,0.45)] hover:bg-[rgba(255,60,191,0.08)] hover:!text-[#FF3CBF]"
                     href={item.href}
                     key={item.label}
+                    rel={item.isExternal ? "noopener noreferrer" : undefined}
+                    target={item.isExternal ? "_blank" : undefined}
                   >
                     {item.icon}
                   </a>

@@ -11,15 +11,16 @@ export default function SelectedWork() {
       <div className="site-container">
         <div className="max-w-[780px]">
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-[#D12BFF]">
-            SELECTED WORK
+            TEAM EXPERIENCE
           </p>
           <h2 className="text-4xl font-semibold leading-tight text-[#FFFFFF] md:text-5xl lg:text-6xl">
-            Selected work across marketplace control, ecommerce operations, and
-            conversion systems.
+            Team experience across marketplace control, ecommerce operations,
+            and conversion systems.
           </h2>
           <p className="mt-6 max-w-3xl text-base leading-8 text-[#C9C7E8] md:text-lg">
             A focused look at creator campaign support, multi-channel ecommerce
-            operations, and Amazon leakage research.
+            operations, and Amazon leakage research. Drawn from our team&apos;s
+            prior experience across DTC, beauty, and marketplace operations.
           </p>
         </div>
 
@@ -53,7 +54,7 @@ export default function SelectedWork() {
                   className="mt-auto pt-7 text-sm font-semibold text-[#FFFFFF] transition-colors group-hover:text-[#FF3CBF]"
                   href={`/case-studies/${item.slug}`}
                 >
-                  View Case Study {"\u2192"}
+                  View Experience {"\u2192"}
                 </Link>
               </div>
             </article>

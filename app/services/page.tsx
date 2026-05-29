@@ -30,12 +30,12 @@ const managementCards = [
   {
     title: "Catalog Integrity",
     description:
-      "Continuous monitoring of ASIN data and SEO keyword relevance to secure perpetual ranking stability.",
+      "Continuous monitoring of ASIN data and SEO keyword relevance to support listing consistency and ranking stability.",
   },
   {
     title: "PPC & DSP Authority",
     description:
-      "Data-driven advertising strategies focused on TACoS, ACOS efficiency, and next-era brand acquisition.",
+      "Data-driven advertising strategies focused on TACoS, ACOS efficiency, and brand-aware customer acquisition.",
   },
   {
     title: "Inventory Logic",
@@ -51,7 +51,7 @@ const managementCards = [
 
 const ecommerceCards = [
   {
-    title: "Shopify Architecting",
+    title: "Shopify Design",
     description:
       "Building conversion-led storefronts that integrate seamlessly with your marketplace and retention stacks.",
   },
@@ -63,8 +63,57 @@ const ecommerceCards = [
   {
     title: "AI Operations",
     description:
-      "Leveraging Large Language Models to automate customer service, content generation, and catalog updates.",
+      "Structured research workflows for keyword review, competitor tracking, listing checks, and marketplace audit documentation.",
   },
+];
+
+const auditPreviewSections = [
+  {
+    title: "Keyword opportunities",
+    items: [
+      '"vitamin c serum amazon" - High search demand / moderate competition',
+      '"organic face oil" - Medium demand / fragmented listings',
+      '"hydrating toner" - Medium demand / weak branded presence',
+    ],
+  },
+  {
+    title: "Competitor snapshot",
+    items: [
+      "3 competing listings with stronger review velocity",
+      "2 generic sellers ranking on branded-adjacent terms",
+      "Sponsored placement activity visible in top search results",
+    ],
+  },
+  {
+    title: "Gating check",
+    items: [
+      "Category appears open for standard beauty listings",
+      "Compliance review may be required depending on claims and ingredients",
+    ],
+  },
+  {
+    title: "Brand Registry status",
+    items: [
+      "Official brand presence not clearly visible in marketplace results",
+      "Brand Registry should be confirmed before expansion",
+    ],
+  },
+  {
+    title: "Recommended next step",
+    items: [
+      "Confirm brand ownership status",
+      "Map top 20 Amazon search terms",
+      "Review unauthorized or generic listing activity",
+      "Prepare controlled launch or cleanup plan",
+    ],
+  },
+];
+
+const pilotTerms = [
+  "We cover initial PPC spend for the trial period.",
+  "The pilot runs for 60-90 days.",
+  "If agreed performance metrics are reached, the brand commits to 6-month marketplace management at X%.",
+  "If the pilot does not meet agreed benchmarks, there is no ongoing commitment.",
 ];
 
 const navigatorCards = [
@@ -88,7 +137,7 @@ const navigatorCards = [
   {
     title: "System Support",
     description:
-      "You need campaigns, Shopify builds, or AI workflows to scale efficiency.",
+      "You need campaigns, Shopify builds, or workflow systems to scale efficiency.",
     recommendation: "Ecommerce Growth",
   },
 ];
@@ -591,6 +640,65 @@ export default function ServicesPage() {
           </div>
         </section>
 
+        <section className="bg-[#080826] py-20 md:py-[110px]">
+          <div className="site-container">
+            <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
+              <div>
+                <SectionEyebrow>AUDIT PREVIEW</SectionEyebrow>
+                <h2 className="max-w-[620px] text-4xl font-extrabold leading-tight tracking-[-0.04em] text-[#FFFFFF] md:text-6xl">
+                  Sample audit deliverable
+                </h2>
+                <p className="mt-6 max-w-[610px] text-lg leading-8 text-[#C9C7E8]">
+                  Before a brand commits to deeper marketplace work, we show the
+                  type of intelligence a focused audit can uncover.
+                </p>
+              </div>
+
+              <div className="rounded-[18px] border border-[rgba(255,255,255,0.10)] bg-[#101034] p-4 shadow-[0_24px_80px_rgba(0,0,0,0.28)] md:p-6">
+                <div className="rounded-[14px] border border-[rgba(3,3,25,0.12)] bg-[#F5F3FF] p-6 text-[#030319] shadow-[0_22px_70px_rgba(3,3,25,0.20)] md:p-8">
+                  <div className="flex flex-col gap-4 border-b border-[rgba(3,3,25,0.12)] pb-5 md:flex-row md:items-start md:justify-between">
+                    <div>
+                      <p className="text-[11px] font-extrabold uppercase tracking-[0.16em] text-[#6D35FF]">
+                        Anonymized marketplace audit
+                      </p>
+                      <h3 className="mt-2 text-2xl font-black tracking-[-0.035em] text-[#030319]">
+                        1-page audit snapshot
+                      </h3>
+                    </div>
+                    <div className="rounded-full border border-[rgba(109,53,255,0.18)] bg-[#FFFFFF] px-4 py-2 text-[11px] font-extrabold uppercase tracking-[0.12em] text-[#6D35FF]">
+                      Sample data
+                    </div>
+                  </div>
+
+                  <div className="mt-6 grid gap-5">
+                    {auditPreviewSections.map((section) => (
+                      <div
+                        className="rounded-[12px] border border-[rgba(3,3,25,0.10)] bg-[#FFFFFF] p-5"
+                        key={section.title}
+                      >
+                        <h4 className="text-sm font-black uppercase tracking-[0.10em] text-[#030319]">
+                          {section.title}
+                        </h4>
+                        <ul className="mt-4 grid gap-2.5">
+                          {section.items.map((item) => (
+                            <li
+                              className="flex gap-3 text-sm leading-6 text-[#2E2D45]"
+                              key={item}
+                            >
+                              <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-[#6D35FF]" />
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section
           className="scroll-mt-28 bg-[#080826] py-20 md:py-[110px]"
           id="controlled-amazon-pilot"
@@ -635,6 +743,25 @@ export default function ServicesPage() {
                 and capped PPC to gather hard data before full-catalog
                 commitment.
               </p>
+              <div className="mt-8 rounded-[14px] border border-[rgba(255,255,255,0.10)] bg-[#101034] p-6 shadow-[0_18px_60px_rgba(255,60,191,0.10)]">
+                <h3 className="text-xl font-extrabold text-[#FFFFFF]">
+                  Risk-free pilot terms
+                </h3>
+                <div className="mt-5 grid gap-3">
+                  {pilotTerms.map((term) => (
+                    <div className="flex gap-3" key={term}>
+                      <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-[#10C8FF]" />
+                      <p className="text-sm leading-6 text-[#C9C7E8]">
+                        {term}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+                <p className="mt-5 border-t border-[rgba(255,255,255,0.10)] pt-4 text-xs leading-6 text-[#A8A5C8]">
+                  Final terms depend on category, margin, inventory position,
+                  and agreed performance benchmarks.
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -650,9 +777,9 @@ export default function ServicesPage() {
                 Amazon Channel Management
               </h2>
               <p className="mt-6 max-w-[610px] text-lg leading-8 text-[#C9C7E8]">
-                Our flagship service for established brands seeking absolute
-                dominance. We handle everything from catalog optimization to
-                complex PPC scaling.
+                Our flagship service for established brands seeking consistent
+                channel performance. We handle everything from catalog
+                optimization to complex PPC scaling.
               </p>
             </div>
 
@@ -701,8 +828,9 @@ export default function ServicesPage() {
               </h2>
               <p className="mt-6 max-w-[610px] text-lg leading-8 text-[#C9C7E8]">
                 Expanding beyond marketplaces into Shopify and high-efficiency
-                DTC. We engineer AI-enhanced workflows and product positioning
-                strategies that work in tandem with marketplace success.
+                DTC. We build operational efficiency tools and product
+                positioning strategies that work in tandem with marketplace
+                success.
               </p>
               <div className="group relative mt-9 h-[230px] overflow-hidden rounded-[10px] border border-[rgba(255,255,255,0.10)] bg-[#101034] md:h-[280px]">
                 <Image
