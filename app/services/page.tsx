@@ -1,8 +1,18 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
+
+export const metadata: Metadata = {
+  title: "Amazon Marketplace Control Services | ScopeScaler",
+  description:
+    "Explore ScopeScaler services for Amazon marketplace leakage audits, unauthorized seller risk checks, demand research, Sellercloud workflows, Shopify operations, SKU management, and controlled Amazon growth support.",
+  alternates: {
+    canonical: "/services",
+  },
+};
 
 const serviceNav = [
   { label: "Free Leakage Audit", href: "#free-leakage-audit" },
@@ -13,17 +23,17 @@ const serviceNav = [
 ];
 
 const diagnosticItems = [
-  "Search visibility and organic ranking review",
-  "Competitive unauthorized seller detection",
-  "Listing health and compliance analysis",
-  "Hidden margin erosion reporting",
+  "Amazon search visibility and ranking review",
+  "Seller activity and listing risk review",
+  "Listing health and compliance signal check",
+  "Marketplace gap and margin-risk summary",
 ];
 
 const pilotSteps = [
-  "SKU Selection & Compliance",
-  "Listing Construction & SEO",
-  "Capped PPC Deployment",
-  "Performance Review",
+  "SKU Selection & Compliance Review",
+  "Listing Content & Keyword Setup",
+  "Capped PPC Test",
+  "Signal Review",
 ];
 
 const managementCards = [
@@ -33,35 +43,35 @@ const managementCards = [
       "Continuous monitoring of ASIN data and SEO keyword relevance to support listing consistency and ranking stability.",
   },
   {
-    title: "PPC & DSP Authority",
+    title: "PPC & DSP Control",
     description:
-      "Data-driven advertising strategies focused on TACoS, ACOS efficiency, and brand-aware customer acquisition.",
+      "Campaign structure, budget pacing, and efficiency review focused on ACOS, TACoS, and brand-aware customer acquisition.",
   },
   {
-    title: "Inventory Logic",
+    title: "Inventory Planning",
     description:
-      "Strategic forecasting and shipment management to avoid stock-outs and expensive overage fees.",
+      "Forecasting and shipment coordination to reduce stock-out risk, overage fees, and avoidable fulfillment issues.",
   },
   {
-    title: "Real-time Dashboard",
+    title: "Operations Reporting",
     description:
-      "A custom operations board showing live margins, performance, and risk metrics across all markets.",
+      "A practical reporting view for margin, performance, catalog, and risk signals across active channels.",
   },
 ];
 
 const ecommerceCards = [
   {
-    title: "Shopify Design",
+    title: "Shopify Operations",
     description:
-      "Building conversion-led storefronts that integrate seamlessly with your marketplace and retention stacks.",
+      "Support for Shopify storefront updates, product-page clarity, and operational handoffs with marketplace workflows.",
   },
   {
     title: "Product Positioning",
     description:
-      "Strategic differentiation mapping to ensure your brand stands out in saturated categories.",
+      "Category and competitor review to clarify product messaging, offer structure, and merchandising priorities.",
   },
   {
-    title: "AI Operations",
+    title: "Operational Efficiency Workflows",
     description:
       "Structured research workflows for keyword review, competitor tracking, listing checks, and marketplace audit documentation.",
   },
@@ -112,32 +122,33 @@ const auditPreviewSections = [
 const pilotTerms = [
   "We cover initial PPC spend for the trial period.",
   "The pilot runs for 60-90 days.",
-  "If agreed performance metrics are reached, the brand commits to 6-month marketplace management at X%.",
+  "If agreed benchmarks are reached, the brand may continue into 6-month marketplace management at X%.",
   "If the pilot does not meet agreed benchmarks, there is no ongoing commitment.",
 ];
 
 const navigatorCards = [
   {
-    title: "Unsure of Loss",
-    description: "Your organic search ranking has lost data to prove it or fix it.",
+    title: "Unclear Leakage",
+    description:
+      "You need evidence of search visibility, seller activity, or listing gaps before deciding next steps.",
     recommendation: "Free Leakage Audit",
   },
   {
-    title: "Testing Demand",
+    title: "Demand Validation",
     description:
-      "You need a low brand-risk pilot to see if paid traffic validates fit.",
+      "You want a controlled Amazon test before committing more inventory, budget, or catalog scope.",
     recommendation: "Controlled Pilot",
   },
   {
-    title: "Existing Strategy",
+    title: "Active Amazon Channel",
     description:
-      "You're already on Amazon but performance lacks precision or control.",
+      "You are already on Amazon and need stronger catalog discipline, reporting, and channel control.",
     recommendation: "Channel Management",
   },
   {
-    title: "System Support",
+    title: "Operations Support",
     description:
-      "You need campaigns, Shopify builds, or workflow systems to scale efficiency.",
+      "You need support across Shopify, Sellercloud, catalog workflows, content, or campaign operations.",
     recommendation: "Ecommerce Growth",
   },
 ];
@@ -556,9 +567,9 @@ export default function ServicesPage() {
                 brand-led operators.
               </h1>
               <p className="mt-8 max-w-[660px] text-lg leading-8 text-[#C9C7E8] md:text-xl">
-                Evidence-led strategic support designed to regain channel
-                authority, optimize sell-in economics, and scale your brand
-                across fragmented marketplace ecosystems.
+                Evidence-led support for reviewing Amazon demand, seller
+                activity, catalog readiness, and ecommerce operations before
+                scaling channel investment.
               </p>
             </div>
           </div>
@@ -593,10 +604,9 @@ export default function ServicesPage() {
                 Free Amazon Leakage Audit
               </h2>
               <p className="mt-6 max-w-[610px] text-lg leading-8 text-[#C9C7E8]">
-                Our entry-point diagnostic. We identify exactly where your
-                revenue is leaking {"\u2014"} from unauthorized sellers to
-                inefficient listing syntax. Gain 100% visibility before
-                spending a dollar on growth.
+                Review Amazon search visibility, seller activity, listing
+                quality, and marketplace gaps before committing more budget to
+                channel growth.
               </p>
               <a
                 className="mt-9 inline-flex bg-[#6D35FF] px-7 py-4 text-xs font-extrabold uppercase tracking-[0.08em] text-[#FFFFFF] transition-colors hover:bg-[#8A3FFC]"
@@ -649,8 +659,9 @@ export default function ServicesPage() {
                   Sample audit deliverable
                 </h2>
                 <p className="mt-6 max-w-[610px] text-lg leading-8 text-[#C9C7E8]">
-                  Before a brand commits to deeper marketplace work, we show the
-                  type of intelligence a focused audit can uncover.
+                  Before deeper marketplace work begins, a focused audit can
+                  show where branded demand, generic listings, competitor
+                  activity, or seller risk may affect channel control.
                 </p>
               </div>
 
@@ -738,14 +749,13 @@ export default function ServicesPage() {
                 Controlled Amazon Pilot
               </h2>
               <p className="mt-6 max-w-[610px] text-lg leading-8 text-[#C9C7E8]">
-                Lower the risk of channel expansion. We test demand using 1
-                {"\u2013"}2 hero SKUs, deploying high-intent listing content
-                and capped PPC to gather hard data before full-catalog
-                commitment.
+                Build a controlled launch or cleanup plan around 1{"\u2013"}2
+                priority SKUs, capped PPC, category demand, operational
+                readiness, and brand-control priorities.
               </p>
               <div className="mt-8 rounded-[14px] border border-[rgba(255,255,255,0.10)] bg-[#101034] p-6 shadow-[0_18px_60px_rgba(255,60,191,0.10)]">
                 <h3 className="text-xl font-extrabold text-[#FFFFFF]">
-                  Risk-free pilot terms
+                  Pilot terms
                 </h3>
                 <div className="mt-5 grid gap-3">
                   {pilotTerms.map((term) => (
@@ -777,9 +787,9 @@ export default function ServicesPage() {
                 Amazon Channel Management
               </h2>
               <p className="mt-6 max-w-[610px] text-lg leading-8 text-[#C9C7E8]">
-                Our flagship service for established brands seeking consistent
-                channel performance. We handle everything from catalog
-                optimization to complex PPC scaling.
+                Ongoing support for established brands that need consistent
+                channel performance across catalog management, advertising,
+                inventory planning, and marketplace reporting.
               </p>
             </div>
 
@@ -827,10 +837,9 @@ export default function ServicesPage() {
                 Ecommerce Growth Support
               </h2>
               <p className="mt-6 max-w-[610px] text-lg leading-8 text-[#C9C7E8]">
-                Expanding beyond marketplaces into Shopify and high-efficiency
-                DTC. We build operational efficiency tools and product
-                positioning strategies that work in tandem with marketplace
-                success.
+                Support backend ecommerce workflows across Amazon, Shopify,
+                Sellercloud, and multi-channel catalog systems, with product
+                positioning tied to marketplace evidence.
               </p>
               <div className="group relative mt-9 h-[230px] overflow-hidden rounded-[10px] border border-[rgba(255,255,255,0.10)] bg-[#101034] md:h-[280px]">
                 <Image
@@ -886,10 +895,9 @@ export default function ServicesPage() {
                   Content Support
                 </h2>
                 <p className="mt-6 max-w-[560px] text-lg leading-[1.65] text-[#C9C7E8] md:text-[19px]">
-                  Creative direction that is not just &ldquo;pretty&rdquo;{" "}
-                  {"\u2014"} it is performance-tied. We build content systems
-                  that feed the algorithm while staying true to your
-                  brand&apos;s core DNA.
+                  Content support for product storytelling, Creator Connections,
+                  paid social assets, and ecommerce campaigns, grounded in the
+                  way customers evaluate products across channels.
                 </p>
 
                 <div className="mt-[38px] flex flex-wrap gap-[14px]">
@@ -912,12 +920,12 @@ export default function ServicesPage() {
                 <SocialFeatureCard
                   icon={<ClapperIcon />}
                   offsetClass="md:-translate-y-[26px]"
-                  title="High-impact short-form video"
+                  title="Short-form product video"
                 />
                 <SocialFeatureCard
                   icon={<SparkleIcon />}
                   offsetClass="md:translate-y-[26px]"
-                  title="Creative Asset Systems"
+                  title="Creative asset systems"
                 />
               </div>
             </div>

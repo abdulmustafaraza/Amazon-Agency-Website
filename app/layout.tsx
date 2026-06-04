@@ -1,9 +1,42 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+const siteUrl = "https://scopescaler.com";
+const title = "ScopeScaler | Amazon Marketplace Intelligence & Brand Control";
+const description =
+  "ScopeScaler helps ecommerce brands identify Amazon marketplace leakage, unauthorized seller risk, search demand, and backend operational gaps across Amazon, Shopify, Sellercloud, and multi-channel workflows.";
+
 export const metadata: Metadata = {
-  title: "ScopeScaler",
-  description: "Marketplace control for brand-led ecommerce operators.",
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
+  keywords: [
+    "Amazon marketplace control",
+    "Amazon brand leakage audit",
+    "unauthorized seller audit",
+    "Amazon demand research",
+    "ecommerce operations support",
+    "Sellercloud operations",
+    "Shopify Amazon operations",
+    "Amazon Creator Connections",
+  ],
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title,
+    description:
+      "Amazon marketplace intelligence, leakage audits, unauthorized seller research, and ecommerce operations support for brands that need stronger marketplace control.",
+    url: siteUrl,
+    siteName: "ScopeScaler",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description:
+      "Amazon marketplace intelligence, leakage audits, unauthorized seller research, and ecommerce operations support for brands that need stronger marketplace control.",
+  },
   icons: {
     icon: [
       { url: "/favicon.ico" },
@@ -15,14 +48,42 @@ export const metadata: Metadata = {
   },
 };
 
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: "ScopeScaler",
+    url: siteUrl,
+    logo: `${siteUrl}/icon.png`,
+    sameAs: [
+      "https://www.instagram.com/scopescaler/",
+      "https://www.linkedin.com/in/scope-scaler-17b0a1411",
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "ScopeScaler",
+    url: siteUrl,
+  },
+];
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body suppressHydrationWarning>{children}</body>
+    <html data-scroll-behavior="smooth" lang="en" suppressHydrationWarning>
+      <body suppressHydrationWarning>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData),
+          }}
+          type="application/ld+json"
+        />
+        {children}
+      </body>
     </html>
   );
 }

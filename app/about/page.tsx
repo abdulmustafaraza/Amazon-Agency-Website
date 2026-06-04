@@ -1,5 +1,6 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import LeadershipSlider from "@/components/LeadershipSlider";
 
 const riskPoints = [
   "Brand search visibility",
@@ -186,6 +187,13 @@ export default function AboutPage() {
               ))}
             </div>
           </div>
+        </section>
+
+        <section
+          className="bg-[#080826]"
+          id="leadership-team"
+        >
+          <LeadershipSlider />
         </section>
 
         <section className="bg-[#080826] py-24 md:py-[110px]">
