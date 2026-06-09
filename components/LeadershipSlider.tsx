@@ -89,14 +89,14 @@ export default function LeadershipSlider() {
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(3,3,25,0.18)_0%,rgba(3,3,25,0.04)_46%,rgba(3,3,25,0.24)_100%)]" />
 
       <div
-        className={`relative mx-auto grid w-full max-w-[1440px] grid-cols-1 transition-opacity duration-300 lg:h-[640px] lg:grid-cols-[48fr_52fr] lg:items-center lg:gap-[72px] ${
+        className={`relative mx-auto grid w-full max-w-[1440px] grid-cols-1 transition-opacity duration-300 lg:min-h-[640px] lg:grid-cols-[46fr_54fr] lg:items-stretch lg:gap-[56px] ${
           isFading ? "opacity-0" : "opacity-100"
         }`}
         key={activeMember.name}
       >
-        <div className="relative flex h-[400px] w-full items-end justify-center overflow-hidden bg-[radial-gradient(circle_at_50%_42%,rgba(109,53,255,0.14),transparent_38%),linear-gradient(180deg,rgba(3,3,25,0.08)_0%,rgba(3,3,25,0.76)_100%)] md:h-[420px] lg:h-[560px] lg:min-h-[560px]">
+        <div className="relative flex h-[420px] w-full items-end justify-center overflow-hidden bg-[radial-gradient(circle_at_50%_42%,rgba(109,53,255,0.14),transparent_38%),linear-gradient(180deg,rgba(3,3,25,0.08)_0%,rgba(3,3,25,0.76)_100%)] md:h-[480px] lg:h-full lg:min-h-[640px]">
           <div className="pointer-events-none absolute bottom-0 h-[82%] w-[86%] max-w-[620px] border border-[rgba(16,200,255,0.08)] bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.00))]" />
-          <div className="relative h-[380px] w-full max-w-[620px] md:h-[410px] lg:h-[560px]">
+          <div className="relative h-[400px] w-full max-w-[620px] md:h-[460px] lg:h-full lg:min-h-[640px]">
             <Image
               alt={`${activeMember.name}, ${activeMember.role}`}
               className="object-contain object-bottom transition duration-700"
@@ -110,7 +110,7 @@ export default function LeadershipSlider() {
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(3,3,25,0.24)_0%,transparent_18%,transparent_76%,rgba(3,3,25,0.22)_100%),linear-gradient(180deg,transparent_68%,#080826_100%)]" />
         </div>
 
-        <div className="relative flex w-full flex-col justify-center px-6 py-12 md:px-10 lg:max-w-[740px] lg:px-0 lg:py-0">
+        <div className="relative flex w-full flex-col justify-center px-6 py-12 md:px-10 lg:max-w-none lg:px-0 lg:py-16 lg:pr-16">
           <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-[#10C8FF]">
             Leadership Team
           </p>
