@@ -2,32 +2,6 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import LeadershipSlider from "@/components/LeadershipSlider";
 
-const riskPoints = [
-  "Brand search visibility",
-  "Product-name demand",
-  "Unauthorized seller risk",
-  "Generic listing leakage",
-];
-
-const approachCards = [
-  {
-    title: "Map visible demand",
-    text: "We look at brand searches, product terms, category paths, and marketplace search behavior to understand where demand already appears.",
-  },
-  {
-    title: "Identify leakage and risk",
-    text: "We review seller activity, confusing listings, generic result paths, and presentation gaps that may weaken brand control.",
-  },
-  {
-    title: "Recommend the right move",
-    text: "The next step may be an audit, a controlled Amazon pilot, channel management, ecommerce support, or simply monitoring.",
-  },
-  {
-    title: "Build with control",
-    text: "If Amazon becomes part of the plan, the channel should support the brand - not compromise pricing, presentation, or customer experience.",
-  },
-];
-
 const differenceCards = [
   {
     title: "We do not start with assumptions",
@@ -96,72 +70,6 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="bg-[#080826] py-24 md:py-[110px]">
-          <div className="site-container grid gap-12 lg:grid-cols-[1fr_0.78fr] lg:items-center">
-            <div>
-              <Eyebrow>WHY THIS EXISTS</Eyebrow>
-              <h2 className="max-w-[720px] text-4xl font-extrabold leading-tight tracking-[-0.04em] text-[#FFFFFF] md:text-6xl">
-                DTC brands often ignore Amazon until someone else defines them
-                there.
-              </h2>
-              <p className="mt-6 max-w-[720px] text-lg leading-8 text-[#C9C7E8]">
-                Customers may search for your brand, product names, and category
-                terms on Amazon even if you do not officially sell there. When
-                that demand is unmanaged, it can leak into generic listings,
-                competitor products, confusing results, or unauthorized seller
-                activity.
-              </p>
-              <p className="mt-5 max-w-[720px] text-lg leading-8 text-[#C9C7E8]">
-                The point is not to force every brand onto Amazon. The point is
-                to understand what is already happening and decide whether
-                protection, testing, management, or no action is the right move.
-              </p>
-            </div>
-
-            <div className="rounded-[14px] border border-[rgba(255,255,255,0.10)] bg-[#101034] p-7 shadow-[0_18px_60px_rgba(255,60,191,0.12)] md:p-9">
-              <h3 className="text-2xl font-extrabold text-[#FFFFFF]">
-                What we look for
-              </h3>
-              <div className="mt-7 grid gap-4">
-                {riskPoints.map((point) => (
-                  <div className="flex items-center gap-4" key={point}>
-                    <span className="h-2 w-2 flex-none rounded-full bg-[#6D35FF]" />
-                    <p className="text-base font-semibold text-[#C9C7E8]">
-                      {point}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-[#080826] py-24 md:py-[110px]">
-          <div className="site-container">
-            <Eyebrow>OUR APPROACH</Eyebrow>
-            <h2 className="max-w-[720px] text-4xl font-extrabold leading-tight tracking-[-0.04em] text-[#FFFFFF] md:text-6xl">
-              Evidence first. Channel decisions second.
-            </h2>
-            <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-              {approachCards.map((card, index) => (
-                <article
-                  className="rounded-[12px] border border-[rgba(255,255,255,0.10)] bg-[#101034] p-6 shadow-[0_18px_60px_rgba(255,60,191,0.12)] transition-all duration-300 hover:border-[#6D35FF] hover:bg-[#101034]"
-                  key={card.title}
-                >
-                  <p className="text-xs font-extrabold tracking-[0.14em] text-[#6D35FF]">
-                    0{index + 1}
-                  </p>
-                  <h3 className="mt-8 text-xl font-extrabold leading-7 text-[#FFFFFF]">
-                    {card.title}
-                  </h3>
-                  <p className="mt-4 text-sm leading-7 text-[#C9C7E8]">
-                    {card.text}
-                  </p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
 
         <section className="bg-[#101034] py-24 md:py-[110px]">
           <div className="site-container">
