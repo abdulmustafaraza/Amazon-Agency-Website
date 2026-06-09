@@ -4,7 +4,7 @@ const founders = [
   {
     name: "Ukasha Shabbir",
     eyebrow: "FOUNDER, SCOPESCALER",
-    image: "/images/team/founder.webp",
+    image: "/images/team/founder.svg",
     linkedin: "https://www.linkedin.com/in/ukashashabbir/",
     bio: [
       "Ukasha got into ecommerce back in 2020 and never really looked back. Early on, he even started his own local ecommerce venture in Pakistan — it didn’t last forever, but it taught him more than any job could, and it’s where the founder bug really bit.",
@@ -15,7 +15,7 @@ const founders = [
   {
     name: "Abdul Mustafa Raza",
     eyebrow: "CO-FOUNDER, SCOPESCALER",
-    image: "/images/team/co-founder.webp",
+    image: "/images/team/co-founder.svg",
     linkedin: "https://www.linkedin.com/in/abdul-mustafa-raza-26a69b311/",
     bio: [
       "Mustafa found his thing in 2023 and went all in. He started out handling Amazon accounts and has since worked across the full range of Amazon business models — FBA, wholesale, and private label — picking up real experience in shipment management, sales, and brand research along the way.",
