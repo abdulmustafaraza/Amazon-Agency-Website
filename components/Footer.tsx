@@ -278,18 +278,20 @@ export default function Footer() {
             {newsletterError ? (
               <p className="mt-2 text-sm text-[#D12BFF]">{newsletterError}</p>
             ) : null}
-            <a
-              className="mt-5 inline-flex text-[15px] font-semibold text-[#10C8FF] transition-colors duration-200 hover:!text-[#FF3CBF]"
-              href={`mailto:${footerEmail}`}
-            >
-              {footerEmail}
-            </a>
-            <a
-              className="mt-2 inline-flex text-[15px] font-semibold text-[#10C8FF] transition-colors duration-200 hover:!text-[#FF3CBF]"
-              href="tel:+17868697420"
-            >
-              (786)-869-7420
-            </a>
+            <div className="mt-5 flex flex-col gap-2">
+              <a
+                className="text-[15px] font-semibold text-[#10C8FF] transition-colors duration-200 hover:!text-[#FF3CBF]"
+                href={`mailto:${footerEmail}`}
+              >
+                {footerEmail}
+              </a>
+              <a
+                className="text-[15px] font-semibold text-[#10C8FF] transition-colors duration-200 hover:!text-[#FF3CBF]"
+                href="tel:+17868697420"
+              >
+                (786)-869-7420
+              </a>
+            </div>
           </div>
         </div>
 
