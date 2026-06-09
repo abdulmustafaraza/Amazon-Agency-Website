@@ -10,9 +10,9 @@ const teamMembers = [
     image: "/images/team/founder.svg",
     linkedin: "https://www.linkedin.com/in/ukashashabbir/",
     bio: [
-      "Ukasha leads ScopeScaler's vision and direction, driving company strategy and the key decisions behind the work.",
-      "He focuses on understanding where marketplace demand is moving, spotting overlooked opportunities, and giving every partner brand a clear, no-nonsense path forward on Amazon.",
-      "He believes good strategy should make things easier, not more complicated, and that principle shapes how ScopeScaler operates.",
+      "Ukasha got into ecommerce back in 2020 and never really looked back. Early on, he even started his own local ecommerce venture in Pakistan — it didn’t last forever, but it taught him more than any job could, and it’s where the founder bug really bit.",
+      "For close to four years now, he’s run the day-to-day operations for a US beauty brand, managing thousands of products across Amazon and Shopify all the way from Karachi. If something’s tangled in Seller Central, broken in the inventory sync, or quietly leaking sales between channels, that’s the kind of thing he’s been untangling for years — and it’s that same instinct, spotting where a brand is losing ground in the marketplace and figuring out how to win it back, that shaped what ScopeScaler does today.",
+      "He tends to think in systems, which is partly just how his brain works and partly the policy-making and systems-thinking side of him that comes out everywhere. When he’s not in a spreadsheet, he’s usually off doing leadership and social-impact work somewhere.",
     ],
   },
   {
@@ -21,9 +21,9 @@ const teamMembers = [
     image: "/images/team/co-founder.svg",
     linkedin: "https://www.linkedin.com/in/abdul-mustafa-raza-26a69b311/",
     bio: [
-      "Abdul turns strategy into execution, building the systems and processes that keep ScopeScaler's work structured and reliable.",
-      "From operational workflows to day-to-day client execution, he makes sure ideas move into delivery.",
-      "His focus on strong systems helps ScopeScaler maintain consistent execution as the company grows.",
+      "Mustafa found his thing in 2023 and went all in. He started out handling Amazon accounts and has since worked across the full range of Amazon business models — FBA, wholesale, and private label — picking up real experience in shipment management, sales, and brand research along the way.",
+      "But the part he genuinely loves is the research: sourcing products, sizing up suppliers, reading demand and competition, and figuring out which brands and categories actually have pull on Amazon. He’s not a “trust your gut” operator — he’d rather look at the data, the margins, and the gaps, and then make the call.",
+      "Building his own ecommerce agency was the goal from early on, and this is it.",
     ],
   },
 ];
@@ -115,8 +115,10 @@ export default function LeadershipSlider() {
             Leadership Team
           </p>
           <p className="mt-5 max-w-[740px] text-base leading-[1.7] text-[#C9C7E8]">
-            ScopeScaler is led by operators focused on Amazon marketplace
-            control, ecommerce workflows, and brand-side execution.
+            ScopeScaler started with two people who kept circling the same
+            problem from different angles: brands letting the marketplace decide
+            where they show up, instead of controlling it themselves. So we
+            built the thing we wished existed.
           </p>
 
           <div className="my-8 h-px w-full max-w-[740px] bg-[rgba(255,255,255,0.12)]" />
@@ -127,7 +129,7 @@ export default function LeadershipSlider() {
           <h3 className="mt-4 text-[clamp(36px,4vw,56px)] font-extrabold leading-[1.02] tracking-[-0.045em] text-[#FFFFFF]">
             {activeMember.name}
           </h3>
-          <div className="mt-6 grid min-h-[186px] max-w-[740px] content-start gap-3">
+          <div className="mt-6 grid max-w-[740px] content-start gap-3">
             {activeMember.bio.map((paragraph) => (
               <p
                 className="text-base leading-[1.7] text-[#C9C7E8]"
