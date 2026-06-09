@@ -189,12 +189,9 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section
-          className="bg-[#080826]"
-          id="leadership-team"
-        >
+        <div id="leadership-team">
           <LeadershipSlider />
-        </section>
+        </div>
 
         <section className="bg-[#080826] py-24 md:py-[110px]">
           <div className="site-container grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
