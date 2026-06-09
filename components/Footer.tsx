@@ -284,6 +284,12 @@ export default function Footer() {
             >
               {footerEmail}
             </a>
+            <a
+              className="mt-2 inline-flex text-[15px] font-semibold text-[#10C8FF] transition-colors duration-200 hover:!text-[#FF3CBF]"
+              href="tel:+17868697420"
+            >
+              (786)-869-7420
+            </a>
           </div>
         </div>
 
