@@ -1,5 +1,4 @@
-﻿import AuditSection from "@/components/AuditSection";
-import Footer from "@/components/Footer";
+﻿import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import PreFooterCTA from "@/components/PreFooterCTA";
@@ -17,7 +16,6 @@ export default function Home() {
         <Hero />
         <StatsStrip />
         <ProblemSection />
-        <AuditSection />
         <SelectedWork />
         <ServicesSection />
         <ToolsEcosystemSection />
