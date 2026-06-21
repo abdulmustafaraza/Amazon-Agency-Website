@@ -75,8 +75,7 @@ export default function AboutPage() {
           <div className="site-container">
             <Eyebrow>DIFFERENT BY DESIGN</Eyebrow>
             <h2 className="max-w-[860px] text-4xl font-extrabold leading-tight tracking-[-0.04em] text-[#FFFFFF] md:text-6xl">
-              Not a reseller. Not a wholesale pitch. Not marketplace automation
-              hype.
+              Evidence first. Brand control always.
             </h2>
             <div className="mt-12 grid gap-6 lg:grid-cols-3">
               {differenceCards.map((card) => (

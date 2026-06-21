@@ -19,10 +19,9 @@ export default function PortfolioPage() {
               systems.
             </h1>
             <p className="mt-6 max-w-[760px] text-base leading-8 text-[#C9C7E8] md:text-lg">
-              A focused look at marketplace operations, Amazon leakage
-              research, creator workflows, and multi-channel ecommerce support.
-              Drawn from our team&apos;s prior experience across DTC, beauty, and
-              marketplace operations.
+              Marketplace operations, Amazon leakage research, creator
+              workflows, and multi-channel ecommerce support across DTC and
+              beauty brands.
             </p>
           </div>
         </section>

@@ -31,7 +31,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "creator-connections-growth-support",
     title: "Creator Campaigns Driving Marketplace Sales",
     description:
-      "Our team has supported Amazon Creator Connections campaigns for beauty and wellness products, including campaign setup, creator targeting, product selection, copywriting, content-angle strategy, and performance tracking across clicks, orders, sales, and spend.",
+      "Amazon Creator Connections campaigns for beauty and wellness brands — setup, creator targeting, product selection, and performance tracking.",
     tags: [
       "Amazon Creator Connections",
       "Affiliate Marketing",
@@ -79,7 +79,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "multi-channel-ecommerce-operations",
     title: "20K+ SKU Multi-Channel Operations Support",
     description:
-      "Our team has supported backend ecommerce operations across Amazon, Shopify, eBay, Walmart, and Sellercloud, including SKU management, inventory coordination, shadow SKUs, variants, kits, bundles, N-Matrix configurations, and channel sync workflows.",
+      "Backend ecommerce operations across Amazon, Shopify, eBay, Walmart, and Sellercloud — SKU management, inventory, and channel sync at 20K+ SKUs.",
     tags: ["Sellercloud", "Amazon", "Shopify", "Inventory Systems"],
     image: "/portfolio/ecommerce.jpeg",
     heroHeadline: "20K+ SKU Multi-Channel Operations Support",
@@ -127,7 +127,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "amazon-leakage-demand-research",
     title: "Hidden Amazon Demand & Brand Leakage Research",
     description:
-      "Our team has built research workflows to identify DTC beauty brands with Amazon search demand, weak or missing official marketplace presence, generic listings, and potential unauthorized seller activity using keyword data, Amazon search behavior, and marketplace audits.",
+      "Research workflows that surface Amazon search demand, generic listings, and unauthorized seller risk for DTC beauty brands.",
     tags: ["Helium 10", "Marketplace Audit", "Brand Control"],
     image: "/portfolio/amazon-marketplace.jpeg",
     heroHeadline: "Hidden Amazon Demand & Brand Leakage Research",

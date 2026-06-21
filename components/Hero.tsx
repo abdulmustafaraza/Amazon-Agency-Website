@@ -39,16 +39,10 @@ export default function Hero() {
             <p>there.</p>
           </h1>
 
-          <p className="mb-5 max-w-[620px] text-lg font-medium leading-[1.55] text-[#FFFFFF]">
-            ScopeScaler helps DTC ecommerce brands uncover marketplace leakage,
-            reduce customer confusion, and build a controlled Amazon presence
-            when the channel makes strategic sense.
-          </p>
-
-          <p className="mb-[38px] max-w-[620px] text-[15px] leading-[1.65] text-[#C9C7E8]">
-            We work with brand owners to assess Amazon demand, clarify
-            marketplace risk, and create a disciplined path forward without
-            compromising brand control.
+          <p className="mb-[38px] max-w-[620px] text-lg font-medium leading-[1.55] text-[#FFFFFF]">
+            ScopeScaler shows brands where they&apos;re losing sales on Amazon
+            {"—"} to unauthorized sellers, generic listings, and unmanaged
+            demand {"—"} and helps them take control of the channel.
           </p>
 
           <div className="flex flex-wrap items-center gap-3.5">

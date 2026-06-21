@@ -162,9 +162,9 @@ export default function StatsStrip() {
       />
 
       <div className="site-container relative z-10">
-        <h2 className="mb-[72px] text-center text-[clamp(30px,3vw,46px)] font-extrabold leading-[1.1] text-[#FFFFFF]">
-          Our numbers say it all
-        </h2>
+        <p className="mb-[56px] text-center text-xs font-extrabold uppercase tracking-[0.16em] text-[#10C8FF]">
+          Track Record
+        </p>
 
         <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-y-12 px-6 text-center sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-16 xl:gap-x-20">
           {stats.map((stat, index) => (
@@ -180,12 +180,6 @@ export default function StatsStrip() {
             />
           ))}
         </div>
-
-        <p className="mx-auto mt-12 max-w-[900px] text-center text-sm leading-[1.6] text-[#B9B7D9] md:text-[15px]">
-          Based on prior ecommerce operations, Amazon Creator Connections
-          support, Sellercloud inventory workflows, and marketplace research
-          experience.
-        </p>
       </div>
     </section>
   );

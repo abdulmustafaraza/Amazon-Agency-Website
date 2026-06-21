@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
+import { Manrope } from "next/font/google";
 import "./globals.css";
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-manrope",
+});
 
 const siteUrl = "https://scopescaler.com";
 const title = "ScopeScaler | Amazon Marketplace Intelligence & Brand Control";
@@ -74,7 +81,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html data-scroll-behavior="smooth" lang="en" suppressHydrationWarning>
+    <html
+      className={manrope.variable}
+      data-scroll-behavior="smooth"
+      lang="en"
+      suppressHydrationWarning
+    >
       <body suppressHydrationWarning>
         <script
           dangerouslySetInnerHTML={{

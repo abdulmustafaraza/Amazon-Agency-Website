@@ -18,9 +18,8 @@ export default function SelectedWork() {
             and conversion systems.
           </h2>
           <p className="mt-6 max-w-3xl text-base leading-8 text-[#C9C7E8] md:text-lg">
-            A focused look at creator campaign support, multi-channel ecommerce
-            operations, and Amazon leakage research. Drawn from our team&apos;s
-            prior experience across DTC, beauty, and marketplace operations.
+            Creator campaign support, multi-channel ecommerce operations, and
+            Amazon leakage research across DTC and beauty brands.
           </p>
         </div>
 
@@ -42,11 +41,11 @@ export default function SelectedWork() {
                 <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(3,3,25,0.05)_0%,rgba(3,3,25,0.38)_65%,rgba(3,3,25,0.72)_100%),radial-gradient(circle_at_80%_20%,rgba(209,43,255,0.16),transparent_38%)]" />
               </div>
 
-              <div className="flex min-h-[300px] flex-1 flex-col p-6">
+              <div className="flex min-h-[240px] flex-1 flex-col p-6">
                 <h3 className="text-xl font-semibold leading-7 text-[#FFFFFF]">
                   {item.title}
                 </h3>
-                <p className="mt-4 line-clamp-6 text-sm leading-7 text-[#C9C7E8]">
+                <p className="mt-4 text-sm leading-7 text-[#C9C7E8]">
                   {item.description}
                 </p>
 

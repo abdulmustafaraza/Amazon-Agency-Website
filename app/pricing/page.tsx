@@ -2,6 +2,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Image from "next/image";
 import Link from "next/link";
+import type { ReactNode } from "react";
 
 const pricingTabs = [
   { label: "Free Leakage Audit", href: "#free-leakage-audit" },
@@ -69,7 +70,7 @@ const pricingModels = [
     id: "ecommerce-growth-support",
     topLabel: "BEYOND AMAZON",
     serviceLabel: "ECOMMERCE GROWTH SUPPORT",
-    title: "Custom Scope",
+    title: "Custom Retainer",
     bestFor:
       "Best for: Brands that need support across Shopify, ecommerce optimization, product messaging, AI workflows, or chatbot systems.",
     includes: [
@@ -170,7 +171,7 @@ function Eyebrow({ children }: { children: string }) {
   );
 }
 
-function AmberIcon() {
+function IconWrap({ children }: { children: ReactNode }) {
   return (
     <svg
       aria-hidden="true"
@@ -178,22 +179,93 @@ function AmberIcon() {
       fill="none"
       viewBox="0 0 24 24"
     >
+      {children}
+    </svg>
+  );
+}
+
+function ProductScopeIcon() {
+  return (
+    <IconWrap>
       <path
-        d="M12 3L20 7V12C20 16.7 16.8 20.2 12 21.5C7.2 20.2 4 16.7 4 12V7L12 3Z"
+        d="M4 8L12 3.5L20 8V16L12 20.5L4 16V8Z"
         stroke="currentColor"
         strokeLinejoin="round"
         strokeWidth="2"
       />
       <path
-        d="M8.5 12L10.8 14.3L15.7 9.4"
+        d="M4.5 8.5L12 13L19.5 8.5M12 13V20"
+        stroke="currentColor"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      />
+    </IconWrap>
+  );
+}
+
+function MarketComplexityIcon() {
+  return (
+    <IconWrap>
+      <path
+        d="M6 6L18 12M18 12L6 18M18 12H20"
         stroke="currentColor"
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="2"
       />
-    </svg>
+      <path
+        d="M6 8C7.10457 8 8 7.10457 8 6C8 4.89543 7.10457 4 6 4C4.89543 4 4 4.89543 4 6C4 7.10457 4.89543 8 6 8ZM6 20C7.10457 20 8 19.1046 8 18C8 16.8954 7.10457 16 6 16C4.89543 16 4 16.8954 4 18C4 19.1046 4.89543 20 6 20ZM20 14C21.1046 14 22 13.1046 22 12C22 10.8954 21.1046 10 20 10C18.8954 10 18 10.8954 18 12C18 13.1046 18.8954 14 20 14Z"
+        stroke="currentColor"
+        strokeWidth="2"
+      />
+    </IconWrap>
   );
 }
+
+function SupportLevelIcon() {
+  return (
+    <IconWrap>
+      <path
+        d="M5 7H19M5 12H19M5 17H19"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeWidth="2"
+      />
+      <path
+        d="M9 7C9 7.82843 8.32843 8.5 7.5 8.5C6.67157 8.5 6 7.82843 6 7M18 12C18 12.8284 17.3284 13.5 16.5 13.5C15.6716 13.5 15 12.8284 15 12M11 17C11 17.8284 10.3284 18.5 9.5 18.5C8.67157 18.5 8 17.8284 8 17"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeWidth="2"
+      />
+    </IconWrap>
+  );
+}
+
+function ContentOpsIcon() {
+  return (
+    <IconWrap>
+      <path
+        d="M12 3L13.8 8.2L19 10L13.8 11.8L12 17L10.2 11.8L5 10L10.2 8.2L12 3Z"
+        stroke="currentColor"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      />
+      <path
+        d="M18 15L18.7 17.3L21 18L18.7 18.7L18 21L17.3 18.7L15 18L17.3 17.3L18 15Z"
+        stroke="currentColor"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      />
+    </IconWrap>
+  );
+}
+
+const scopeFactorIcons = [
+  <ProductScopeIcon key="product" />,
+  <MarketComplexityIcon key="market" />,
+  <SupportLevelIcon key="support" />,
+  <ContentOpsIcon key="content" />,
+];
 
 export default function PricingPage() {
   return (
@@ -205,14 +277,11 @@ export default function PricingPage() {
             <div>
               <Eyebrow>ENGAGEMENT MODELS</Eyebrow>
               <h1 className="max-w-[780px] text-[clamp(42px,5vw,76px)] font-extrabold leading-[0.98] tracking-[-0.055em] text-[#FFFFFF]">
-                Choose the right level of support after the service fit is
-                clear.
+                Choose the right level of marketplace control.
               </h1>
               <p className="mt-8 max-w-[680px] text-lg leading-8 text-[#C9C7E8] md:text-xl">
-                Our pricing models are designed for executive precision. We
-                align our scope with your specific marketplace risks, ensuring
-                that every dollar invested directly counters leakage and secures
-                your digital perimeter.
+                Scope is matched to your marketplace risk, so every dollar works
+                against leakage instead of overhead.
               </p>
             </div>
 
@@ -323,12 +392,12 @@ export default function PricingPage() {
             </p>
 
             <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-              {scopeFactors.map((factor) => (
+              {scopeFactors.map((factor, index) => (
                 <article
                   className="rounded-[12px] border border-[rgba(255,255,255,0.10)] bg-[#101034] p-7 shadow-[0_18px_60px_rgba(255,60,191,0.12)] transition-all duration-300 hover:border-[#6D35FF] hover:bg-[#101034]"
                   key={factor.title}
                 >
-                  <AmberIcon />
+                  {scopeFactorIcons[index]}
                   <h3 className="mt-8 text-xl font-extrabold text-[#FFFFFF]">
                     {factor.title}
                   </h3>

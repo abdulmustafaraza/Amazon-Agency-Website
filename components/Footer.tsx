@@ -7,10 +7,9 @@ import { siteContent } from "@/data/siteContent";
 
 const exploreLinks = [
   { label: "Home", href: "/" },
-  { label: "Services", href: "/#services" },
-  { label: "Selected Work", href: "/#selected-work" },
-  { label: "How It Works", href: "/#how-it-works" },
+  { label: "Services", href: "/services" },
   { label: "Pricing", href: "/pricing" },
+  { label: "Portfolio", href: "/portfolio" },
   { label: "About", href: "/about" },
   { label: "Free Audit", href: "/contact" },
 ];
