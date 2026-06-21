@@ -1,4 +1,10 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useState } from "react";
+
+const ROTATE_MS = 15000;
+const TRANSITION_MS = 500;
 
 const founders = [
   {
@@ -24,7 +30,114 @@ const founders = [
   },
 ];
 
+type Founder = (typeof founders)[number];
+
+function FounderShowcase({ founder }: { founder: Founder }) {
+  return (
+    <div className="mx-auto flex w-full max-w-[860px] flex-col items-center">
+      {/* Photo */}
+      <div className="relative mx-auto mb-8 w-full max-w-[380px]">
+        {/* Gradient glow halo */}
+        <div
+          aria-hidden
+          className="absolute inset-x-[5%] bottom-[-4%] top-[12%] -z-0 rounded-full opacity-55 blur-[72px]"
+          style={{
+            background:
+              "radial-gradient(circle at 50% 58%, #6D35FF 0%, #10C8FF 48%, transparent 74%)",
+          }}
+        />
+        {/* Photo with feathered mask — no hard border */}
+        <div
+          className="relative aspect-square w-full overflow-hidden"
+          style={{
+            maskImage:
+              "radial-gradient(ellipse 88% 86% at 50% 38%, black 38%, transparent 88%)",
+            WebkitMaskImage:
+              "radial-gradient(ellipse 88% 86% at 50% 38%, black 38%, transparent 88%)",
+          }}
+        >
+          <Image
+            alt={`${founder.name} — ${founder.eyebrow}`}
+            className="object-cover object-top"
+            fill
+            sizes="380px"
+            src={founder.image}
+            unoptimized
+          />
+        </div>
+      </div>
+
+      {/* Text */}
+      <div className="w-full">
+        <p className="text-center text-xs font-extrabold uppercase tracking-[0.16em] text-[#10C8FF]">
+          {founder.eyebrow}
+        </p>
+        <h3 className="mt-4 text-center text-[clamp(30px,3.2vw,46px)] font-extrabold leading-[1.04] tracking-[-0.04em] text-[#FFFFFF]">
+          {founder.name}
+        </h3>
+
+        <div className="mx-auto mt-6 max-w-[620px] space-y-4">
+          {founder.bio.map((paragraph) => (
+            <p
+              className="text-base leading-[1.75] text-[#C9C7E8]"
+              key={paragraph.slice(0, 48)}
+            >
+              {paragraph}
+            </p>
+          ))}
+        </div>
+
+        <div className="mt-8 flex justify-center">
+          <a
+            className="inline-flex items-center gap-2 border border-[rgba(255,255,255,0.16)] px-6 py-3 text-xs font-extrabold uppercase tracking-[0.08em] text-[#FFFFFF] transition-colors hover:border-[#10C8FF] hover:text-[#10C8FF]"
+            href={founder.linkedin}
+            rel="noreferrer"
+            target="_blank"
+          >
+            Connect on LinkedIn &#x2197;
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function LeadershipSlider() {
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  // Detect prefers-reduced-motion
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReducedMotion(mediaQuery.matches);
+
+    function handleChange(event: MediaQueryListEvent) {
+      setReducedMotion(event.matches);
+    }
+
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
+
+  // Auto-rotate. Depending on `active` means a manual selection restarts the
+  // timer from that point; pausing/reduced-motion stops it entirely.
+  useEffect(() => {
+    if (paused || reducedMotion) {
+      return;
+    }
+
+    const intervalId = setInterval(() => {
+      setActive((current) => (current + 1) % founders.length);
+    }, ROTATE_MS);
+
+    return () => clearInterval(intervalId);
+  }, [active, paused, reducedMotion]);
+
+  function handleSelect(index: number) {
+    setActive(index);
+  }
+
   return (
     <div className="relative overflow-hidden bg-[#080826] py-24 md:py-[110px]">
       {/* Ambient glows */}
@@ -51,79 +164,85 @@ export default function LeadershipSlider() {
           </p>
         </div>
 
-        {/* ── Founders grid ── */}
-        <div className="grid grid-cols-1 gap-16 sm:grid-cols-2 sm:gap-10 lg:gap-14">
-          {founders.map((founder) => (
-            <article
-              className="flex flex-col items-center"
-              key={founder.name}
+        {reducedMotion ? (
+          /* Reduced motion: both founders stacked, static, no auto-rotation */
+          <div className="flex flex-col gap-24">
+            {founders.map((founder) => (
+              <FounderShowcase founder={founder} key={founder.name} />
+            ))}
+          </div>
+        ) : (
+          <>
+            {/* ── Auto-rotating showcase ── */}
+            <div
+              aria-live="polite"
+              className="grid"
+              onBlur={() => setPaused(false)}
+              onFocus={() => setPaused(true)}
+              onMouseEnter={() => setPaused(true)}
+              onMouseLeave={() => setPaused(false)}
             >
-              {/* Photo */}
-              <div className="relative mx-auto mb-8 w-full max-w-[340px] sm:max-w-full">
-                {/* Gradient glow halo */}
+              {founders.map((founder, index) => (
                 <div
-                  aria-hidden
-                  className="absolute inset-x-[5%] bottom-[-4%] top-[12%] -z-0 rounded-full opacity-55 blur-[72px]"
+                  aria-hidden={index !== active}
+                  className="transition-opacity ease-out [grid-area:1/1]"
+                  key={founder.name}
                   style={{
-                    background:
-                      "radial-gradient(circle at 50% 58%, #6D35FF 0%, #10C8FF 48%, transparent 74%)",
-                  }}
-                />
-                {/* Photo with feathered mask — no hard border */}
-                <div
-                  className="relative aspect-square w-full overflow-hidden"
-                  style={{
-                    maskImage:
-                      "radial-gradient(ellipse 88% 86% at 50% 38%, black 38%, transparent 88%)",
-                    WebkitMaskImage:
-                      "radial-gradient(ellipse 88% 86% at 50% 38%, black 38%, transparent 88%)",
+                    transitionDuration: `${TRANSITION_MS}ms`,
+                    opacity: index === active ? 1 : 0,
+                    pointerEvents: index === active ? "auto" : "none",
                   }}
                 >
-                  <Image
-                    alt={`${founder.name} — ${founder.eyebrow}`}
-                    className="object-cover object-top"
-                    fill
-                    sizes="(min-width: 640px) 50vw, 340px"
-                    src={founder.image}
-                    unoptimized
-                  />
+                  <FounderShowcase founder={founder} />
                 </div>
-              </div>
+              ))}
+            </div>
 
-              {/* Text */}
-              <div className="w-full">
-                <p className="text-center text-xs font-extrabold uppercase tracking-[0.16em] text-[#10C8FF]">
-                  {founder.eyebrow}
-                </p>
-                <h3 className="mt-4 text-center text-[clamp(30px,3.2vw,46px)] font-extrabold leading-[1.04] tracking-[-0.04em] text-[#FFFFFF]">
-                  {founder.name}
-                </h3>
+            {/* ── Indicators ── */}
+            <div
+              className="mt-14 flex items-center justify-center gap-4"
+              onBlur={() => setPaused(false)}
+              onFocus={() => setPaused(true)}
+              onMouseEnter={() => setPaused(true)}
+              onMouseLeave={() => setPaused(false)}
+            >
+              {founders.map((founder, index) => {
+                const isActive = index === active;
 
-                <div className="mx-auto mt-6 max-w-[480px] space-y-4 sm:mx-0 sm:max-w-none">
-                  {founder.bio.map((paragraph) => (
-                    <p
-                      className="text-base leading-[1.75] text-[#C9C7E8]"
-                      key={paragraph.slice(0, 48)}
-                    >
-                      {paragraph}
-                    </p>
-                  ))}
-                </div>
-
-                <div className="mt-8 flex justify-center sm:justify-start">
-                  <a
-                    className="inline-flex items-center gap-2 border border-[rgba(255,255,255,0.16)] px-6 py-3 text-xs font-extrabold uppercase tracking-[0.08em] text-[#FFFFFF] transition-colors hover:border-[#10C8FF] hover:text-[#10C8FF]"
-                    href={founder.linkedin}
-                    rel="noreferrer"
-                    target="_blank"
+                return (
+                  <button
+                    aria-label={`Show ${founder.name}`}
+                    aria-pressed={isActive}
+                    className={`inline-flex min-h-[44px] items-center gap-2.5 rounded-full border px-5 text-xs font-extrabold uppercase tracking-[0.1em] transition-colors ${
+                      isActive
+                        ? "border-transparent text-[#FFFFFF]"
+                        : "border-[rgba(255,255,255,0.16)] text-[#A8A5C8] hover:border-[#10C8FF] hover:text-[#FFFFFF]"
+                    }`}
+                    key={founder.name}
+                    onClick={() => handleSelect(index)}
+                    style={
+                      isActive
+                        ? {
+                            backgroundImage:
+                              "linear-gradient(90deg, #10C8FF 0%, #6D35FF 100%)",
+                          }
+                        : undefined
+                    }
+                    type="button"
                   >
-                    Connect on LinkedIn &#x2197;
-                  </a>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
+                    <span
+                      aria-hidden
+                      className={`h-2 w-2 rounded-full ${
+                        isActive ? "bg-[#FFFFFF]" : "bg-[#6D6A92]"
+                      }`}
+                    />
+                    {founder.name.split(" ")[0]}
+                  </button>
+                );
+              })}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
