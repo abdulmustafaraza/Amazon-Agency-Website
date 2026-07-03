@@ -1,5 +1,6 @@
 "use client";
 
+import Reveal from "@/components/Reveal";
 import Link from "next/link";
 import { useState } from "react";
 import type React from "react";
@@ -8,21 +9,18 @@ import { siteContent } from "@/data/siteContent";
 const exploreLinks = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
-  { label: "Pricing", href: "/pricing" },
   { label: "Portfolio", href: "/portfolio" },
-  { label: "About", href: "/about" },
+  { label: "About", href: "/#about" },
   { label: "Free Audit", href: "/contact" },
 ];
 
 const footerServiceLinks = [
   { label: "Free Leakage Audit", href: "/services#free-leakage-audit" },
-  { label: "Controlled Amazon Pilot", href: "/services#controlled-amazon-pilot" },
   {
     label: "Amazon Channel Management",
     href: "/services#amazon-channel-management",
   },
   { label: "Ecommerce Growth Support", href: "/services#ecommerce-growth-support" },
-  { label: "Social & Content Support", href: "/services#social-content-support" },
 ];
 
 const legalLinks = [
@@ -154,6 +152,7 @@ export default function Footer() {
       id="footer"
     >
       <div className="site-container">
+        <Reveal>
         <div className="grid items-start gap-12 lg:grid-cols-[1.25fr_0.7fr_1fr_1.15fr] lg:gap-16">
           <div>
             <Link
@@ -310,6 +309,7 @@ export default function Footer() {
             ))}
           </div>
         </div>
+        </Reveal>
       </div>
 
       {newsletterSuccess ? (

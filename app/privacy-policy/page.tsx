@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Reveal from "@/components/Reveal";
 
 const sections = [
   {
@@ -42,31 +43,41 @@ export default function PrivacyPolicyPage() {
       <Header />
       <main className="bg-[#030319] py-20 md:py-[110px]">
         <article className="site-container max-w-[860px]">
-          <p className="mb-5 text-xs font-extrabold uppercase tracking-[0.18em] text-[#8A3FFC]">
-            PRIVACY POLICY
-          </p>
-          <h1 className="text-4xl font-extrabold leading-tight tracking-[-0.03em] text-[#FFFFFF] md:text-6xl">
-            Privacy Policy
-          </h1>
-          <p className="mt-6 text-lg leading-8 text-[#C9C7E8]">
-            This Privacy Policy explains how ScopeScaler may collect, use, and
-            protect information submitted through this website.
-          </p>
-          <p className="mt-5 border-l-2 border-[#8A3FFC] pl-4 text-sm leading-7 text-[#A8A5C8]">
-            This page is a general template and should be reviewed before
-            launch.
-          </p>
+          <Reveal>
+            <p className="mb-5 text-xs font-extrabold uppercase tracking-[0.18em] text-[#8A3FFC]">
+              PRIVACY POLICY
+            </p>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <h1 className="text-4xl font-extrabold leading-tight tracking-[-0.03em] text-[#FFFFFF] md:text-6xl">
+              Privacy Policy
+            </h1>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <p className="mt-6 text-lg leading-8 text-[#C9C7E8]">
+              This Privacy Policy explains how ScopeScaler may collect, use, and
+              protect information submitted through this website.
+            </p>
+          </Reveal>
+          <Reveal delay={0.3}>
+            <p className="mt-5 border-l-2 border-[#8A3FFC] pl-4 text-sm leading-7 text-[#A8A5C8]">
+              This page is a general template and should be reviewed before
+              launch.
+            </p>
+          </Reveal>
 
           <div className="mt-14 space-y-10">
             {sections.map((section, index) => (
-              <section key={section.title}>
-                <h2 className="text-2xl font-extrabold leading-tight text-[#FFFFFF]">
-                  {index + 1}. {section.title}
-                </h2>
-                <p className="mt-4 text-base leading-8 text-[#A8A5C8]">
-                  {section.body}
-                </p>
-              </section>
+              <Reveal key={section.title}>
+                <section>
+                  <h2 className="text-2xl font-extrabold leading-tight text-[#FFFFFF]">
+                    {index + 1}. {section.title}
+                  </h2>
+                  <p className="mt-4 text-base leading-8 text-[#A8A5C8]">
+                    {section.body}
+                  </p>
+                </section>
+              </Reveal>
             ))}
           </div>
         </article>

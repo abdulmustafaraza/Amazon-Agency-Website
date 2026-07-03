@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+
 type ProblemCard = {
   icon: string;
   iconColor: string;
@@ -35,10 +39,53 @@ const problemCards: ProblemCard[] = [
 ];
 
 export default function ProblemSection() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [shouldRun, setShouldRun] = useState(false);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+
+    if (!section) {
+      return;
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      const animationFrame = requestAnimationFrame(() => {
+        setShouldRun(true);
+      });
+
+      return () => cancelAnimationFrame(animationFrame);
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Fire once the section is ~20% visible, OR once it already covers a
+        // good chunk of the viewport. The second condition keeps the trigger
+        // reliable when the section is taller than the viewport (cards stacked
+        // to 1 column on mobile), where the visible ratio can never reach 0.2.
+        const coversViewport =
+          entry.intersectionRect.height >= window.innerHeight * 0.2;
+
+        if (entry.isIntersecting && (entry.intersectionRatio >= 0.2 || coversViewport)) {
+          setShouldRun(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: [0, 0.2], rootMargin: "0px 0px -64px 0px" },
+    );
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, []);
+
+  const vis = shouldRun ? " is-visible" : "";
+
   return (
     <section
       className="relative w-full overflow-hidden bg-[#EEF0F6] py-[110px]"
       id="problem"
+      ref={sectionRef}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
@@ -54,13 +101,21 @@ export default function ProblemSection() {
 
       <div className="site-container relative z-10">
         <div className="max-w-[720px]">
-          <p className="mb-4 text-sm font-extrabold uppercase tracking-[0.14em] text-[#D12BFF]">
+          <p
+            className={`reveal-rise${vis} mb-4 text-sm font-extrabold uppercase tracking-[0.14em] text-[#D12BFF]`}
+          >
             THE PROBLEM
           </p>
-          <h2 className="text-4xl font-black leading-[1.05] text-[#030319] md:text-5xl lg:text-6xl">
+          <h2
+            className={`reveal-fade${vis} text-4xl font-black leading-[1.05] text-[#030319] md:text-5xl lg:text-6xl`}
+            style={{ transitionDelay: "0.15s" }}
+          >
             Where Marketplace Demand Leaks
           </h2>
-          <p className="mt-6 max-w-[720px] text-base font-medium leading-[1.7] text-[#2E2D45] md:text-lg">
+          <p
+            className={`reveal-rise${vis} mt-6 max-w-[720px] text-base font-medium leading-[1.7] text-[#2E2D45] md:text-lg`}
+            style={{ transitionDelay: "0.35s" }}
+          >
             Even if you don&apos;t sell on Amazon, customers still search for
             your brand there {"—"} and unmanaged demand leaks to listings
             and sellers you don&apos;t control.
@@ -68,10 +123,14 @@ export default function ProblemSection() {
         </div>
 
         <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {problemCards.map((card) => (
-            <article
-              className="group relative overflow-hidden rounded-[10px] border border-[rgba(109,53,255,0.18)] bg-[rgba(255,255,255,0.68)] p-7 shadow-[0_18px_50px_rgba(5,5,26,0.06)] backdrop-blur-md transition duration-300 ease-out hover:-translate-y-1 hover:border-[#D12BFF] hover:shadow-[0_20px_60px_rgba(109,53,255,0.14)]"
+          {problemCards.map((card, index) => (
+            <div
+              className={`reveal-rise${vis}`}
               key={card.title}
+              style={{ transitionDelay: `${0.5 + index * 0.1}s` }}
+            >
+            <article
+              className="group relative h-full overflow-hidden rounded-[10px] border border-[rgba(109,53,255,0.18)] bg-[rgba(255,255,255,0.68)] p-7 shadow-[0_18px_50px_rgba(5,5,26,0.06)] backdrop-blur-md transition duration-300 ease-out hover:-translate-y-1 hover:border-[#D12BFF] hover:shadow-[0_20px_60px_rgba(109,53,255,0.14)]"
             >
               <div className="flex items-start justify-between gap-4">
                 <span
@@ -95,6 +154,7 @@ export default function ProblemSection() {
                 {card.text}
               </p>
             </article>
+            </div>
           ))}
         </div>
       </div>

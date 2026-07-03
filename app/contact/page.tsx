@@ -3,6 +3,7 @@
 import CalendlyPopupButton from "@/components/CalendlyPopupButton";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import Reveal from "@/components/Reveal";
 import { FormEvent, useState } from "react";
 
 const serviceOptions = [
@@ -21,13 +22,6 @@ const initialFormState = {
   serviceInterest: "Free Leakage Audit",
   message: "",
 };
-
-const nextSteps = [
-  "We reply within 24 hours",
-  "15-minute intro call to understand your brand",
-  "Audit delivered within 5-7 business days",
-  "Walkthrough call to review findings",
-];
 
 export default function ContactPage() {
   const [formData, setFormData] = useState(initialFormState);
@@ -66,35 +60,42 @@ export default function ContactPage() {
       <main className="bg-[#030319]">
         <section className="bg-[radial-gradient(circle_at_78%_16%,rgba(209,43,255,0.18),transparent_30%),#030319] pb-20 pt-[110px]">
           <div className="site-container">
-            <p className="mb-5 text-xs font-extrabold uppercase tracking-[0.18em] text-[#8A3FFC]">
-              CONTACT
-            </p>
-            <h1 className="max-w-[820px] text-[clamp(42px,5vw,76px)] font-extrabold leading-[0.98] tracking-[-0.055em] text-[#FFFFFF]">
-              Start with a focused marketplace conversation.
-            </h1>
-            <p className="mt-8 max-w-[720px] text-lg leading-8 text-[#C9C7E8] md:text-xl">
-              Tell us what you want to understand about Amazon demand, seller
-              risk, brand-control gaps, or ecommerce growth support. We will
-              review the context and point you toward the right next step.
-            </p>
+            <Reveal>
+              <p className="mb-5 text-xs font-extrabold uppercase tracking-[0.18em] text-[#8A3FFC]">
+                CONTACT
+              </p>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h1 className="max-w-[820px] text-[clamp(42px,5vw,76px)] font-extrabold leading-[0.98] tracking-[-0.055em] text-[#FFFFFF]">
+                Start with a focused marketplace conversation.
+              </h1>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <p className="mt-8 max-w-[720px] text-lg leading-8 text-[#C9C7E8] md:text-xl">
+                Tell us what you want to understand about Amazon demand, seller
+                risk, brand-control gaps, or ecommerce growth support. We will
+                review the context and point you toward the right next step.
+              </p>
+            </Reveal>
           </div>
         </section>
 
         <section className="bg-[#030319] py-20 md:py-[110px]">
           <div className="site-container grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
             <div>
-              <p className="mb-4 text-xs font-extrabold uppercase tracking-[0.18em] text-[#8A3FFC]">
-                REQUEST CONTEXT REVIEW
-              </p>
-              <h2 className="max-w-[520px] text-4xl font-extrabold leading-tight tracking-[-0.04em] text-[#FFFFFF] md:text-5xl">
-                Share a few details before the meeting.
-              </h2>
-              <p className="mt-6 max-w-[520px] text-base leading-8 text-[#A8A5C8]">
-                This is frontend-ready for now. No custom calendar or Google
-                Sheets connection is active on this page.
-              </p>
+              <Reveal>
+                <p className="mb-4 text-xs font-extrabold uppercase tracking-[0.18em] text-[#8A3FFC]">
+                  REQUEST CONTEXT REVIEW
+                </p>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <h2 className="max-w-[520px] text-4xl font-extrabold leading-tight tracking-[-0.04em] text-[#FFFFFF] md:text-5xl">
+                  Share a few details before the meeting.
+                </h2>
+              </Reveal>
             </div>
 
+            <Reveal delay={0.1}>
             <form
               className="rounded-[18px] border border-[rgba(255,255,255,0.10)] bg-[#080826] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.22)] md:p-8"
               noValidate
@@ -215,40 +216,13 @@ export default function ContactPage() {
                 Submit Request
               </button>
             </form>
+            </Reveal>
           </div>
         </section>
 
         <section className="bg-[#030319] py-20 md:py-[96px]">
           <div className="site-container">
-            <div className="mb-10 max-w-[720px]">
-              <p className="mb-4 text-xs font-extrabold uppercase tracking-[0.18em] text-[#8A3FFC]">
-                PROCESS
-              </p>
-              <h2 className="text-3xl font-extrabold leading-tight tracking-[-0.03em] text-[#FFFFFF] md:text-5xl">
-                What happens next
-              </h2>
-            </div>
-
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-              {nextSteps.map((step, index) => (
-                <article
-                  className="rounded-[16px] border border-[rgba(255,255,255,0.10)] bg-[#080826] p-6 shadow-[0_18px_60px_rgba(255,60,191,0.10)]"
-                  key={step}
-                >
-                  <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-[#10C8FF]">
-                    Step {index + 1}
-                  </p>
-                  <h3 className="mt-5 text-lg font-extrabold leading-7 text-[#FFFFFF]">
-                    {step}
-                  </h3>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-[#030319] py-20 md:py-[96px]">
-          <div className="site-container">
+            <Reveal>
             <div className="rounded-[18px] border border-[rgba(255,255,255,0.10)] bg-[radial-gradient(circle_at_80%_20%,rgba(209,43,255,0.18),transparent_30%),#080826] p-8 md:p-12">
               <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
                 <div>
@@ -266,6 +240,7 @@ export default function ContactPage() {
                 />
               </div>
             </div>
+            </Reveal>
           </div>
         </section>
       </main>

@@ -1,8 +1,16 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import Reveal from "@/components/Reveal";
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
 import type { ReactNode } from "react";
+
+// Hidden route — /pricing redirects to / (see next.config.ts). Keep it out of
+// search indexes as a fallback in case the redirect is ever removed.
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 const pricingTabs = [
   { label: "Free Leakage Audit", href: "#free-leakage-audit" },
@@ -275,17 +283,26 @@ export default function PricingPage() {
         <section className="bg-[radial-gradient(circle_at_78%_18%,rgba(36,124,255,0.22),transparent_30%),radial-gradient(circle_at_70%_76%,rgba(255,60,191,0.20),transparent_34%),linear-gradient(180deg,#030319_0%,#080826_100%)] pb-20 pt-24">
           <div className="site-container grid gap-12 lg:grid-cols-[1fr_0.82fr] lg:items-center">
             <div>
-              <Eyebrow>ENGAGEMENT MODELS</Eyebrow>
-              <h1 className="max-w-[780px] text-[clamp(42px,5vw,76px)] font-extrabold leading-[0.98] tracking-[-0.055em] text-[#FFFFFF]">
-                Choose the right level of marketplace control.
-              </h1>
-              <p className="mt-8 max-w-[680px] text-lg leading-8 text-[#C9C7E8] md:text-xl">
-                Scope is matched to your marketplace risk, so every dollar works
-                against leakage instead of overhead.
-              </p>
+              <Reveal>
+                <Eyebrow>ENGAGEMENT MODELS</Eyebrow>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <h1 className="max-w-[780px] text-[clamp(42px,5vw,76px)] font-extrabold leading-[0.98] tracking-[-0.055em] text-[#FFFFFF]">
+                  Choose the right level of marketplace control.
+                </h1>
+              </Reveal>
+              <Reveal delay={0.2}>
+                <p className="mt-8 max-w-[680px] text-lg leading-8 text-[#C9C7E8] md:text-xl">
+                  Scope is matched to your marketplace risk, so every dollar
+                  works against leakage instead of overhead.
+                </p>
+              </Reveal>
             </div>
 
-            <div className="relative h-[360px] overflow-hidden rounded-lg border border-[rgba(255,255,255,0.10)] bg-[#080826] shadow-[0_28px_80px_rgba(0,0,0,0.30)]">
+            <Reveal
+              className="relative h-[360px] overflow-hidden rounded-lg border border-[rgba(255,255,255,0.10)] bg-[#080826] shadow-[0_28px_80px_rgba(0,0,0,0.30)]"
+              delay={0.15}
+            >
               <Image
                 alt="Marketplace control pricing visual"
                 className="object-cover object-center opacity-[0.78] saturate-[0.85] contrast-[0.95] brightness-[0.78]"
@@ -295,12 +312,12 @@ export default function PricingPage() {
                 src="/services/services-hero.jpeg.jpeg"
               />
               <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(3,3,25,0.58),rgba(3,3,25,0.25)),linear-gradient(180deg,transparent_35%,rgba(3,3,25,0.84)_100%)]" />
-            </div>
+            </Reveal>
           </div>
         </section>
 
         <section className="border-y border-[rgba(255,255,255,0.10)] bg-[#080826] py-5">
-          <div className="site-container flex flex-wrap justify-center gap-3">
+          <Reveal className="site-container flex flex-wrap justify-center gap-3">
             {pricingTabs.map((tab) => {
               const isActive = tab.href === "#controlled-amazon-pilot";
 
@@ -318,33 +335,35 @@ export default function PricingPage() {
                 </a>
               );
             })}
-          </div>
+          </Reveal>
         </section>
 
         <section className="bg-[#080826] pb-11 pt-16">
           <div className="site-container">
-            <p className="mx-auto max-w-[900px] text-center text-[15px] leading-[1.7] text-[#C9C7E8]">
-              Pricing depends on product scope, marketplace complexity, support
-              level, and the amount of ongoing execution required. Pricing is
-              based on the level of control, testing, and support your brand
-              needs. Start with the service that matches your current stage. If
-              you are unsure, begin with the Free Leakage Audit and use the
-              findings to decide the right next step.
-            </p>
+            <Reveal>
+              <p className="mx-auto max-w-[900px] text-center text-[15px] leading-[1.7] text-[#C9C7E8]">
+                Pricing depends on product scope, marketplace complexity,
+                support level, and the amount of ongoing execution required.
+                Pricing is based on the level of control, testing, and support
+                your brand needs. Start with the service that matches your
+                current stage. If you are unsure, begin with the Free Leakage
+                Audit and use the findings to decide the right next step.
+              </p>
+            </Reveal>
           </div>
         </section>
 
         <section className="bg-[#080826] pb-24">
           <div className="site-container grid gap-5 md:grid-cols-2 xl:grid-cols-5">
-            {pricingModels.map((model) => (
+            {pricingModels.map((model, index) => (
+              <Reveal className="h-full" delay={index * 0.08} key={model.id}>
               <article
-                className={`flex min-h-[470px] flex-col rounded-[14px] border p-6 shadow-[0_18px_60px_rgba(255,60,191,0.12)] transition-all duration-300 hover:border-[#D12BFF] hover:bg-[#101034] hover:shadow-[0_24px_80px_rgba(209,43,255,0.18)] ${
+                className={`flex h-full min-h-[470px] flex-col rounded-[14px] border p-6 shadow-[0_18px_60px_rgba(255,60,191,0.12)] transition-all duration-300 hover:border-[#D12BFF] hover:bg-[#101034] hover:shadow-[0_24px_80px_rgba(209,43,255,0.18)] ${
                   model.active
                     ? "border-[#D12BFF] bg-[radial-gradient(circle_at_50%_0%,rgba(209,43,255,0.20),transparent_44%),#101034]"
                     : "border-[rgba(255,255,255,0.10)] bg-[#101034]"
                 }`}
                 id={model.id}
-                key={model.id}
               >
                 <p className="text-[10px] font-extrabold uppercase tracking-[0.14em] text-[#6D35FF]">
                   {model.topLabel}
@@ -375,36 +394,42 @@ export default function PricingPage() {
                   {model.cta}
                 </Link>
               </article>
+              </Reveal>
             ))}
           </div>
         </section>
 
         <section className="bg-[#101034] py-24 md:py-[110px]">
           <div className="site-container">
-            <Eyebrow>SCOPE FACTORS</Eyebrow>
-            <h2 className="max-w-[840px] text-4xl font-extrabold leading-tight tracking-[-0.04em] text-[#FFFFFF] md:text-6xl">
-              Pricing depends on what needs to be controlled, tested, or
-              managed.
-            </h2>
-            <p className="mt-6 max-w-[720px] text-lg leading-8 text-[#C9C7E8]">
-              We do not believe in one-size-fits-all. Your precision model is
-              built on four pillars.
-            </p>
+            <Reveal>
+              <Eyebrow>SCOPE FACTORS</Eyebrow>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h2 className="max-w-[840px] text-4xl font-extrabold leading-tight tracking-[-0.04em] text-[#FFFFFF] md:text-6xl">
+                Pricing depends on what needs to be controlled, tested, or
+                managed.
+              </h2>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <p className="mt-6 max-w-[720px] text-lg leading-8 text-[#C9C7E8]">
+                We do not believe in one-size-fits-all. Your precision model is
+                built on four pillars.
+              </p>
+            </Reveal>
 
             <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
               {scopeFactors.map((factor, index) => (
-                <article
-                  className="rounded-[12px] border border-[rgba(255,255,255,0.10)] bg-[#101034] p-7 shadow-[0_18px_60px_rgba(255,60,191,0.12)] transition-all duration-300 hover:border-[#6D35FF] hover:bg-[#101034]"
-                  key={factor.title}
-                >
-                  {scopeFactorIcons[index]}
-                  <h3 className="mt-8 text-xl font-extrabold text-[#FFFFFF]">
-                    {factor.title}
-                  </h3>
-                  <p className="mt-4 text-sm leading-7 text-[#C9C7E8]">
-                    {factor.text}
-                  </p>
-                </article>
+                <Reveal className="h-full" delay={index * 0.09} key={factor.title}>
+                  <article className="h-full rounded-[12px] border border-[rgba(255,255,255,0.10)] bg-[#101034] p-7 shadow-[0_18px_60px_rgba(255,60,191,0.12)] transition-all duration-300 hover:border-[#6D35FF] hover:bg-[#101034]">
+                    {scopeFactorIcons[index]}
+                    <h3 className="mt-8 text-xl font-extrabold text-[#FFFFFF]">
+                      {factor.title}
+                    </h3>
+                    <p className="mt-4 text-sm leading-7 text-[#C9C7E8]">
+                      {factor.text}
+                    </p>
+                  </article>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -413,21 +438,23 @@ export default function PricingPage() {
         <section className="bg-[#080826] py-24 md:py-[110px]">
           <div className="site-container grid gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:items-center">
             <div>
-              <h2 className="max-w-[560px] text-4xl font-extrabold leading-tight tracking-[-0.04em] text-[#FFFFFF] md:text-6xl">
-                Start small when the right move is not clear.
-              </h2>
-              <p className="mt-6 max-w-[540px] text-lg leading-8 text-[#C9C7E8]">
-                We prioritize clarity over contracts. Use our decision guide to
-                find your immediate strategic entry point.
-              </p>
+              <Reveal>
+                <h2 className="max-w-[560px] text-4xl font-extrabold leading-tight tracking-[-0.04em] text-[#FFFFFF] md:text-6xl">
+                  Start small when the right move is not clear.
+                </h2>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <p className="mt-6 max-w-[540px] text-lg leading-8 text-[#C9C7E8]">
+                  We prioritize clarity over contracts. Use our decision guide
+                  to find your immediate strategic entry point.
+                </p>
+              </Reveal>
             </div>
 
             <div className="grid gap-4">
-              {decisionBars.map((bar) => (
-                <article
-                  className="grid gap-5 rounded-[12px] border border-[rgba(255,255,255,0.10)] bg-[#101034] p-5 shadow-[0_18px_60px_rgba(255,60,191,0.12)] transition-all duration-300 hover:border-[#6D35FF] hover:bg-[#101034] md:grid-cols-[1fr_auto] md:items-center"
-                  key={bar.label}
-                >
+              {decisionBars.map((bar, index) => (
+                <Reveal delay={index * 0.09} key={bar.label}>
+                <article className="grid gap-5 rounded-[12px] border border-[rgba(255,255,255,0.10)] bg-[#101034] p-5 shadow-[0_18px_60px_rgba(255,60,191,0.12)] transition-all duration-300 hover:border-[#6D35FF] hover:bg-[#101034] md:grid-cols-[1fr_auto] md:items-center">
                   <div>
                     <h3 className="text-lg font-extrabold text-[#FFFFFF]">
                       {bar.label}
@@ -443,6 +470,7 @@ export default function PricingPage() {
                     {bar.cta}
                   </Link>
                 </article>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -450,38 +478,43 @@ export default function PricingPage() {
 
         <section className="bg-[#080826] py-20 md:py-[96px]">
           <div className="site-container grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {clarifiers.map((item) => (
-              <div key={item.question}>
+            {clarifiers.map((item, index) => (
+              <Reveal delay={index * 0.08} key={item.question}>
                 <h3 className="text-xl font-extrabold text-[#FFFFFF]">
                   {item.question}
                 </h3>
                 <p className="mt-4 text-sm leading-7 text-[#C9C7E8]">
                   {item.answer}
                 </p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </section>
 
         <section className="bg-[#030319] py-24 md:py-[96px]">
           <div className="site-container text-center">
-            <h2 className="mx-auto max-w-[860px] text-4xl font-extrabold leading-tight tracking-[-0.04em] text-[#FFFFFF] md:text-6xl">
-              Start with the service that matches your current marketplace risk.
-            </h2>
-            <div className="mt-9 flex flex-col justify-center gap-4 sm:flex-row">
-              <Link
-                className="inline-flex justify-center rounded bg-[#6D35FF] px-7 py-4 text-xs font-extrabold uppercase tracking-[0.08em] text-[#FFFFFF] transition-colors hover:bg-[#8A3FFC]"
-                href="/contact"
-              >
-                Request the Free Leakage Audit
-              </Link>
-              <Link
-                className="inline-flex justify-center rounded border border-[rgba(255,255,255,0.18)] px-7 py-4 text-xs font-extrabold uppercase tracking-[0.08em] text-[#FFFFFF] transition-colors hover:border-[#FF3CBF] hover:text-[#FF3CBF]"
-                href="/services"
-              >
-                View Services
-              </Link>
-            </div>
+            <Reveal>
+              <h2 className="mx-auto max-w-[860px] text-4xl font-extrabold leading-tight tracking-[-0.04em] text-[#FFFFFF] md:text-6xl">
+                Start with the service that matches your current marketplace
+                risk.
+              </h2>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div className="mt-9 flex flex-col justify-center gap-4 sm:flex-row">
+                <Link
+                  className="inline-flex justify-center rounded bg-[#6D35FF] px-7 py-4 text-xs font-extrabold uppercase tracking-[0.08em] text-[#FFFFFF] transition-colors hover:bg-[#8A3FFC]"
+                  href="/contact"
+                >
+                  Request the Free Leakage Audit
+                </Link>
+                <Link
+                  className="inline-flex justify-center rounded border border-[rgba(255,255,255,0.18)] px-7 py-4 text-xs font-extrabold uppercase tracking-[0.08em] text-[#FFFFFF] transition-colors hover:border-[#FF3CBF] hover:text-[#FF3CBF]"
+                  href="/services"
+                >
+                  View Services
+                </Link>
+              </div>
+            </Reveal>
           </div>
         </section>
       </main>

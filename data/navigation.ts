@@ -6,7 +6,7 @@ export type NavigationItem = {
 export const navigation: NavigationItem[] = [
   {
     label: "Services",
-    href: "#services",
+    href: "/services",
   },
   {
     label: "Selected Work",
@@ -29,10 +29,10 @@ export const serviceLinks: NavigationItem[] = [
   },
   {
     label: "Amazon Channel Strategy",
-    href: "#services",
+    href: "/services",
   },
   {
     label: "Brand Control Planning",
-    href: "#services",
+    href: "/services",
   },
 ];

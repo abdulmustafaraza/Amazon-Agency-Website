@@ -25,34 +25,34 @@ export default function Hero() {
 
       <div className="site-container relative z-10 pb-[110px] pt-[105px]">
         <div className="w-full max-w-[760px] text-left">
-          <div className="mb-7 flex items-center gap-3">
+          <div className="hero-anim-eyebrow mb-7 flex items-center gap-3">
             <span className="h-px w-9 bg-[#10C8FF]" aria-hidden="true" />
             <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-[#10C8FF]">
               AMAZON MARKETPLACE CONTROL FOR BRAND-LED OPERATORS
             </p>
           </div>
 
-          <h1 className="hero-heading">
+          <h1 className="hero-anim-headline hero-heading">
             <p>Control Amazon before</p>
             <p className="hero-heading-highlight">Unauthorized Sellers</p>
             <p>define your brand</p>
             <p>there.</p>
           </h1>
 
-          <p className="mb-[38px] max-w-[620px] text-lg font-medium leading-[1.55] text-[#FFFFFF]">
+          <p className="hero-anim-subtext mb-[38px] max-w-[620px] text-lg font-medium leading-[1.55] text-[#FFFFFF]">
             ScopeScaler shows brands where they&apos;re losing sales on Amazon
             {"—"} to unauthorized sellers, generic listings, and unmanaged
             demand {"—"} and helps them take control of the channel.
           </p>
 
-          <div className="flex flex-wrap items-center gap-3.5">
+          <div className="hero-anim-buttons flex flex-wrap items-center gap-3.5">
             <CalendlyPopupButton
               className="rounded bg-[#6D35FF] px-[30px] py-[15px] text-xs font-extrabold uppercase tracking-[0.08em] text-[#FFFFFF] transition-colors hover:bg-[#8A3FFC]"
               text="REQUEST A FREE LEAKAGE AUDIT"
             />
             <a
               className="rounded border border-[rgba(255,255,255,0.18)] bg-transparent px-[30px] py-[15px] text-xs font-extrabold uppercase tracking-[0.08em] text-[#FFFFFF] transition-colors hover:border-[#FF3CBF] hover:text-[#FF3CBF]"
-              href="#services"
+              href="/services"
             >
               REVIEW THE PROCESS
             </a>

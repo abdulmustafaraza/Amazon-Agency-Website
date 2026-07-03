@@ -1,33 +1,83 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 import { caseStudies } from "@/data/portfolio";
 
 export default function SelectedWork() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [shouldRun, setShouldRun] = useState(false);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+
+    if (!section) {
+      return;
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      const animationFrame = requestAnimationFrame(() => {
+        setShouldRun(true);
+      });
+
+      return () => cancelAnimationFrame(animationFrame);
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Fire once the section is ~20% visible, OR once it already covers a
+        // good chunk of the viewport. The second condition keeps the trigger
+        // reliable when the section is taller than the viewport (cards stacked
+        // to 1 column on mobile), where the visible ratio can never reach 0.2.
+        const coversViewport =
+          entry.intersectionRect.height >= window.innerHeight * 0.2;
+
+        if (entry.isIntersecting && (entry.intersectionRatio >= 0.2 || coversViewport)) {
+          setShouldRun(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: [0, 0.2], rootMargin: "0px 0px -64px 0px" },
+    );
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, []);
+
+  const vis = shouldRun ? " is-visible" : "";
+
   return (
     <section
       className="w-full bg-[#080826] pb-16 pt-20 md:pb-[88px] md:pt-[110px]"
       id="selected-work"
+      ref={sectionRef}
     >
       <div className="site-container">
         <div className="max-w-[780px]">
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-[#D12BFF]">
-            TEAM EXPERIENCE
-          </p>
-          <h2 className="text-4xl font-semibold leading-tight text-[#FFFFFF] md:text-5xl lg:text-6xl">
-            Team experience across marketplace control, ecommerce operations,
-            and conversion systems.
+          <h2
+            className={`reveal-rise${vis} text-4xl font-semibold leading-tight text-[#FFFFFF] md:text-5xl lg:text-6xl`}
+          >
+            Our Diverse Experience Includes
           </h2>
-          <p className="mt-6 max-w-3xl text-base leading-8 text-[#C9C7E8] md:text-lg">
-            Creator campaign support, multi-channel ecommerce operations, and
-            Amazon leakage research across DTC and beauty brands.
+          <p
+            className={`reveal-rise${vis} mt-6 max-w-3xl text-base leading-8 text-[#C9C7E8] md:text-lg`}
+            style={{ transitionDelay: "0.2s" }}
+          >
+            Amazon, eBay, Shopify
           </p>
         </div>
 
         <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {caseStudies.map((item) => (
+          {caseStudies.map((item, index) => (
+            <div
+              className={`reveal-rise${vis} h-full`}
+              key={item.slug}
+              style={{ transitionDelay: `${0.35 + index * 0.1}s` }}
+            >
             <article
               className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.10)] bg-[#101034] shadow-[0_18px_60px_rgba(255,60,191,0.12)] transition-all duration-300 hover:border-[rgba(209,43,255,0.45)] hover:shadow-[0_24px_80px_rgba(109,53,255,0.14)]"
-              key={item.slug}
             >
               <div className="relative h-[200px] w-full overflow-hidden bg-[#080826] md:h-[210px] lg:h-[220px]">
                 <Image
@@ -57,6 +107,7 @@ export default function SelectedWork() {
                 </Link>
               </div>
             </article>
+            </div>
           ))}
         </div>
       </div>

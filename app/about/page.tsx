@@ -1,6 +1,14 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import LeadershipSlider from "@/components/LeadershipSlider";
+import Reveal from "@/components/Reveal";
+import type { Metadata } from "next";
+
+// Hidden route — /about redirects to / (see next.config.ts). Keep it out of
+// search indexes as a fallback in case the redirect is ever removed.
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 const differenceCards = [
   {
@@ -51,77 +59,99 @@ export default function AboutPage() {
       <main className="bg-[#080826]">
         <section className="bg-[radial-gradient(circle_at_80%_10%,rgba(209,43,255,0.18),transparent_30%),#030319] pb-[90px] pt-[110px]">
           <div className="site-container">
-            <Eyebrow>ABOUT US</Eyebrow>
-            <h1 className="max-w-[820px] text-[clamp(42px,5vw,76px)] font-extrabold leading-[0.98] tracking-[-0.055em] text-[#FFFFFF]">
-              Built for brands that need marketplace control before Amazon gets
-              messy.
-            </h1>
-            <p className="mt-8 max-w-[760px] text-lg leading-8 text-[#C9C7E8] md:text-xl">
-              We help DTC ecommerce and beauty brands understand where Amazon
-              demand already exists, where marketplace leakage may be happening,
-              and what controlled next step makes strategic sense.
-            </p>
-            <p className="mt-5 max-w-[760px] text-base leading-8 text-[#A8A5C8] md:text-lg">
-              Our work starts with visible evidence {"\u2014"} brand search
-              behavior, product-name demand, listing visibility, seller risk,
-              and channel signals {"\u2014"} before recommending audits,
-              pilots, management, or broader ecommerce support.
-            </p>
+            <Reveal>
+              <Eyebrow>ABOUT US</Eyebrow>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h1 className="max-w-[820px] text-[clamp(42px,5vw,76px)] font-extrabold leading-[0.98] tracking-[-0.055em] text-[#FFFFFF]">
+                Built for brands that need marketplace control before Amazon
+                gets messy.
+              </h1>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <p className="mt-8 max-w-[760px] text-lg leading-8 text-[#C9C7E8] md:text-xl">
+                We help DTC ecommerce and beauty brands understand where Amazon
+                demand already exists, where marketplace leakage may be
+                happening, and what controlled next step makes strategic sense.
+              </p>
+            </Reveal>
+            <Reveal delay={0.3}>
+              <p className="mt-5 max-w-[760px] text-base leading-8 text-[#A8A5C8] md:text-lg">
+                Our work starts with visible evidence {"\u2014"} brand search
+                behavior, product-name demand, listing visibility, seller risk,
+                and channel signals {"\u2014"} before recommending audits,
+                pilots, management, or broader ecommerce support.
+              </p>
+            </Reveal>
           </div>
         </section>
 
 
         <section className="bg-[#101034] py-24 md:py-[110px]">
           <div className="site-container">
-            <Eyebrow>DIFFERENT BY DESIGN</Eyebrow>
-            <h2 className="max-w-[860px] text-4xl font-extrabold leading-tight tracking-[-0.04em] text-[#FFFFFF] md:text-6xl">
-              Evidence first. Brand control always.
-            </h2>
+            <Reveal>
+              <Eyebrow>DIFFERENT BY DESIGN</Eyebrow>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h2 className="max-w-[860px] text-4xl font-extrabold leading-tight tracking-[-0.04em] text-[#FFFFFF] md:text-6xl">
+                Evidence first. Brand control always.
+              </h2>
+            </Reveal>
             <div className="mt-12 grid gap-6 lg:grid-cols-3">
-              {differenceCards.map((card) => (
-                <article
-                  className="rounded-[12px] border border-[rgba(255,255,255,0.10)] bg-[#101034] p-7 shadow-[0_18px_60px_rgba(255,60,191,0.12)] transition-all duration-300 hover:border-[#6D35FF] hover:bg-[#101034]"
+              {differenceCards.map((card, index) => (
+                <Reveal
+                  className="h-full"
+                  delay={index * 0.09}
                   key={card.title}
                 >
-                  <div className="mb-8 h-1 w-12 bg-[#6D35FF]" />
-                  <h3 className="text-2xl font-extrabold leading-8 text-[#FFFFFF]">
-                    {card.title}
-                  </h3>
-                  <p className="mt-5 text-base leading-8 text-[#C9C7E8]">
-                    {card.text}
-                  </p>
-                </article>
+                  <article className="h-full rounded-[12px] border border-[rgba(255,255,255,0.10)] bg-[#101034] p-7 shadow-[0_18px_60px_rgba(255,60,191,0.12)] transition-all duration-300 hover:border-[#6D35FF] hover:bg-[#101034]">
+                    <div className="mb-8 h-1 w-12 bg-[#6D35FF]" />
+                    <h3 className="text-2xl font-extrabold leading-8 text-[#FFFFFF]">
+                      {card.title}
+                    </h3>
+                    <p className="mt-5 text-base leading-8 text-[#C9C7E8]">
+                      {card.text}
+                    </p>
+                  </article>
+                </Reveal>
               ))}
             </div>
           </div>
         </section>
 
         <div id="leadership-team">
-          <LeadershipSlider />
+          <Reveal>
+            <LeadershipSlider />
+          </Reveal>
         </div>
 
         <section className="bg-[#080826] py-24 md:py-[110px]">
           <div className="site-container grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
             <div>
-              <Eyebrow>WHO WE HELP</Eyebrow>
-              <h2 className="max-w-[620px] text-4xl font-extrabold leading-tight tracking-[-0.04em] text-[#FFFFFF] md:text-6xl">
-                Built for brand-led operators.
-              </h2>
-              <p className="mt-6 max-w-[620px] text-lg leading-8 text-[#C9C7E8]">
-                We work best with ecommerce brands that care about brand
-                presentation, customer trust, and controlled growth {"\u2014"}
-                especially DTC beauty, skincare, wellness, personal care, and
-                product-led consumer brands.
-              </p>
+              <Reveal>
+                <Eyebrow>WHO WE HELP</Eyebrow>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <h2 className="max-w-[620px] text-4xl font-extrabold leading-tight tracking-[-0.04em] text-[#FFFFFF] md:text-6xl">
+                  Built for brand-led operators.
+                </h2>
+              </Reveal>
+              <Reveal delay={0.2}>
+                <p className="mt-6 max-w-[620px] text-lg leading-8 text-[#C9C7E8]">
+                  We work best with ecommerce brands that care about brand
+                  presentation, customer trust, and controlled growth {"\u2014"}
+                  especially DTC beauty, skincare, wellness, personal care, and
+                  product-led consumer brands.
+                </p>
+              </Reveal>
             </div>
             <div className="grid gap-4 md:grid-cols-2">
-              {helpItems.map((item) => (
-                <div
-                  className="rounded-[10px] border border-[rgba(255,255,255,0.10)] bg-[#101034] px-5 py-5 text-base font-bold text-[#C9C7E8] shadow-[0_14px_40px_rgba(255,60,191,0.10)] transition-colors hover:border-[#6D35FF]"
-                  key={item}
-                >
-                  {item}
-                </div>
+              {helpItems.map((item, index) => (
+                <Reveal delay={index * 0.08} key={item}>
+                  <div className="rounded-[10px] border border-[rgba(255,255,255,0.10)] bg-[#101034] px-5 py-5 text-base font-bold text-[#C9C7E8] shadow-[0_14px_40px_rgba(255,60,191,0.10)] transition-colors hover:border-[#6D35FF]">
+                    {item}
+                  </div>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -129,50 +159,61 @@ export default function AboutPage() {
 
         <section className="bg-[#080826] py-24 md:py-[110px]">
           <div className="site-container">
-            <Eyebrow>CLEAR BOUNDARIES</Eyebrow>
-            <h2 className="text-4xl font-extrabold leading-tight tracking-[-0.04em] text-[#FFFFFF] md:text-6xl">
-              What we are not.
-            </h2>
+            <Reveal>
+              <Eyebrow>CLEAR BOUNDARIES</Eyebrow>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h2 className="text-4xl font-extrabold leading-tight tracking-[-0.04em] text-[#FFFFFF] md:text-6xl">
+                What we are not.
+              </h2>
+            </Reveal>
             <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-              {boundaryCards.map((card) => (
-                <div
-                  className="rounded-[10px] border border-[rgba(255,255,255,0.10)] bg-[#101034] p-6 text-lg font-extrabold leading-7 text-[#FFFFFF] shadow-[0_14px_40px_rgba(255,60,191,0.10)] transition-colors hover:border-[#6D35FF]"
-                  key={card}
-                >
-                  {card}
-                </div>
+              {boundaryCards.map((card, index) => (
+                <Reveal className="h-full" delay={index * 0.08} key={card}>
+                  <div className="h-full rounded-[10px] border border-[rgba(255,255,255,0.10)] bg-[#101034] p-6 text-lg font-extrabold leading-7 text-[#FFFFFF] shadow-[0_14px_40px_rgba(255,60,191,0.10)] transition-colors hover:border-[#6D35FF]">
+                    {card}
+                  </div>
+                </Reveal>
               ))}
             </div>
-            <p className="mt-8 max-w-[720px] text-lg leading-8 text-[#C9C7E8]">
-              We focus on evidence, control, and strategic channel decisions
-              {"\u2014"} not hype.
-            </p>
+            <Reveal delay={0.1}>
+              <p className="mt-8 max-w-[720px] text-lg leading-8 text-[#C9C7E8]">
+                We focus on evidence, control, and strategic channel decisions
+                {"\u2014"} not hype.
+              </p>
+            </Reveal>
           </div>
         </section>
 
         <section className="bg-[#030319] py-20 md:py-[100px]" id="free-audit">
           <div className="site-container text-center">
-            <h2 className="mx-auto max-w-[820px] text-4xl font-extrabold leading-tight tracking-[-0.04em] text-[#FFFFFF] md:text-6xl">
-              Want to know what Amazon is already showing your customers?
-            </h2>
-            <p className="mx-auto mt-6 max-w-[640px] text-lg leading-8 text-[#C9C7E8]">
-              Start with a focused marketplace review before making channel
-              decisions.
-            </p>
-            <div className="mt-9 flex flex-col justify-center gap-4 sm:flex-row">
-              <a
-                className="inline-flex justify-center bg-[#6D35FF] px-7 py-4 text-xs font-extrabold uppercase tracking-[0.08em] text-[#FFFFFF] transition-colors hover:bg-[#8A3FFC]"
-                href="/contact"
-              >
-                Request the Free Leakage Audit {"\u2192"}
-              </a>
-              <a
-                className="inline-flex justify-center border border-[rgba(255,255,255,0.18)] px-7 py-4 text-xs font-extrabold uppercase tracking-[0.08em] text-[#FFFFFF] transition-colors hover:border-[#FF3CBF] hover:text-[#FF3CBF]"
-                href="/services"
-              >
-                View Services {"\u2192"}
-              </a>
-            </div>
+            <Reveal>
+              <h2 className="mx-auto max-w-[820px] text-4xl font-extrabold leading-tight tracking-[-0.04em] text-[#FFFFFF] md:text-6xl">
+                Want to know what Amazon is already showing your customers?
+              </h2>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="mx-auto mt-6 max-w-[640px] text-lg leading-8 text-[#C9C7E8]">
+                Start with a focused marketplace review before making channel
+                decisions.
+              </p>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <div className="mt-9 flex flex-col justify-center gap-4 sm:flex-row">
+                <a
+                  className="inline-flex justify-center bg-[#6D35FF] px-7 py-4 text-xs font-extrabold uppercase tracking-[0.08em] text-[#FFFFFF] transition-colors hover:bg-[#8A3FFC]"
+                  href="/contact"
+                >
+                  Request the Free Leakage Audit {"\u2192"}
+                </a>
+                <a
+                  className="inline-flex justify-center border border-[rgba(255,255,255,0.18)] px-7 py-4 text-xs font-extrabold uppercase tracking-[0.08em] text-[#FFFFFF] transition-colors hover:border-[#FF3CBF] hover:text-[#FF3CBF]"
+                  href="/services"
+                >
+                  View Services {"\u2192"}
+                </a>
+              </div>
+            </Reveal>
           </div>
         </section>
       </main>

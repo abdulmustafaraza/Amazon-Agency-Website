@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 
 const ROTATE_MS = 15000;
 const TRANSITION_MS = 500;
@@ -31,6 +31,32 @@ const founders = [
 ];
 
 type Founder = (typeof founders)[number];
+
+const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
+
+function subscribeReducedMotion(onChange: () => void) {
+  const mediaQuery = window.matchMedia(REDUCED_MOTION_QUERY);
+  mediaQuery.addEventListener("change", onChange);
+  return () => mediaQuery.removeEventListener("change", onChange);
+}
+
+function getReducedMotionSnapshot() {
+  return window.matchMedia(REDUCED_MOTION_QUERY).matches;
+}
+
+// Server render and first client render assume motion is allowed, then the
+// store reconciles on mount — keeps SSR markup and hydration in sync.
+function getReducedMotionServerSnapshot() {
+  return false;
+}
+
+function useReducedMotion() {
+  return useSyncExternalStore(
+    subscribeReducedMotion,
+    getReducedMotionSnapshot,
+    getReducedMotionServerSnapshot,
+  );
+}
 
 function FounderShowcase({ founder }: { founder: Founder }) {
   return (
@@ -105,20 +131,7 @@ function FounderShowcase({ founder }: { founder: Founder }) {
 export default function LeadershipSlider() {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
-  const [reducedMotion, setReducedMotion] = useState(false);
-
-  // Detect prefers-reduced-motion
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReducedMotion(mediaQuery.matches);
-
-    function handleChange(event: MediaQueryListEvent) {
-      setReducedMotion(event.matches);
-    }
-
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
-  }, []);
+  const reducedMotion = useReducedMotion();
 
   // Auto-rotate. Depending on `active` means a manual selection restarts the
   // timer from that point; pausing/reduced-motion stops it entirely.

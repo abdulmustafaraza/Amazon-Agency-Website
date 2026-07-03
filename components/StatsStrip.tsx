@@ -46,7 +46,7 @@ function useCountUp(
     return () => cancelAnimationFrame(animationFrame);
   }, [prefersReducedMotion, shouldRun, targetValue]);
 
-  return prefersReducedMotion && shouldRun ? targetValue : displayValue;
+  return prefersReducedMotion ? targetValue : displayValue;
 }
 
 function StatItem({
@@ -57,6 +57,7 @@ function StatItem({
   shouldRun,
   prefersReducedMotion,
   gradient,
+  index,
 }: {
   label: string;
   value: number;
@@ -65,11 +66,17 @@ function StatItem({
   shouldRun: boolean;
   prefersReducedMotion: boolean;
   gradient: string;
+  index: number;
 }) {
   const displayValue = useCountUp(value, shouldRun, prefersReducedMotion);
 
   return (
-    <div className="flex min-w-0 flex-col items-center overflow-visible text-center">
+    <div
+      className={`stats-rise flex min-w-0 flex-col items-center overflow-visible text-center${
+        shouldRun ? " is-visible" : ""
+      }`}
+      style={{ transitionDelay: `${(index + 1) * 0.1}s` }}
+    >
       <div className="flex w-full justify-center overflow-visible">
         <p
           className="block overflow-visible whitespace-nowrap bg-clip-text text-center text-[clamp(52px,4.5vw,78px)] font-black leading-[0.95] tracking-[-0.035em] text-transparent"
@@ -127,12 +134,20 @@ export default function StatsStrip() {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        // Fire once the section is ~30% visible, OR once it already covers a
+        // good chunk of the viewport. The second condition keeps the trigger
+        // reliable when the section is taller than the viewport (e.g. the
+        // 2x2 / stacked grid on mobile), where the visible ratio can never
+        // reach 0.3 no matter how the user scrolls.
+        const coversViewport =
+          entry.intersectionRect.height >= window.innerHeight * 0.3;
+
+        if (entry.isIntersecting && (entry.intersectionRatio >= 0.3 || coversViewport)) {
           setShouldRun(true);
           observer.disconnect();
         }
       },
-      { threshold: 0.2 },
+      { threshold: [0, 0.3], rootMargin: "0px 0px -64px 0px" },
     );
 
     observer.observe(section);
@@ -162,7 +177,11 @@ export default function StatsStrip() {
       />
 
       <div className="site-container relative z-10">
-        <p className="mb-[56px] text-center text-xs font-extrabold uppercase tracking-[0.16em] text-[#10C8FF]">
+        <p
+          className={`stats-rise mb-[56px] text-center text-xs font-extrabold uppercase tracking-[0.16em] text-[#10C8FF]${
+            shouldRun ? " is-visible" : ""
+          }`}
+        >
           Track Record
         </p>
 
@@ -170,6 +189,7 @@ export default function StatsStrip() {
           {stats.map((stat, index) => (
             <StatItem
               gradient={numberGradients[index] ?? numberGradients[0]}
+              index={index}
               key={stat.label}
               label={stat.label}
               prefix={stat.prefix}
