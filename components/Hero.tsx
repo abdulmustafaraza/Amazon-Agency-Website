@@ -2,7 +2,7 @@ import CalendlyPopupButton from "@/components/CalendlyPopupButton";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[760px] overflow-hidden bg-[#030319]">
+    <section className="relative flex min-h-[760px] items-center overflow-hidden bg-[#030319]">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         alt=""
@@ -23,7 +23,7 @@ export default function Hero() {
         className="absolute inset-0 z-[2] bg-[linear-gradient(180deg,rgba(3,3,25,0.05)_0%,rgba(3,3,25,0.18)_55%,#030319_100%)]"
       />
 
-      <div className="site-container relative z-10 pb-[110px] pt-[105px]">
+      <div className="site-container relative z-10 w-full py-[96px]">
         <div className="w-full max-w-[760px] text-left">
           <div className="hero-anim-eyebrow mb-7 flex items-center gap-3">
             <span className="h-px w-9 bg-[#10C8FF]" aria-hidden="true" />
@@ -40,9 +40,8 @@ export default function Hero() {
           </h1>
 
           <p className="hero-anim-subtext mb-[38px] max-w-[620px] text-lg font-medium leading-[1.55] text-[#FFFFFF]">
-            ScopeScaler shows brands where they&apos;re losing sales on Amazon
-            {"—"} to unauthorized sellers, generic listings, and unmanaged
-            demand {"—"} and helps them take control of the channel.
+            We show brands where they&apos;re losing sales on Amazon and other
+            ecommerce platforms.
           </p>
 
           <div className="hero-anim-buttons flex flex-wrap items-center gap-3.5">

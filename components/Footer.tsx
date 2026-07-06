@@ -113,7 +113,7 @@ const socialLinks = [
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/scope-scaler-17b0a1411",
+    href: "https://www.linkedin.com/company/scope-scaler/",
     icon: <LinkedInIcon />,
     isExternal: true,
   },

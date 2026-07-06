@@ -90,7 +90,7 @@ export default function ContactPage() {
               </Reveal>
               <Reveal delay={0.1}>
                 <h2 className="max-w-[520px] text-4xl font-extrabold leading-tight tracking-[-0.04em] text-[#FFFFFF] md:text-5xl">
-                  Share a few details before the meeting.
+                  Let us guide you with our expertise.
                 </h2>
               </Reveal>
             </div>
