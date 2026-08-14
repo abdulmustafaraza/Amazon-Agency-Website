@@ -49,42 +49,28 @@ export default function TermsOfServicePage() {
   return (
     <>
       <Header />
-      <main className="bg-[#030319] py-20 md:py-[110px]">
-        <article className="site-container max-w-[860px]">
+      <main className="section section-white">
+        <article className="container max-w-[760px]">
           <Reveal>
-            <p className="mb-5 text-xs font-extrabold uppercase tracking-[0.18em] text-[#8A3FFC]">
-              TERMS OF SERVICE
-            </p>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <h1 className="text-4xl font-extrabold leading-tight tracking-[-0.03em] text-[#FFFFFF] md:text-6xl">
-              Terms of Service
-            </h1>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <p className="mt-6 text-lg leading-8 text-[#C9C7E8]">
+            <p className="eyebrow">Terms of service</p>
+            <h1 className="mt-3">Terms of Service</h1>
+            <p className="lead mt-4">
               These Terms of Service explain the basic terms for using the
               ScopeScaler website and requesting information about services.
             </p>
-          </Reveal>
-          <Reveal delay={0.3}>
-            <p className="mt-5 border-l-2 border-[#8A3FFC] pl-4 text-sm leading-7 text-[#A8A5C8]">
+            <p className="mt-4 border-l-2 border-[var(--line-strong)] pl-4 text-[var(--text-muted)]">
               This page is a general template and should be reviewed before
               launch.
             </p>
           </Reveal>
 
-          <div className="mt-14 space-y-10">
+          <div className="mt-10 space-y-7">
             {sections.map((section, index) => (
-              <Reveal key={section.title}>
-                <section>
-                  <h2 className="text-2xl font-extrabold leading-tight text-[#FFFFFF]">
-                    {index + 1}. {section.title}
-                  </h2>
-                  <p className="mt-4 text-base leading-8 text-[#A8A5C8]">
-                    {section.body}
-                  </p>
-                </section>
+              <Reveal as="section" key={section.title}>
+                <h2 className="text-[1.05rem] font-semibold">
+                  {index + 1}. {section.title}
+                </h2>
+                <p className="mt-2">{section.body}</p>
               </Reveal>
             ))}
           </div>

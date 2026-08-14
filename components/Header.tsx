@@ -11,89 +11,63 @@ const navLinks = [
   { label: "Contact", href: "/contact" },
 ];
 
-const navLinkClassName =
-  "border-b border-transparent pb-1 text-[#F5F3FF] hover:text-[#FF3CBF] transition-colors duration-200 hover:border-[#FF3CBF]";
-
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="relative z-50 w-full border-b border-[rgba(255,255,255,0.10)] bg-[#030319]">
-      <div className="site-container flex h-[72px] items-center justify-between gap-8">
+    <header className="site-header">
+      <div className="container header-inner">
         <Link
           aria-label="ScopeScaler home"
-          className="flex shrink-0 items-center"
+          className="header-brand"
           href="/"
           onClick={() => setMenuOpen(false)}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            alt="ScopeScaler"
-            className="h-[34px] w-auto object-contain md:h-[44px]"
-            src="/logos/scopescaler-logo.svg"
+          {/* Placeholder mark. The shipped scopescaler-logo.svg is a white +
+              gradient wordmark: "Scope" disappears on white and inverting it
+              shifts the brand colours. Swap this for a black/monochrome
+              re-export when one exists. */}
+          <span
+            aria-hidden="true"
+            className="h-[15px] w-[15px] rounded-[4px] bg-[var(--bg-dark)]"
           />
+          <span>ScopeScaler</span>
         </Link>
 
-        <nav
-          aria-label="Primary navigation"
-          className="hidden items-center gap-8 text-sm font-semibold text-[#C9C7E8] lg:flex"
-        >
+        <nav aria-label="Primary navigation" className="header-nav">
           {navLinks.map((link) => (
-            <Link
-              className={navLinkClassName}
-              href={link.href}
-              key={link.label}
-            >
+            <Link href={link.href} key={link.label}>
               {link.label}
             </Link>
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
-          <Link
-            className="hidden shrink-0 rounded bg-[#6D35FF] px-[26px] py-3 text-xs font-[800] uppercase tracking-[0.08em] text-[#FFFFFF] shadow-[0_0_24px_rgba(209,43,255,0.26)] transition-colors duration-200 hover:bg-[#8A3FFC] hover:shadow-[0_0_26px_rgba(209,43,255,0.35)] sm:inline-flex"
-            href="/contact"
-          >
-            FREE LEAKAGE AUDIT
+        <div className="flex items-center gap-2">
+          <Link className="btn btn-primary" href="/contact">
+            Get started
           </Link>
 
           <button
             aria-controls="mobile-menu"
             aria-expanded={menuOpen}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
-            className="flex h-11 w-11 shrink-0 items-center justify-center rounded border border-[rgba(255,255,255,0.14)] text-[#F5F3FF] transition-colors hover:border-[#FF3CBF] hover:text-[#FF3CBF] lg:hidden"
+            className="header-menu-toggle tap w-11 shrink-0 items-center justify-center rounded-full border border-[var(--line-strong)] text-[var(--text)] transition-colors hover:border-[var(--text)]"
             onClick={() => setMenuOpen((open) => !open)}
             type="button"
           >
-            {menuOpen ? (
-              <svg
-                aria-hidden="true"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M6 6L18 18M18 6L6 18"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeWidth="2"
-                />
-              </svg>
-            ) : (
-              <svg
-                aria-hidden="true"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M4 7H20M4 12H20M4 17H20"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeWidth="2"
-                />
-              </svg>
-            )}
+            <svg
+              aria-hidden="true"
+              className="h-4 w-4"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d={menuOpen ? "M6 6L18 18M18 6L6 18" : "M4 7H20M4 12H20M4 17H20"}
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeWidth="1.8"
+              />
+            </svg>
           </button>
         </div>
       </div>
@@ -101,13 +75,13 @@ export default function Header() {
       {menuOpen ? (
         <nav
           aria-label="Mobile navigation"
-          className="border-t border-[rgba(255,255,255,0.10)] bg-[#030319] lg:hidden"
+          className="border-t border-[var(--line)] bg-white min-[881px]:hidden"
           id="mobile-menu"
         >
-          <div className="site-container flex flex-col py-2">
+          <div className="container flex flex-col py-2">
             {navLinks.map((link) => (
               <Link
-                className="flex min-h-[44px] items-center border-b border-[rgba(255,255,255,0.06)] text-base font-semibold text-[#F5F3FF] transition-colors hover:text-[#FF3CBF]"
+                className="tap flex items-center border-b border-[var(--line)] text-[0.85rem] text-[var(--text-2)] transition-colors hover:text-[var(--text)]"
                 href={link.href}
                 key={link.label}
                 onClick={() => setMenuOpen(false)}
@@ -116,11 +90,11 @@ export default function Header() {
               </Link>
             ))}
             <Link
-              className="mt-4 mb-2 inline-flex min-h-[44px] items-center justify-center rounded bg-[#6D35FF] px-6 text-sm font-[800] uppercase tracking-[0.08em] text-[#FFFFFF] transition-colors hover:bg-[#8A3FFC]"
+              className="btn btn-primary mt-4 mb-2"
               href="/contact"
               onClick={() => setMenuOpen(false)}
             >
-              Free Leakage Audit
+              Get started
             </Link>
           </div>
         </nav>

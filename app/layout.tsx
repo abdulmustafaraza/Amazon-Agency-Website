@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Manrope } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-const manrope = Manrope({
+const inter = Inter({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-manrope",
+  variable: "--font-inter",
 });
 
 const siteUrl = "https://scopescaler.com";
@@ -82,7 +82,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      className={manrope.variable}
+      className={inter.variable}
       data-scroll-behavior="smooth"
       lang="en"
       suppressHydrationWarning

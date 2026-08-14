@@ -5,33 +5,40 @@ import {
   useRef,
   useState,
   type CSSProperties,
+  type ElementType,
   type ReactNode,
 } from "react";
 
 /**
- * Shared scroll-entrance wrapper used site-wide.
+ * The single scroll-entrance wrapper used across every section of the site.
  *
- * Rise-and-fade: the wrapped content starts ~24px lower at opacity 0 and
- * animates to its resting position. Driven by an IntersectionObserver that
- * fires once when the element is ~20% visible, then unobserves (never replays).
- * The motion itself + prefers-reduced-motion handling live in the global
- * `.reveal-rise` / `.reveal-rise.is-visible` CSS, so reduced-motion users get
- * the final state instantly.
+ * Content starts 20px lower at opacity 0 and settles into place over .65s on an
+ * ease-out curve. An IntersectionObserver fires once at 14% visibility, then
+ * unobserves so the motion never replays, and disconnects on unmount.
  *
- * Pass `delay` (seconds) to stagger siblings into a cascade.
+ * The motion itself lives in the global `.reveal` / `.reveal.is-visible` rules,
+ * which also neutralise it under prefers-reduced-motion — reduced-motion users
+ * get the resting state immediately.
+ *
+ * Pass `delay` (seconds) to stagger siblings, or `as` to render a different
+ * element (e.g. "section", "li") instead of a div.
  */
 export default function Reveal({
   children,
   className = "",
   style,
   delay = 0,
+  as,
+  ...rest
 }: {
   children: ReactNode;
   className?: string;
   style?: CSSProperties;
   delay?: number;
-}) {
-  const ref = useRef<HTMLDivElement | null>(null);
+  as?: ElementType;
+} & Record<string, unknown>) {
+  const Tag = (as ?? "div") as ElementType;
+  const ref = useRef<HTMLElement | null>(null);
   const [shown, setShown] = useState(false);
 
   useEffect(() => {
@@ -50,10 +57,10 @@ export default function Reveal({
       ([entry]) => {
         if (entry.isIntersecting) {
           setShown(true);
-          observer.disconnect();
+          observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.2 },
+      { threshold: 0.14 },
     );
 
     observer.observe(el);
@@ -62,12 +69,15 @@ export default function Reveal({
   }, []);
 
   return (
-    <div
-      className={`reveal-rise${shown ? " is-visible" : ""} ${className}`.trim()}
+    <Tag
+      className={`reveal${shown ? " is-visible" : ""}${
+        className ? ` ${className}` : ""
+      }`}
       ref={ref}
       style={delay ? { ...style, transitionDelay: `${delay}s` } : style}
+      {...rest}
     >
       {children}
-    </div>
+    </Tag>
   );
 }

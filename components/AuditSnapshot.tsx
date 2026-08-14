@@ -1,91 +1,79 @@
-// Self-contained dark "audit report" card. All styles are inline, so it renders
-// correctly regardless of the surrounding CSS setup.
+// Self-contained "audit report" card, restyled to the light design system.
+// Styles stay inline so it renders correctly regardless of surrounding CSS.
 
 import type { CSSProperties, ReactNode } from "react";
 
-/* ---------- inline styles (declared before `blocks` so they're initialized
-   before the JSX in `blocks` references them) ---------- */
 const card: CSSProperties = {
   position: "relative",
-  background: "linear-gradient(180deg, rgba(20,20,46,0.9), rgba(10,10,26,0.9))",
-  border: "1px solid rgba(255,255,255,0.08)",
-  borderRadius: 18,
+  background: "#ffffff",
+  border: "1px solid #e4e6ea",
+  borderRadius: 12,
   overflow: "hidden",
   maxWidth: 560,
   width: "100%",
-};
-const accent: CSSProperties = {
-  position: "absolute",
-  top: 0,
-  left: 0,
-  right: 0,
-  height: 3,
-  background: "linear-gradient(90deg,#10C8FF 0%,#8A3FFC 50%,#FF3CBF 100%)",
 };
 const topRow: CSSProperties = {
   display: "flex",
   alignItems: "flex-start",
   justifyContent: "space-between",
   gap: 16,
-  padding: "24px 26px 18px",
-  borderBottom: "1px solid rgba(255,255,255,0.08)",
+  padding: "18px 20px 16px",
+  borderBottom: "1px solid #e4e6ea",
 };
 const eyebrow: CSSProperties = {
-  fontSize: 11,
-  letterSpacing: "0.16em",
+  fontSize: 10,
+  letterSpacing: "0.11em",
   textTransform: "uppercase",
-  color: "#6f7596",
-  marginBottom: 8,
-  fontWeight: 700,
+  color: "#9aa0a8",
+  marginBottom: 6,
+  fontWeight: 500,
 };
 const title: CSSProperties = {
-  fontSize: 19,
-  fontWeight: 800,
-  color: "#fff",
-  letterSpacing: "-0.01em",
+  fontSize: "0.94rem",
+  fontWeight: 600,
+  color: "#141519",
+  letterSpacing: "-0.005em",
 };
 const pill: CSSProperties = {
-  fontFamily: "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
   fontSize: 10,
-  letterSpacing: "0.14em",
+  letterSpacing: "0.1em",
   textTransform: "uppercase",
-  color: "#10C8FF",
-  border: "1px solid rgba(16,200,255,0.4)",
+  color: "#6b6f76",
+  border: "1px solid #d9dce1",
   borderRadius: 999,
-  padding: "6px 12px",
+  padding: "5px 11px",
   whiteSpace: "nowrap",
 };
 const block: CSSProperties = {
-  padding: "18px 26px",
-  borderTop: "1px solid rgba(255,255,255,0.05)",
+  padding: "16px 20px",
+  borderTop: "1px solid #e4e6ea",
 };
 const label: CSSProperties = {
-  fontFamily: "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
-  fontSize: 11,
-  letterSpacing: "0.16em",
+  fontSize: 10,
+  letterSpacing: "0.11em",
   textTransform: "uppercase",
-  color: "#10C8FF",
-  marginBottom: 12,
+  color: "#9aa0a8",
+  fontWeight: 500,
+  marginBottom: 10,
 };
 const row: CSSProperties = {
   display: "flex",
-  gap: 10,
+  gap: 9,
   alignItems: "flex-start",
-  fontFamily: "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
-  fontSize: 13,
-  lineHeight: 1.55,
-  color: "#c2c7df",
-  padding: "5px 0",
+  fontSize: "0.8rem",
+  lineHeight: 1.6,
+  color: "#6b6f76",
+  padding: "4px 0",
 };
 const dot: CSSProperties = {
   flex: "0 0 auto",
-  width: 5,
-  height: 5,
+  width: 4,
+  height: 4,
   borderRadius: "50%",
-  background: "#6D35FF",
+  background: "#9aa0a8",
   marginTop: 8,
 };
-const bold: CSSProperties = { color: "#fff", fontWeight: 500 };
+const bold: CSSProperties = { color: "#141519", fontWeight: 500 };
 
 const blocks: { label: string; rows: ReactNode[] }[] = [
   {
@@ -134,10 +122,6 @@ const blocks: { label: string; rows: ReactNode[] }[] = [
 export default function AuditSnapshot() {
   return (
     <div style={card}>
-      {/* gradient top accent */}
-      <div style={accent} />
-
-      {/* header */}
       <div style={topRow}>
         <div>
           <div style={eyebrow}>Anonymized marketplace audit</div>
@@ -146,7 +130,6 @@ export default function AuditSnapshot() {
         <span style={pill}>Sample data</span>
       </div>
 
-      {/* blocks */}
       {blocks.map((b, i) => (
         <div
           key={b.label}

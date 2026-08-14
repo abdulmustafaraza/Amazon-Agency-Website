@@ -1,4 +1,3 @@
-import Image from "next/image";
 import type React from "react";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
@@ -10,7 +9,7 @@ function PillList({ items }: { items: string[] }) {
     <div className="flex flex-wrap gap-2">
       {items.map((item) => (
         <span
-          className="rounded-full border border-[rgba(255,255,255,0.10)] bg-[rgba(255,255,255,0.05)] px-3 py-1 text-xs font-semibold text-[#C9C7E8]"
+          className="rounded-full border border-[var(--line-strong)] px-3 py-1 text-[0.72rem] text-[var(--text-2)]"
           key={item}
         >
           {item}
@@ -30,48 +29,41 @@ function SectionCard({
   children: React.ReactNode;
 }) {
   return (
-    <Reveal className="h-full">
-      <section className="h-full rounded-[18px] border border-[rgba(255,255,255,0.10)] bg-[#101034] p-6 shadow-[0_18px_60px_rgba(255,60,191,0.10)] md:p-8">
-        <p className="mb-4 text-xs font-extrabold uppercase tracking-[0.16em] text-[#D12BFF]">
-          {eyebrow}
-        </p>
-        <h2 className="text-3xl font-extrabold leading-tight tracking-[-0.03em] text-[#FFFFFF] md:text-4xl">
-          {title}
-        </h2>
-        <div className="mt-5 text-base leading-8 text-[#C9C7E8]">{children}</div>
-      </section>
+    <Reveal className="card h-full">
+      <p className="eyebrow">{eyebrow}</p>
+      <h2 className="mt-2 text-[1.05rem] font-semibold">{title}</h2>
+      <div className="mt-3 text-[0.855rem] leading-[1.65] text-[var(--text-2)]">
+        {children}
+      </div>
     </Reveal>
   );
 }
 
 function CaseStudyStats({ study }: { study: CaseStudy }) {
   return (
-    <section className="border-b border-[rgba(255,255,255,0.10)] bg-[#080826] py-8 md:py-10">
-      <div className="site-container">
-        <div className="grid gap-4 md:grid-cols-3 md:gap-6">
+    <section className="section section-white">
+      <div className="container">
+        <div className="grid gap-4 md:grid-cols-3">
           {study.stats.map((stat, index) => (
             <Reveal
-              className="h-full"
-              delay={index * 0.09}
+              className="card text-center"
+              delay={index * 0.08}
               key={`${stat.value}-${stat.label ?? "stat"}`}
             >
-              <div className="flex h-full min-h-[150px] flex-col items-center justify-center rounded-[22px] border border-[rgba(255,255,255,0.10)] bg-[rgba(255,255,255,0.035)] px-6 py-8 text-center shadow-[0_18px_60px_rgba(109,53,255,0.10)]">
-                <p
-                  className={[
-                    "font-black tracking-[-0.04em] text-[#FFFFFF]",
-                    stat.kind === "text"
-                      ? "text-[clamp(26px,2.4vw,38px)] leading-[1.1]"
-                      : "text-[clamp(42px,4vw,68px)] leading-none",
-                  ].join(" ")}
-                >
-                  {stat.value}
+              <p
+                className={
+                  stat.kind === "text"
+                    ? "text-[1rem] font-semibold tracking-[-0.02em] text-[var(--text)]"
+                    : "text-[1.6rem] font-semibold leading-none tracking-[-0.02em] text-[var(--text)]"
+                }
+              >
+                {stat.value}
+              </p>
+              {stat.label ? (
+                <p className="mt-2 text-[0.75rem] text-[var(--text-muted)]">
+                  {stat.label}
                 </p>
-                {stat.label ? (
-                  <p className="mt-3.5 text-sm font-bold leading-[1.4] text-[#C9C7E8] md:text-base">
-                    {stat.label}
-                  </p>
-                ) : null}
-              </div>
+              ) : null}
             </Reveal>
           ))}
         </div>
@@ -84,83 +76,57 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
   return (
     <>
       <Header />
-      <main className="bg-[#030319]">
-        <section className="overflow-hidden border-b border-[rgba(255,255,255,0.10)] bg-[radial-gradient(circle_at_78%_18%,rgba(209,43,255,0.20),transparent_30%),radial-gradient(circle_at_70%_76%,rgba(16,200,255,0.14),transparent_34%),linear-gradient(135deg,#080826_0%,#030319_62%,#030319_100%)] py-20 md:py-[110px]">
-          <div className="site-container grid gap-12 lg:grid-cols-[1fr_0.82fr] lg:items-center">
-            <div>
-              <Reveal>
-                <p className="mb-5 text-xs font-extrabold uppercase tracking-[0.18em] text-[#D12BFF]">
-                  CASE STUDY
-                </p>
-              </Reveal>
-              <Reveal delay={0.1}>
-                <h1 className="max-w-[820px] text-[clamp(42px,5vw,76px)] font-extrabold leading-[0.98] tracking-[-0.055em] text-[#FFFFFF]">
-                  {study.heroHeadline}
-                </h1>
-              </Reveal>
-              <Reveal delay={0.2}>
-                <p className="mt-8 max-w-[720px] text-lg leading-8 text-[#C9C7E8] md:text-xl">
-                  {study.heroSummary}
-                </p>
-              </Reveal>
+      <main>
+        <section className="section section-grey">
+          <div className="container split">
+            <Reveal className="split-copy">
+              <p className="eyebrow">Case study</p>
+              <h1 className="mt-3">{study.heroHeadline}</h1>
+              <p className="lead mt-4">{study.heroSummary}</p>
+              <div className="mt-5">
+                <PillList items={study.tags} />
+              </div>
+            </Reveal>
 
-              <Reveal delay={0.3}>
-                <div className="mt-8">
-                  <PillList items={study.tags} />
-                </div>
-              </Reveal>
-            </div>
-
-            <Reveal
-              className="relative min-h-[360px] overflow-hidden rounded-[18px] border border-[rgba(255,255,255,0.10)] bg-[#080826] shadow-[0_28px_90px_rgba(109,53,255,0.16)]"
-              delay={0.15}
-            >
-              <Image
-                alt={study.title}
-                className="object-cover object-center opacity-[0.84] saturate-[0.88] contrast-[0.96] brightness-[0.82]"
-                fill
-                priority
-                sizes="(min-width: 1024px) 40vw, 100vw"
-                src={study.image}
-              />
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,3,25,0.05)_0%,rgba(3,3,25,0.42)_64%,rgba(3,3,25,0.82)_100%),radial-gradient(circle_at_80%_20%,rgba(209,43,255,0.20),transparent_38%)]" />
+            <Reveal className="split-media" delay={0.08}>
+              <div className="well well-4-3 well-media">Case study image</div>
             </Reveal>
           </div>
         </section>
 
         <CaseStudyStats study={study} />
 
-        <section className="py-20 md:py-[110px]">
-          <div className="site-container grid gap-6 lg:grid-cols-2">
-            <SectionCard eyebrow="OVERVIEW" title="Overview">
+        <section className="section section-grey">
+          <div className="container grid gap-4 lg:grid-cols-2">
+            <SectionCard eyebrow="Overview" title="Overview">
               <p>{study.overview}</p>
             </SectionCard>
 
-            <SectionCard eyebrow="CHALLENGE" title="The Challenge">
+            <SectionCard eyebrow="Challenge" title="The challenge">
               <p>{study.challenge}</p>
             </SectionCard>
           </div>
         </section>
 
-        <section className="pb-20 md:pb-[110px]">
-          <div className="site-container grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-            <SectionCard eyebrow="PROCESS" title={study.processTitle}>
-              <ul className="grid gap-3">
+        <section className="section section-white">
+          <div className="container grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
+            <SectionCard eyebrow="Process" title={study.processTitle}>
+              <ul className="grid gap-2">
                 {study.processItems.map((item) => (
-                  <li className="flex gap-3" key={item}>
-                    <span className="mt-3 h-1.5 w-1.5 flex-none rounded-full bg-[#FF3CBF]" />
+                  <li className="flex gap-2.5" key={item}>
+                    <span className="mt-[9px] h-1 w-1 flex-none rounded-full bg-[var(--text-muted)]" />
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
             </SectionCard>
 
-            <div className="grid gap-6">
-              <SectionCard eyebrow="TOOLS USED" title="Tools Used">
+            <div className="grid content-start gap-4">
+              <SectionCard eyebrow="Tools used" title="Tools used">
                 <PillList items={study.tools} />
               </SectionCard>
 
-              <SectionCard eyebrow="IMPACT" title="Impact">
+              <SectionCard eyebrow="Impact" title="Impact">
                 <p>{study.impact}</p>
               </SectionCard>
             </div>
@@ -168,31 +134,23 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
         </section>
 
         {study.evidenceTitle && study.evidenceBody ? (
-          <section className="pb-20 md:pb-[110px]">
-            <div className="site-container">
-              <Reveal className="rounded-[18px] border border-[rgba(255,255,255,0.10)] bg-[radial-gradient(circle_at_80%_20%,rgba(209,43,255,0.18),transparent_32%),#080826] p-6 md:p-8">
-                <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-[#D12BFF]">
-                  EVIDENCE
-                </p>
-                <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#FFFFFF]">
-                  {study.evidenceTitle}
-                </h2>
-                <p className="mt-5 max-w-[900px] text-base leading-8 text-[#C9C7E8]">
-                  {study.evidenceBody}
-                </p>
-              </Reveal>
+          <section className="section section-grey">
+            <div className="container">
+              <SectionCard eyebrow="Evidence" title={study.evidenceTitle}>
+                <p>{study.evidenceBody}</p>
+              </SectionCard>
             </div>
           </section>
         ) : null}
 
         {study.examplesTitle && study.examples ? (
-          <section className="pb-20 md:pb-[110px]">
-            <div className="site-container">
-              <SectionCard eyebrow="EXAMPLES" title={study.examplesTitle}>
-                <ul className="grid gap-3 md:grid-cols-2">
+          <section className="section section-white">
+            <div className="container">
+              <SectionCard eyebrow="Examples" title={study.examplesTitle}>
+                <ul className="grid gap-2 md:grid-cols-2">
                   {study.examples.map((item) => (
-                    <li className="flex gap-3" key={item}>
-                      <span className="mt-3 h-1.5 w-1.5 flex-none rounded-full bg-[#10C8FF]" />
+                    <li className="flex gap-2.5" key={item}>
+                      <span className="mt-[9px] h-1 w-1 flex-none rounded-full bg-[var(--text-muted)]" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -202,18 +160,14 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
           </section>
         ) : null}
 
-        <section className="bg-[#080826] py-20 md:py-[96px]">
-          <div className="site-container">
-            <Reveal className="mx-auto max-w-[900px] rounded-[22px] border border-[rgba(255,255,255,0.10)] bg-[#101034] p-7 shadow-[0_22px_70px_rgba(209,43,255,0.12)] md:p-10">
-              <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-[#D12BFF]">
-                CASE STUDY TAKEAWAY
+        <section className="section section-grey">
+          <div className="container">
+            <Reveal className="cta-block">
+              <p className="eyebrow text-[var(--text-on-dark-2)]">
+                Case study takeaway
               </p>
-              <h2 className="mt-4 text-3xl font-extrabold leading-tight tracking-[-0.03em] text-[#FFFFFF] md:text-4xl">
-                What this work shows
-              </h2>
-              <p className="mt-5 text-base leading-8 text-[#C9C7E8] md:text-lg">
-                {study.takeaway}
-              </p>
+              <h2 className="mt-2">What this work shows</h2>
+              <p>{study.takeaway}</p>
             </Reveal>
           </div>
         </section>
