@@ -1,8 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState, useSyncExternalStore } from "react";
-import Reveal from "@/components/Reveal";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 
 // Auto-advance cadence. Bump or set to 0-style disable by removing the effect.
 const ROTATE_MS = 10000;
@@ -76,11 +75,22 @@ function LinkedInIcon() {
   );
 }
 
-function FounderCard({ founder }: { founder: Founder }) {
+function FounderCard({
+  founder,
+  shouldRun,
+}: {
+  founder: Founder;
+  shouldRun: boolean;
+}) {
+  // Staggered scroll-entrance (site standard rise-and-fade). The reveal fires
+  // once via the section observer; on later tab switches these stay resting and
+  // the crossfade wrapper handles the transition.
+  const vis = shouldRun ? " is-visible" : "";
+
   return (
     <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-[minmax(0,28fr)_minmax(0,72fr)] md:gap-8 lg:gap-10">
       {/* Photo — glow blend, no frame. Photo left / text right on all slides. */}
-      <div className="order-1">
+      <div className={`reveal-rise${vis} order-1`} style={{ transitionDelay: "0.2s" }}>
         <div className="relative mx-auto w-full max-w-[340px]">
           <div
             aria-hidden="true"
@@ -110,13 +120,22 @@ function FounderCard({ founder }: { founder: Founder }) {
 
       {/* Text */}
       <div className="order-2 text-center md:text-left">
-        <p className="text-sm font-extrabold uppercase tracking-[0.14em] text-[#D12BFF]">
+        <p
+          className={`reveal-rise${vis} text-sm font-extrabold uppercase tracking-[0.14em] text-[#D12BFF]`}
+          style={{ transitionDelay: "0.2s" }}
+        >
           {founder.eyebrow}
         </p>
-        <h3 className="mt-3 text-4xl font-black leading-[1.05] text-[#111111] md:text-[52px] lg:text-[56px]">
+        <h3
+          className={`reveal-rise${vis} mt-3 text-4xl font-black leading-[1.05] text-[#111111] md:text-[52px] lg:text-[56px]`}
+          style={{ transitionDelay: "0.3s" }}
+        >
           {founder.name}
         </h3>
-        <div className="mt-5 space-y-3">
+        <div
+          className={`reveal-rise${vis} mt-5 space-y-3`}
+          style={{ transitionDelay: "0.4s" }}
+        >
           {founder.bio.map((paragraph) => (
             <p
               className="text-[17px] leading-[1.7] text-[#33343F] md:text-[18px] lg:text-[19px]"
@@ -126,16 +145,18 @@ function FounderCard({ founder }: { founder: Founder }) {
             </p>
           ))}
         </div>
-        <a
-          className="mt-6 inline-flex min-h-[48px] items-center gap-2.5 rounded-full border border-[rgba(17,17,17,0.28)] px-6 py-3 text-sm font-semibold transition-colors hover:border-[#D12BFF] hover:bg-[rgba(209,43,255,0.08)]"
-          href={founder.linkedin}
-          style={{ color: "#111111" }}
-          rel="noreferrer"
-          target="_blank"
-        >
-          <LinkedInIcon />
-          Connect on LinkedIn
-        </a>
+        <div className={`reveal-rise${vis} mt-6`} style={{ transitionDelay: "0.5s" }}>
+          <a
+            className="inline-flex min-h-[48px] items-center gap-2.5 rounded-full border border-[rgba(17,17,17,0.28)] px-6 py-3 text-sm font-semibold transition-colors hover:border-[#D12BFF] hover:bg-[rgba(209,43,255,0.08)]"
+            href={founder.linkedin}
+            style={{ color: "#111111" }}
+            rel="noreferrer"
+            target="_blank"
+          >
+            <LinkedInIcon />
+            Connect on LinkedIn
+          </a>
+        </div>
       </div>
     </div>
   );
@@ -145,6 +166,46 @@ export default function FoundersSection() {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const reducedMotion = useReducedMotion();
+
+  // Scroll-entrance trigger — same IntersectionObserver pattern as the rest of
+  // the site: fire once at ~20% visible, then unobserve; disconnect on unmount.
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [shouldRun, setShouldRun] = useState(false);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+
+    if (!section) {
+      return;
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      const animationFrame = requestAnimationFrame(() => setShouldRun(true));
+      return () => cancelAnimationFrame(animationFrame);
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const coversViewport =
+          entry.intersectionRect.height >= window.innerHeight * 0.2;
+
+        if (
+          entry.isIntersecting &&
+          (entry.intersectionRatio >= 0.2 || coversViewport)
+        ) {
+          setShouldRun(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: [0, 0.2], rootMargin: "0px 0px -64px 0px" },
+    );
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, []);
+
+  const vis = shouldRun ? " is-visible" : "";
 
   // Auto-advance. Keyed on `active` so a manual switch restarts the timer;
   // paused (hover/focus/touch) and reduced-motion stop it entirely.
@@ -164,6 +225,7 @@ export default function FoundersSection() {
     <section
       className="relative w-full scroll-mt-20 overflow-hidden bg-[#EEF0F6] py-14 md:py-16"
       id="about"
+      ref={sectionRef}
     >
       {/* Light dotted-mesh background — same asset as the Problem section,
           pushed back so it reads as faint texture, not sharp lines. */}
@@ -180,16 +242,19 @@ export default function FoundersSection() {
       />
 
       <div className="site-container relative z-10">
-        <Reveal>
-          <div className="mx-auto mb-8 max-w-[720px] text-center md:mb-10">
-            <p className="mb-4 text-sm font-extrabold uppercase tracking-[0.14em] text-[#D12BFF]">
-              The Team
-            </p>
-            <h2 className="text-4xl font-black leading-[1.05] text-[#030319] md:text-5xl lg:text-6xl">
-              The people behind ScopeScaler
-            </h2>
-          </div>
-        </Reveal>
+        <div className="mx-auto mb-8 max-w-[720px] text-center md:mb-10">
+          <p
+            className={`reveal-rise${vis} mb-4 text-sm font-extrabold uppercase tracking-[0.14em] text-[#D12BFF]`}
+          >
+            The Team
+          </p>
+          <h2
+            className={`reveal-rise${vis} text-4xl font-black leading-[1.05] text-[#030319] md:text-5xl lg:text-6xl`}
+            style={{ transitionDelay: "0.1s" }}
+          >
+            The people behind ScopeScaler
+          </h2>
+        </div>
 
         {/* Slider */}
         <div
@@ -206,24 +271,34 @@ export default function FoundersSection() {
               return (
                 <div
                   aria-hidden={!isActive}
-                  className="[grid-area:1/1] transition-opacity ease-out"
+                  className="[grid-area:1/1]"
                   key={founder.name}
                   style={{
+                    transitionProperty: "opacity, transform",
+                    transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
                     transitionDuration: reducedMotion
                       ? "0ms"
                       : `${TRANSITION_MS}ms`,
                     opacity: isActive ? 1 : 0,
+                    // Incoming founder rises ~12px into place as it fades in.
+                    transform:
+                      reducedMotion || isActive
+                        ? "translateY(0)"
+                        : "translateY(12px)",
                     pointerEvents: isActive ? "auto" : "none",
                   }}
                 >
-                  <FounderCard founder={founder} />
+                  <FounderCard founder={founder} shouldRun={shouldRun} />
                 </div>
               );
             })}
           </div>
 
           {/* Name-tab indicators */}
-          <div className="mt-6 flex items-center justify-center gap-3">
+          <div
+            className={`reveal-rise${vis} mt-6 flex items-center justify-center gap-3`}
+            style={{ transitionDelay: "0.6s" }}
+          >
             {founders.map((founder, index) => {
               const isActive = index === active;
               return (
