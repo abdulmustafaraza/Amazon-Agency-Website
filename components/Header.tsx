@@ -23,15 +23,14 @@ export default function Header() {
           href="/"
           onClick={() => setMenuOpen(false)}
         >
-          {/* Placeholder mark. The shipped scopescaler-logo.svg is a white +
-              gradient wordmark: "Scope" disappears on white and inverting it
-              shifts the brand colours. Swap this for a black/monochrome
-              re-export when one exists. */}
-          <span
-            aria-hidden="true"
-            className="h-[15px] w-[15px] rounded-[4px] bg-[var(--bg-dark)]"
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            alt="ScopeScaler"
+            className="header-logo"
+            height={212}
+            src="/logos/scopescaler-lockup.png"
+            width={1200}
           />
-          <span>ScopeScaler</span>
         </Link>
 
         <nav aria-label="Primary navigation" className="header-nav">
@@ -43,7 +42,7 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Link className="btn btn-primary" href="/contact">
+          <Link className="btn btn-primary header-cta-pill" href="/contact">
             Get started
           </Link>
 

@@ -22,6 +22,21 @@ export default function Footer() {
     <footer className="site-footer" id="footer">
       <div className="container">
         <Reveal>
+          <Link
+            aria-label="ScopeScaler home"
+            className="tap mx-auto mb-6 flex w-fit items-center justify-center"
+            href="/"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              alt="ScopeScaler"
+              className="footer-logo"
+              height={212}
+              src="/logos/scopescaler-lockup.png"
+              width={1200}
+            />
+          </Link>
+
           <nav aria-label="Footer navigation" className="footer-links">
             {footerLinks.map((item) => (
               <Link href={item.href} key={item.label}>

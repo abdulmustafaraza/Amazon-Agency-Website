@@ -364,12 +364,34 @@ p {
 
 .header-brand {
   display: inline-flex;
+  /* Never let the flex row squash the lockup. */
+  flex: none;
   min-height: 44px;
   align-items: center;
-  gap: 8px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  /* Clear space: at least half the mark height on either side. */
+  padding-right: 10px;
+}
+
+/* The lockup's bounding box is the mark height, so height == mark height. */
+.header-logo {
+  flex: none;
+  width: auto;
+  max-width: none;
+  height: 20px;
+  object-fit: contain;
+}
+
+.footer-logo {
+  width: auto;
+  height: 22px;
+  object-fit: contain;
+}
+
+.cta-logo {
+  width: auto;
+  height: 22px;
+  margin: 0 auto 16px;
+  object-fit: contain;
 }
 
 /* Driven entirely in CSS: these component classes set `display`, so mixing in
@@ -395,6 +417,9 @@ p {
 }
 
 .header-nav a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
   color: var(--text-2);
   font-size: 0.79rem;
   font-weight: 500;
@@ -1031,6 +1056,14 @@ textarea.field {
 
   .footer-legal {
     justify-content: center;
+  }
+}
+
+@media (max-width: 400px) {
+  /* Below this the lockup, CTA and toggle stop fitting on one row. The CTA is
+     still reachable from the mobile menu. */
+  .header-cta-pill {
+    display: none;
   }
 }
 

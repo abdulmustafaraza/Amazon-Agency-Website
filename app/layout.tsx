@@ -37,21 +37,29 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName: "ScopeScaler",
     type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "ScopeScaler",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title,
     description:
       "Amazon marketplace intelligence, leakage audits, unauthorized seller research, and ecommerce operations support for brands that need stronger marketplace control.",
+    images: ["/og-image.png"],
   },
+  // Mark-only artwork — the full lockup is unreadable at 16px.
   icons: {
     icon: [
-      { url: "/favicon.ico" },
+      { url: "/logos/scopescaler-mark.png", sizes: "32x32", type: "image/png" },
       { url: "/icon.png", sizes: "512x512", type: "image/png" },
     ],
-    apple: [
-      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
-    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
   },
 };
 
