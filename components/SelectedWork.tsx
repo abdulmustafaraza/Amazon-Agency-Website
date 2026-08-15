@@ -29,7 +29,7 @@ export default function SelectedWork() {
                   className="work-card-link"
                   href={`/case-studies/${item.slug}`}
                 >
-                  View experience {"→"}
+                  <span>View experience {"→"}</span>
                 </Link>
               </div>
             </Reveal>

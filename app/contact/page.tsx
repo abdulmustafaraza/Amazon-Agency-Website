@@ -217,6 +217,7 @@ export default function ContactPage() {
         <section className="section section-grey">
           <div className="container">
             <Reveal className="cta-block">
+              <span aria-hidden="true" className="cta-rule" />
               <h2>Book a meeting</h2>
               <p>
                 Choose a time that works for you. Available slots are managed

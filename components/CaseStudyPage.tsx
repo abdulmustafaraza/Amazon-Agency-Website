@@ -30,7 +30,9 @@ function SectionCard({
 }) {
   return (
     <Reveal className="card h-full">
-      <p className="eyebrow">{eyebrow}</p>
+      {/* Card-internal label — stays neutral so a page never stacks several
+          coral labels in one section. */}
+      <p className="eyebrow eyebrow-muted">{eyebrow}</p>
       <h2 className="mt-2 text-[1.05rem] font-semibold">{title}</h2>
       <div className="mt-3 text-[0.855rem] leading-[1.65] text-[var(--text-2)]">
         {children}

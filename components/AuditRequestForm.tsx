@@ -254,7 +254,7 @@ export default function AuditRequestForm() {
           <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {nextSteps.map((step, index) => (
               <Reveal className="card" delay={index * 0.08} key={step}>
-                <p className="eyebrow">Step {index + 1}</p>
+                <p className="eyebrow eyebrow-muted">Step {index + 1}</p>
                 <h3 className="mt-2">{step}</h3>
               </Reveal>
             ))}

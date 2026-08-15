@@ -18,6 +18,11 @@
   --text-on-dark: #ffffff;
   --text-on-dark-2: rgba(255, 255, 255, 0.66);
 
+  /* Brand accent. Punctuation only — small text, thin rules, small
+     indicators and a single pill. Never a large filled area. */
+  --coral: #f5443b;
+  --coral-tint: rgba(245, 68, 59, 0.08);
+
   /* Lines */
   --line: #e4e6ea;
   --line-strong: #d9dce1;
@@ -88,6 +93,13 @@ video {
   max-width: 100%;
 }
 
+/* Keyboard focus is the one place coral carries a functional job. */
+:focus-visible {
+  outline: 2px solid var(--coral);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 /* ------------------------------------------------------------
    Type scale — restrained, weight 600 headings
    ------------------------------------------------------------ */
@@ -131,7 +143,6 @@ p {
 @layer components {
 .eyebrow {
   margin: 0;
-  color: var(--text-muted);
   font-size: 0.7rem;
   font-weight: 500;
   letter-spacing: 0.11em;
@@ -620,6 +631,12 @@ p {
   font-weight: 500;
 }
 
+/* Text stays black; only the rule underneath is coral. */
+.work-card-link span {
+  border-bottom: 1px solid var(--coral);
+  padding-bottom: 3px;
+}
+
 /* ------------------------------------------------------------
    Stack — 7-column logo grid
    ------------------------------------------------------------ */
@@ -721,14 +738,16 @@ p {
     color 0.2s ease;
 }
 
-.team-tab:hover {
-  border-color: var(--text);
+.team-tab:not([aria-pressed="true"]):hover {
+  border-color: var(--coral);
+  background: var(--coral-tint);
   color: var(--text);
 }
 
+/* The single coral pill on the site. */
 .team-tab[aria-pressed="true"] {
-  background: var(--bg-dark);
-  border-color: var(--bg-dark);
+  background: var(--coral);
+  border-color: var(--coral);
   color: var(--text-on-dark);
 }
 
@@ -764,7 +783,7 @@ p {
 
 .faq-icon {
   flex: none;
-  color: var(--text-muted);
+  color: var(--coral);
   font-size: 1rem;
   line-height: 1;
   transition: transform 0.25s var(--ease);
@@ -802,6 +821,16 @@ p {
   background: var(--bg-dark);
   padding: clamp(34px, 5vw, 56px) clamp(20px, 4vw, 40px);
   text-align: center;
+}
+
+/* The block's single coral detail — a thin rule, not a filled button. */
+.cta-rule {
+  display: block;
+  width: 28px;
+  height: 2px;
+  margin: 0 auto 16px;
+  border-radius: 999px;
+  background: var(--coral);
 }
 
 .cta-block h2 {
@@ -916,6 +945,13 @@ p {
   border-color: var(--text);
 }
 
+/* `.field` clears the default outline, and that sits in this layer — so the
+   base :focus-visible ring has to be restated here to win. */
+.field:focus-visible {
+  outline: 2px solid var(--coral);
+  outline-offset: 2px;
+}
+
 textarea.field {
   min-height: 120px;
   resize: vertical;
@@ -1013,6 +1049,26 @@ textarea.field {
 .calendly-popup-content {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* ------------------------------------------------------------
+   Eyebrow colour — declared last, on purpose
+   ------------------------------------------------------------
+   Section micro-labels are small enough that coral reads as a refined
+   accent rather than colour. Container rules such as `.section-head p`,
+   `.split-copy p` and `.card p` are (0,1,1), so these need matching
+   specificity AND later source order to win. Keep them at the end of the
+   layer — moving them earlier silently turns every eyebrow grey.
+
+   One coral label per section: card-internal labels take `.eyebrow-muted`
+   so a page never stacks several. */
+
+p.eyebrow {
+  color: var(--coral);
+}
+
+p.eyebrow-muted {
+  color: var(--text-muted);
 }
 
 /* ------------------------------------------------------------

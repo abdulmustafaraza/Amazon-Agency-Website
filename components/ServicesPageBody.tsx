@@ -275,6 +275,7 @@ export default function ServicesPageBody() {
       <section className="section section-white" id="free-audit">
         <div className="container">
           <Reveal className="cta-block">
+            <span aria-hidden="true" className="cta-rule" />
             <h2>Start with marketplace evidence before choosing a service.</h2>
             <div className="mt-5 flex flex-wrap justify-center gap-3">
               <Link className="btn btn-on-dark" href="/contact">
