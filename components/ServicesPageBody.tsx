@@ -1,6 +1,5 @@
 "use client";
 
-import AuditSnapshot from "@/components/AuditSnapshot";
 import Reveal from "@/components/Reveal";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -194,28 +193,9 @@ export default function ServicesPageBody() {
         </div>
       </section>
 
-      {/* 2 — SAMPLE DELIVERABLE */}
-      <section className="section section-grey">
-        <div className="site-container split split-reverse">
-          <Reveal className="split-copy">
-            <p className="eyebrow">Audit preview</p>
-            <h2 className="mt-2">Sample audit deliverable</h2>
-            <p>
-              Before deeper marketplace work begins, a focused audit can show
-              where branded demand, generic listings, competitor activity, or
-              seller risk may affect channel control.
-            </p>
-          </Reveal>
-
-          <Reveal className="split-media" delay={0.08}>
-            <AuditSnapshot />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* 3 — AMAZON CHANNEL MANAGEMENT */}
+      {/* 2 — AMAZON CHANNEL MANAGEMENT */}
       <section
-        className="section section-white scroll-mt-[112px]"
+        className="section section-grey scroll-mt-[112px]"
         id="amazon-channel-management"
       >
         <div className="site-container split">
@@ -242,9 +222,9 @@ export default function ServicesPageBody() {
         </div>
       </section>
 
-      {/* 4 — ECOMMERCE GROWTH SUPPORT */}
+      {/* 3 — ECOMMERCE GROWTH SUPPORT */}
       <section
-        className="section section-grey scroll-mt-[112px]"
+        className="section section-white scroll-mt-[112px]"
         id="ecommerce-growth-support"
       >
         <div className="site-container split split-reverse">
@@ -272,7 +252,7 @@ export default function ServicesPageBody() {
       </section>
 
       {/* CLOSING CTA */}
-      <section className="section section-white" id="free-audit">
+      <section className="section section-grey" id="free-audit">
         <div className="site-container">
           <Reveal className="cta-block">
             <span aria-hidden="true" className="cta-rule" />
