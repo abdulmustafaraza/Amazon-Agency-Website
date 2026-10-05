@@ -707,6 +707,17 @@ p {
   height: auto;
 }
 
+/* Cut-out portrait filling a square frame (next/image `fill`). */
+.team-photo-frame {
+  position: relative;
+}
+
+.team-photo-frame img {
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
 .team-bio p + p {
   margin-top: 10px;
 }

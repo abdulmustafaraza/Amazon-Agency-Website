@@ -1,6 +1,7 @@
 "use client";
 
 import Reveal from "@/components/Reveal";
+import Image from "next/image";
 import { useEffect, useState, useSyncExternalStore } from "react";
 
 // Auto-advance cadence.
@@ -11,6 +12,7 @@ type Founder = {
   eyebrow: string;
   name: string;
   linkedin: string;
+  photo: string;
   bio: string[];
 };
 
@@ -19,6 +21,7 @@ const founders: Founder[] = [
     eyebrow: "Founder, ScopeScaler",
     name: "Ukasha Shabbir",
     linkedin: "https://www.linkedin.com/in/ukashashabbir/",
+    photo: "/images/team/founder-cutout.png",
     bio: [
       "Ukasha got into ecommerce back in 2020 and never really looked back. Early on, he even started his own local ecommerce venture in Pakistan — it didn’t last forever, but it taught him more than any job could, and it’s where the founder bug really bit.",
       "For close to four years now, he’s run the day-to-day operations for a US beauty brand, managing thousands of products across Amazon and Shopify all the way from Karachi. If something’s tangled in Seller Central, broken in the inventory sync, or quietly leaking sales between channels, that’s the kind of thing he’s been untangling for years — and it’s that same instinct, spotting where a brand is losing ground in the marketplace and figuring out how to win it back, that shaped what ScopeScaler does today.",
@@ -29,6 +32,7 @@ const founders: Founder[] = [
     eyebrow: "Co-Founder, ScopeScaler",
     name: "Abdul Mustafa Raza",
     linkedin: "https://www.linkedin.com/in/abdul-mustafa-raza-26a69b311/",
+    photo: "/images/team/co-founder-cutout.png",
     bio: [
       "Mustafa found his thing in 2023 and went all in. He started out handling Amazon accounts and has since worked across the full range of Amazon business models — FBA, wholesale, and private label — picking up real experience in shipment management, sales, and brand research along the way.",
       "But the part he genuinely loves is the research: sourcing products, sizing up suppliers, reading demand and competition, and figuring out which brands and categories actually have pull on Amazon. He’s not a “trust your gut” operator — he’d rather look at the data, the margins, and the gaps, and then make the call. Building his own ecommerce agency was the goal from early on, and this is it.",
@@ -56,7 +60,14 @@ function useReducedMotion() {
 function FounderSlide({ founder }: { founder: Founder }) {
   return (
     <div className="team-slide">
-      <div className="team-photo well well-1-1">Founder photo</div>
+      <div className="team-photo team-photo-frame well-1-1">
+        <Image
+          alt={founder.name}
+          fill
+          sizes="(min-width: 768px) 260px, 220px"
+          src={founder.photo}
+        />
+      </div>
 
       <div className="team-bio">
         <p className="eyebrow">{founder.eyebrow}</p>

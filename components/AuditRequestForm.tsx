@@ -2,8 +2,9 @@
 
 import CalendlyPopupButton from "@/components/CalendlyPopupButton";
 import Reveal from "@/components/Reveal";
+import HoneypotField, { readHoneypot } from "@/components/HoneypotField";
+import { submitLead } from "@/lib/submitLead";
 import { useState, type FormEvent } from "react";
-import { GOOGLE_SHEET_ENDPOINT } from "@/lib/formConfig";
 
 const serviceInterestOptions = [
   "Free Leakage Audit",
@@ -62,29 +63,18 @@ export default function AuditRequestForm() {
     setIsSubmitting(true);
 
     try {
-      if (GOOGLE_SHEET_ENDPOINT) {
-        const response = await fetch(GOOGLE_SHEET_ENDPOINT, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            ...formData,
-            formType: "audit-request",
-            submittedAt: new Date().toISOString(),
-          }),
-        });
-
-        if (!response.ok) {
-          throw new Error("Audit request submission failed.");
-        }
-      }
+      await submitLead("audit-request", {
+        ...formData,
+        company_url: readHoneypot(event.currentTarget),
+      });
 
       setFormData(initialFormState);
       setError("");
       setSuccess(true);
     } catch {
-      setError("Something went wrong. Please try again.");
+      setError(
+        "Something went wrong and your request was not sent. Please try again or book a meeting directly.",
+      );
       setSuccess(false);
     } finally {
       setIsSubmitting(false);
@@ -100,17 +90,18 @@ export default function AuditRequestForm() {
             <h1 className="mt-3">Start with visible marketplace evidence.</h1>
             <p>
               Share a few details about your brand and the type of support you
-              are considering. This form is ready for a future Google Sheet
-              connection through an Apps Script endpoint.
+              are considering. We review every request and reply within 24
+              hours.
             </p>
             <p className="mt-3 text-[var(--text-muted)]">
-              No custom calendar system is active here. After submitting, use
-              the meeting link to book time through the external calendar page.
+              After submitting, you can book a meeting time straight away
+              through our calendar.
             </p>
           </Reveal>
 
           <Reveal delay={0.08}>
             <form className="card" noValidate onSubmit={handleSubmit}>
+              <HoneypotField />
               <div className="grid gap-4 md:grid-cols-2">
                 <div>
                   <label className="field-label" htmlFor="audit-name">

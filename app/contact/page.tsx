@@ -3,7 +3,9 @@
 import CalendlyPopupButton from "@/components/CalendlyPopupButton";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import HoneypotField, { readHoneypot } from "@/components/HoneypotField";
 import Reveal from "@/components/Reveal";
+import { submitLead } from "@/lib/submitLead";
 import { useState, type FormEvent } from "react";
 
 const serviceOptions = [
@@ -27,6 +29,7 @@ export default function ContactPage() {
   const [formData, setFormData] = useState(initialFormState);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   function updateField(field: keyof typeof initialFormState, value: string) {
     setFormData((current) => ({ ...current, [field]: value }));
@@ -36,7 +39,7 @@ export default function ContactPage() {
     }
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
@@ -49,9 +52,25 @@ export default function ContactPage() {
       return;
     }
 
-    setFormData(initialFormState);
-    setError("");
-    setSuccess(true);
+    setIsSubmitting(true);
+
+    try {
+      await submitLead("contact", {
+        ...formData,
+        company_url: readHoneypot(event.currentTarget),
+      });
+
+      setFormData(initialFormState);
+      setError("");
+      setSuccess(true);
+    } catch {
+      setError(
+        "Something went wrong and your request was not sent. Please try again or book a meeting directly.",
+      );
+      setSuccess(false);
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -83,6 +102,7 @@ export default function ContactPage() {
 
             <Reveal delay={0.08}>
               <form className="card" noValidate onSubmit={handleSubmit}>
+                <HoneypotField />
                 <div className="grid gap-4 md:grid-cols-2">
                   <div>
                     <label className="field-label" htmlFor="contact-name">
@@ -206,8 +226,12 @@ export default function ContactPage() {
                   </div>
                 ) : null}
 
-                <button className="btn btn-primary mt-5" type="submit">
-                  Submit request
+                <button
+                  className="btn btn-primary mt-5 disabled:cursor-not-allowed disabled:opacity-60"
+                  disabled={isSubmitting}
+                  type="submit"
+                >
+                  {isSubmitting ? "Submitting…" : "Submit request"}
                 </button>
               </form>
             </Reveal>

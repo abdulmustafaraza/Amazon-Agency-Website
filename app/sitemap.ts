@@ -55,24 +55,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/case-studies/us-beauty-retailer-marketplace-operations`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.45,
-    },
-    {
-      url: `${baseUrl}/case-studies/amazon-leakage-brand-control-research`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.45,
-    },
-    {
-      url: `${baseUrl}/case-studies/creator-review-conversion-systems`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.45,
-    },
-    {
       url: `${baseUrl}/privacy-policy`,
       lastModified,
       changeFrequency: "yearly",
