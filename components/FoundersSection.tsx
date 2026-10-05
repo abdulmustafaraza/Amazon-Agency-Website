@@ -111,7 +111,7 @@ export default function FoundersSection() {
 
   return (
     <section className="section section-grey scroll-mt-20" id="about">
-      <div className="container">
+      <div className="site-container">
         <Reveal className="section-head">
           <p className="eyebrow">The team</p>
           <h2 className="mt-2">The people behind ScopeScaler</h2>

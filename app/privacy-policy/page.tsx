@@ -42,7 +42,7 @@ export default function PrivacyPolicyPage() {
     <>
       <Header />
       <main className="section section-white">
-        <article className="container max-w-[760px]">
+        <article className="site-container max-w-[760px]">
           <Reveal>
             <p className="eyebrow">Privacy policy</p>
             <h1 className="mt-3">Privacy Policy</h1>

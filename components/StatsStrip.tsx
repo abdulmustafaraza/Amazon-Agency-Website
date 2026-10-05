@@ -7,7 +7,7 @@ import { stats } from "@/data/stats";
 export default function StatsStrip() {
   return (
     <section className="section section-grey">
-      <div className="container split">
+      <div className="site-container split">
         <Reveal className="split-media">
           <div className="well well-4-3 well-media">Track record image</div>
         </Reveal>

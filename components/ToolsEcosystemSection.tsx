@@ -54,7 +54,7 @@ function ToolCell({ tool }: { tool: Tool }) {
 export default function ToolsEcosystemSection() {
   return (
     <section className="section section-white">
-      <div className="container">
+      <div className="site-container">
         <Reveal className="section-head">
           <p className="eyebrow">Operating stack</p>
           <h2 className="mt-2">Systems we work across</h2>

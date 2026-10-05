@@ -12,7 +12,7 @@ const featured = services.slice(0, 3);
 export default function ServicesSection() {
   return (
     <section className="section section-white" id="services">
-      <div className="container split split-reverse">
+      <div className="site-container split split-reverse">
         <Reveal className="split-copy">
           <p className="eyebrow">What we do</p>
           <h2 className="mt-2">Three ways brands take the channel back</h2>

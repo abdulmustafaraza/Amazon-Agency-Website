@@ -4,7 +4,7 @@ import Reveal from "@/components/Reveal";
 export default function PreFooterCTA() {
   return (
     <section className="section section-grey scroll-mt-28" id="contact">
-      <div className="container">
+      <div className="site-container">
         <Reveal className="cta-block">
           {/* Light variant — the navy wordmark is unreadable on the dark block. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}

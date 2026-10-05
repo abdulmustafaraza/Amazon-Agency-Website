@@ -111,7 +111,7 @@ export default function ServicesPageBody() {
     <main id="top">
       {/* HERO */}
       <section className="section section-grey">
-        <div className="container">
+        <div className="site-container">
           <Reveal>
             <p className="eyebrow">Services</p>
             <h1 className="mt-3 max-w-[22ch]">
@@ -135,7 +135,7 @@ export default function ServicesPageBody() {
         aria-label="Service navigation"
         className="no-scrollbar sticky top-[60px] z-40 overflow-x-auto border-y border-[var(--line)] bg-white/85 backdrop-blur-md"
       >
-        <div className="container flex flex-nowrap items-center justify-start gap-6 whitespace-nowrap lg:justify-center">
+        <div className="site-container flex flex-nowrap items-center justify-start gap-6 whitespace-nowrap lg:justify-center">
           {serviceNav.map((item) => {
             const id = item.href.slice(1);
             const isActive = activeId === id;
@@ -163,7 +163,7 @@ export default function ServicesPageBody() {
         className="section section-white scroll-mt-[112px]"
         id="free-leakage-audit"
       >
-        <div className="container split">
+        <div className="site-container split">
           <Reveal className="split-copy">
             <h2>Free Amazon Leakage Audit</h2>
             <p>
@@ -196,7 +196,7 @@ export default function ServicesPageBody() {
 
       {/* 2 — SAMPLE DELIVERABLE */}
       <section className="section section-grey">
-        <div className="container split split-reverse">
+        <div className="site-container split split-reverse">
           <Reveal className="split-copy">
             <p className="eyebrow">Audit preview</p>
             <h2 className="mt-2">Sample audit deliverable</h2>
@@ -218,7 +218,7 @@ export default function ServicesPageBody() {
         className="section section-white scroll-mt-[112px]"
         id="amazon-channel-management"
       >
-        <div className="container split">
+        <div className="site-container split">
           <Reveal className="split-copy">
             <p className="eyebrow">Day-to-day operations</p>
             <h2 className="mt-2">Amazon Channel Management</h2>
@@ -247,7 +247,7 @@ export default function ServicesPageBody() {
         className="section section-grey scroll-mt-[112px]"
         id="ecommerce-growth-support"
       >
-        <div className="container split split-reverse">
+        <div className="site-container split split-reverse">
           <Reveal className="split-copy">
             <p className="eyebrow">Beyond a marketplace</p>
             <h2 className="mt-2">Ecommerce Growth Support</h2>
@@ -273,7 +273,7 @@ export default function ServicesPageBody() {
 
       {/* CLOSING CTA */}
       <section className="section section-white" id="free-audit">
-        <div className="container">
+        <div className="site-container">
           <Reveal className="cta-block">
             <span aria-hidden="true" className="cta-rule" />
             <h2>Start with marketplace evidence before choosing a service.</h2>

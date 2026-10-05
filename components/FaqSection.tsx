@@ -42,7 +42,7 @@ export default function FaqSection() {
 
   return (
     <section className="section section-white" id="faq">
-      <div className="container">
+      <div className="site-container">
         <Reveal className="section-head">
           <p className="eyebrow">FAQ</p>
           <h2 className="mt-2">Common questions</h2>

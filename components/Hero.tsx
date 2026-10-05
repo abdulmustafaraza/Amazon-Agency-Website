@@ -39,7 +39,7 @@ function HeroMedia() {
 export default function Hero() {
   return (
     <section className="hero">
-      <div className="container hero-grid">
+      <div className="site-container hero-grid">
         <Reveal className="hero-copy">
           <h1>Control Amazon before unauthorized sellers define your brand there.</h1>
           <p className="hero-sub">

@@ -44,7 +44,7 @@ function SectionCard({
 function CaseStudyStats({ study }: { study: CaseStudy }) {
   return (
     <section className="section section-white">
-      <div className="container">
+      <div className="site-container">
         <div className="grid gap-4 md:grid-cols-3">
           {study.stats.map((stat, index) => (
             <Reveal
@@ -80,7 +80,7 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
       <Header />
       <main>
         <section className="section section-grey">
-          <div className="container split">
+          <div className="site-container split">
             <Reveal className="split-copy">
               <p className="eyebrow">Case study</p>
               <h1 className="mt-3">{study.heroHeadline}</h1>
@@ -99,7 +99,7 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
         <CaseStudyStats study={study} />
 
         <section className="section section-grey">
-          <div className="container grid gap-4 lg:grid-cols-2">
+          <div className="site-container grid gap-4 lg:grid-cols-2">
             <SectionCard eyebrow="Overview" title="Overview">
               <p>{study.overview}</p>
             </SectionCard>
@@ -111,7 +111,7 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
         </section>
 
         <section className="section section-white">
-          <div className="container grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
+          <div className="site-container grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
             <SectionCard eyebrow="Process" title={study.processTitle}>
               <ul className="grid gap-2">
                 {study.processItems.map((item) => (
@@ -137,7 +137,7 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
 
         {study.evidenceTitle && study.evidenceBody ? (
           <section className="section section-grey">
-            <div className="container">
+            <div className="site-container">
               <SectionCard eyebrow="Evidence" title={study.evidenceTitle}>
                 <p>{study.evidenceBody}</p>
               </SectionCard>
@@ -147,7 +147,7 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
 
         {study.examplesTitle && study.examples ? (
           <section className="section section-white">
-            <div className="container">
+            <div className="site-container">
               <SectionCard eyebrow="Examples" title={study.examplesTitle}>
                 <ul className="grid gap-2 md:grid-cols-2">
                   {study.examples.map((item) => (
@@ -163,7 +163,7 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
         ) : null}
 
         <section className="section section-grey">
-          <div className="container">
+          <div className="site-container">
             <Reveal className="cta-block">
               <p className="eyebrow text-[var(--text-on-dark-2)]">
                 Case study takeaway

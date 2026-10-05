@@ -10,7 +10,7 @@ export default function PortfolioPage() {
       <Header />
       <main>
         <section className="section section-grey">
-          <div className="container">
+          <div className="site-container">
             <Reveal>
               <p className="eyebrow">Team experience</p>
               <h1 className="mt-3 max-w-[24ch]">
@@ -27,7 +27,7 @@ export default function PortfolioPage() {
         </section>
 
         <section className="section section-white">
-          <div className="container">
+          <div className="site-container">
             <div className="work-grid !mt-0">
               {caseStudies.map((item, index) => (
                 <Reveal

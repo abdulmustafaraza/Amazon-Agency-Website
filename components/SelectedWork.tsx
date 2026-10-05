@@ -5,7 +5,7 @@ import { caseStudies } from "@/data/portfolio";
 export default function SelectedWork() {
   return (
     <section className="section section-grey" id="selected-work">
-      <div className="container">
+      <div className="site-container">
         <Reveal className="section-head">
           <p className="eyebrow">Selected work</p>
           <h2 className="mt-2">Our diverse experience includes</h2>

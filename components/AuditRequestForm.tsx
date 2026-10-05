@@ -84,7 +84,7 @@ export default function AuditRequestForm() {
   return (
     <>
       <section className="section section-grey" id="free-audit">
-        <div className="container split">
+        <div className="site-container split">
           <Reveal className="split-copy">
             <p className="eyebrow">Free audit request</p>
             <h1 className="mt-3">Start with visible marketplace evidence.</h1>
@@ -236,7 +236,7 @@ export default function AuditRequestForm() {
       </section>
 
       <section className="section section-white">
-        <div className="container">
+        <div className="site-container">
           <Reveal className="section-head">
             <p className="eyebrow">Process</p>
             <h2 className="mt-2">What happens next</h2>

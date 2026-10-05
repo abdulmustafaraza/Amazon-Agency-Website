@@ -20,7 +20,7 @@ const legalLinks = [
 export default function Footer() {
   return (
     <footer className="site-footer" id="footer">
-      <div className="container">
+      <div className="site-container">
         <Reveal>
           <Link
             aria-label="ScopeScaler home"

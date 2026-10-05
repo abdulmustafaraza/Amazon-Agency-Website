@@ -16,7 +16,7 @@ export default function Header() {
 
   return (
     <header className="site-header">
-      <div className="container header-inner">
+      <div className="site-container header-inner">
         <Link
           aria-label="ScopeScaler home"
           className="header-brand"
@@ -77,7 +77,7 @@ export default function Header() {
           className="border-t border-[var(--line)] bg-white min-[881px]:hidden"
           id="mobile-menu"
         >
-          <div className="container flex flex-col py-2">
+          <div className="site-container flex flex-col py-2">
             {navLinks.map((link) => (
               <Link
                 className="tap flex items-center border-b border-[var(--line)] text-[0.85rem] text-[var(--text-2)] transition-colors hover:text-[var(--text)]"

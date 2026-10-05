@@ -78,7 +78,7 @@ export default function ContactPage() {
       <Header />
       <main>
         <section className="section section-grey">
-          <div className="container">
+          <div className="site-container">
             <Reveal>
               <p className="eyebrow">Contact</p>
               <h1 className="mt-3 max-w-[22ch]">
@@ -94,7 +94,7 @@ export default function ContactPage() {
         </section>
 
         <section className="section section-white">
-          <div className="container split">
+          <div className="site-container split">
             <Reveal className="split-copy">
               <p className="eyebrow">Request context review</p>
               <h2 className="mt-2">Let us guide you with our expertise.</h2>
@@ -239,7 +239,7 @@ export default function ContactPage() {
         </section>
 
         <section className="section section-grey">
-          <div className="container">
+          <div className="site-container">
             <Reveal className="cta-block">
               <span aria-hidden="true" className="cta-rule" />
               <h2>Book a meeting</h2>
