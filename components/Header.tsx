@@ -1,15 +1,8 @@
 "use client";
 
+import { navigation as navLinks } from "@/data/navigation";
 import Link from "next/link";
 import { useState } from "react";
-
-const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "Services", href: "/services" },
-  { label: "Portfolio", href: "/#selected-work" },
-  { label: "About Us", href: "/#about" },
-  { label: "Contact", href: "/contact" },
-];
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);

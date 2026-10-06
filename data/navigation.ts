@@ -3,23 +3,13 @@ export type NavigationItem = {
   href: string;
 };
 
+// Primary navigation, shared by the header and footer so they stay identical.
 export const navigation: NavigationItem[] = [
-  {
-    label: "Services",
-    href: "/services",
-  },
-  {
-    label: "Selected Work",
-    href: "#selected-work",
-  },
-  {
-    label: "Pricing",
-    href: "#pricing",
-  },
-  {
-    label: "About",
-    href: "#about",
-  },
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "Portfolio", href: "/#selected-work" },
+  { label: "About Us", href: "/#about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const serviceLinks: NavigationItem[] = [

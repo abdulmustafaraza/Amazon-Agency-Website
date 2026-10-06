@@ -1,20 +1,12 @@
 import Reveal from "@/components/Reveal";
 import Link from "next/link";
+import { navigation as footerLinks } from "@/data/navigation";
 import { siteContent } from "@/data/siteContent";
-
-const footerLinks = [
-  { label: "Home", href: "/" },
-  { label: "Services", href: "/services" },
-  { label: "Portfolio", href: "/#selected-work" },
-  { label: "About", href: "/#about" },
-  { label: "Free Audit", href: "/contact" },
-  { label: "Contact", href: "/contact" },
-];
 
 const legalLinks = [
   { label: "Privacy Policy", href: "/privacy-policy" },
   { label: "Terms of Service", href: "/terms-of-service" },
-  { label: "Cookie Settings", href: "/privacy-policy" },
+  { label: "Cookie Policy", href: "/privacy-policy#cookies" },
 ];
 
 export default function Footer() {
@@ -44,6 +36,10 @@ export default function Footer() {
               </Link>
             ))}
           </nav>
+
+          <a className="footer-email" href={`mailto:${siteContent.email}`}>
+            {siteContent.email}
+          </a>
 
           <div className="footer-bottom">
             <p>

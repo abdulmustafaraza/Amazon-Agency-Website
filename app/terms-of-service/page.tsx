@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
+import { siteContent } from "@/data/siteContent";
 
 const sections = [
   {
@@ -37,7 +38,7 @@ const sections = [
   },
   {
     title: "Contact",
-    body: "Questions about these Terms of Service can be sent to hello@scopescaler.com.",
+    body: `Questions about these Terms of Service can be sent to ${siteContent.email}.`,
   },
   {
     title: "Last Updated",
@@ -57,10 +58,6 @@ export default function TermsOfServicePage() {
             <p className="lead mt-4">
               These Terms of Service explain the basic terms for using the
               ScopeScaler website and requesting information about services.
-            </p>
-            <p className="mt-4 border-l-2 border-[var(--line-strong)] pl-4 text-[var(--text-muted)]">
-              This page is a general template and should be reviewed before
-              launch.
             </p>
           </Reveal>
 

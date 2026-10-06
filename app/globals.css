@@ -862,6 +862,22 @@ p {
   color: var(--text);
 }
 
+.footer-email {
+  display: flex;
+  width: fit-content;
+  min-height: 44px;
+  align-items: center;
+  margin: 4px auto 0;
+  color: var(--text);
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.footer-email:hover {
+  color: var(--coral);
+}
+
 .footer-bottom {
   display: flex;
   flex-wrap: wrap;

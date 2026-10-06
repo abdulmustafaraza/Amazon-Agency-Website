@@ -14,7 +14,7 @@ export type SiteContent = {
 
 export const siteContent: SiteContent = {
   name: "ScopeScaler",
-  email: "hello@scopescaler.com",
+  email: "ukasha@scopescaler.com",
   tagline: "Marketplace control for brand-led ecommerce operators.",
   hero: {
     eyebrow: "Amazon marketplace control for brand-led operators",

@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
+import { siteContent } from "@/data/siteContent";
 
 const sections = [
   {
@@ -9,15 +10,16 @@ const sections = [
   },
   {
     title: "How We Use Information",
-    body: "Information may be used to respond to inquiries, provide audit or service information, improve the website experience, and send relevant updates if you opt in.",
+    body: "Information may be used to respond to inquiries, provide audit or service information, and improve the website experience.",
   },
   {
     title: "Information Sharing",
     body: "ScopeScaler does not sell personal information. Information may be shared only with service providers needed to operate the website or respond to requests.",
   },
   {
-    title: "Cookies and Analytics",
-    body: "The website may use cookies or analytics tools to understand usage and improve performance.",
+    id: "cookies",
+    title: "Cookies",
+    body: "This website does not set advertising or analytics cookies, so there are no cookie settings to manage. If you open the booking calendar, Calendly may set its own cookies, which are covered by Calendly's privacy policy.",
   },
   {
     title: "Data Security",
@@ -25,11 +27,11 @@ const sections = [
   },
   {
     title: "Your Choices",
-    body: "You can request updates, corrections, or removal of submitted information by contacting the business.",
+    body: `You can request updates, corrections, or removal of submitted information by emailing ${siteContent.email}.`,
   },
   {
     title: "Contact",
-    body: "Questions about this Privacy Policy can be sent to hello@scopescaler.com.",
+    body: `Questions about this Privacy Policy can be sent to ${siteContent.email}.`,
   },
   {
     title: "Last Updated",
@@ -50,15 +52,11 @@ export default function PrivacyPolicyPage() {
               This Privacy Policy explains how ScopeScaler may collect, use, and
               protect information submitted through this website.
             </p>
-            <p className="mt-4 border-l-2 border-[var(--line-strong)] pl-4 text-[var(--text-muted)]">
-              This page is a general template and should be reviewed before
-              launch.
-            </p>
           </Reveal>
 
           <div className="mt-10 space-y-7">
             {sections.map((section, index) => (
-              <Reveal as="section" key={section.title}>
+              <Reveal as="section" id={section.id} key={section.title}>
                 <h2 className="text-[1.05rem] font-semibold">
                   {index + 1}. {section.title}
                 </h2>
@@ -72,4 +70,3 @@ export default function PrivacyPolicyPage() {
     </>
   );
 }
-
