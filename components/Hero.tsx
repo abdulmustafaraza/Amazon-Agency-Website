@@ -56,17 +56,6 @@ export default function Hero() {
               Review the process
             </a>
           </div>
-
-          <div className="proof">
-            <div aria-hidden="true" className="proof-avatars">
-              <span className="proof-avatar" />
-              <span className="proof-avatar" />
-              <span className="proof-avatar" />
-            </div>
-            <p className="proof-text">
-              Trusted by brand-led operators across Amazon, Shopify and eBay
-            </p>
-          </div>
         </Reveal>
 
         <Reveal delay={0.1}>
