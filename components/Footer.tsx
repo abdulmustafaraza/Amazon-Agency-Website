@@ -5,7 +5,7 @@ import { siteContent } from "@/data/siteContent";
 const footerLinks = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
-  { label: "Portfolio", href: "/portfolio" },
+  { label: "Portfolio", href: "/#selected-work" },
   { label: "About", href: "/#about" },
   { label: "Free Audit", href: "/contact" },
   { label: "Contact", href: "/contact" },
