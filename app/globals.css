@@ -456,6 +456,21 @@ p {
   max-width: 15ch;
 }
 
+/* Text-only hero (no media column): one centred column. */
+.hero-solo {
+  grid-template-columns: 1fr;
+  text-align: center;
+}
+
+.hero-solo .hero-copy h1,
+.hero-solo .hero-sub {
+  margin-inline: auto;
+}
+
+.hero-solo .hero-actions {
+  justify-content: center;
+}
+
 .hero-sub {
   max-width: 46ch;
   margin-top: 14px;

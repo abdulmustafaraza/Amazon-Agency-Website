@@ -4,6 +4,10 @@ import CalendlyPopupButton from "@/components/CalendlyPopupButton";
 import Reveal from "@/components/Reveal";
 import { useState } from "react";
 
+// Off until the hero video is produced: the hero renders as a single centred
+// column. Set to true (and add /public/video/hero.mp4) to bring the media back.
+const SHOW_HERO_MEDIA = false;
+
 /**
  * Hero media. Renders the background video and swaps to the labelled grey
  * placeholder if the source is missing or fails to decode, so the layout
@@ -39,7 +43,9 @@ function HeroMedia() {
 export default function Hero() {
   return (
     <section className="hero">
-      <div className="site-container hero-grid">
+      <div
+        className={`site-container hero-grid${SHOW_HERO_MEDIA ? "" : " hero-solo"}`}
+      >
         <Reveal className="hero-copy">
           <h1>Control Amazon before unauthorized sellers define your brand there.</h1>
           <p className="hero-sub">
@@ -58,9 +64,11 @@ export default function Hero() {
           </div>
         </Reveal>
 
-        <Reveal delay={0.1}>
-          <HeroMedia />
-        </Reveal>
+        {SHOW_HERO_MEDIA && (
+          <Reveal delay={0.1}>
+            <HeroMedia />
+          </Reveal>
+        )}
       </div>
     </section>
   );
