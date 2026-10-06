@@ -456,19 +456,9 @@ p {
   max-width: 15ch;
 }
 
-/* Text-only hero (no media column): one centred column. */
+/* Text-only hero (no media column): one left-aligned column. */
 .hero-solo {
   grid-template-columns: 1fr;
-  text-align: center;
-}
-
-.hero-solo .hero-copy h1,
-.hero-solo .hero-sub {
-  margin-inline: auto;
-}
-
-.hero-solo .hero-actions {
-  justify-content: center;
 }
 
 .hero-sub {

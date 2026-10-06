@@ -4,7 +4,7 @@ import CalendlyPopupButton from "@/components/CalendlyPopupButton";
 import Reveal from "@/components/Reveal";
 import { useState } from "react";
 
-// Off until the hero video is produced: the hero renders as a single centred
+// Off until the hero video is produced: the hero renders as a single
 // column. Set to true (and add /public/video/hero.mp4) to bring the media back.
 const SHOW_HERO_MEDIA = false;
 
