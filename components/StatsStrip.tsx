@@ -1,5 +1,6 @@
 import Reveal from "@/components/Reveal";
 import { stats } from "@/data/stats";
+import Image from "next/image";
 
 /**
  * Grey split section — image left, heading + paragraph + inline stats right.
@@ -9,7 +10,15 @@ export default function StatsStrip() {
     <section className="section section-grey">
       <div className="site-container split">
         <Reveal className="split-media">
-          <div className="well well-4-3 well-media">Track record image</div>
+          <div className="well well-4-3 well-media relative">
+            <Image
+              alt="Laptop showing a product inventory sheet beside shipping boxes and an inventory notebook"
+              className="object-cover"
+              fill
+              sizes="(min-width: 881px) 500px, 100vw"
+              src="/images/track-record.png"
+            />
+          </div>
         </Reveal>
 
         <Reveal className="split-copy" delay={0.08}>

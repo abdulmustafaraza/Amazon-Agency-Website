@@ -1,4 +1,5 @@
 import Reveal from "@/components/Reveal";
+import Image from "next/image";
 import Link from "next/link";
 import { services } from "@/data/services";
 
@@ -37,7 +38,15 @@ export default function ServicesSection() {
         </Reveal>
 
         <Reveal className="split-media" delay={0.08}>
-          <div className="well well-4-3 well-media">Services image</div>
+          <div className="well well-4-3 well-media relative">
+            <Image
+              alt="Person reviewing a skincare product listing on a laptop while holding the product"
+              className="object-cover"
+              fill
+              sizes="(min-width: 881px) 500px, 100vw"
+              src="/images/services.png"
+            />
+          </div>
         </Reveal>
       </div>
     </section>
