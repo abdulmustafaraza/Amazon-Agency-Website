@@ -134,7 +134,9 @@ export default function ServicesPageBody() {
         aria-label="Service navigation"
         className="no-scrollbar sticky top-[60px] z-40 overflow-x-auto border-y border-[var(--line)] bg-white/85 backdrop-blur-md"
       >
-        <div className="site-container flex flex-nowrap items-center justify-start gap-6 whitespace-nowrap lg:justify-center">
+        {/* Auto margins centre the links when they fit, and collapse when the
+            row overflows so the first link stays reachable by scrolling. */}
+        <div className="site-container flex flex-nowrap items-center gap-6 whitespace-nowrap [&>a:first-child]:ml-auto [&>a:last-child]:mr-auto">
           {serviceNav.map((item) => {
             const id = item.href.slice(1);
             const isActive = activeId === id;
