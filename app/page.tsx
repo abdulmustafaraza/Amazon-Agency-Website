@@ -8,6 +8,13 @@ import SelectedWork from "@/components/SelectedWork";
 import ServicesSection from "@/components/ServicesSection";
 import StatsStrip from "@/components/StatsStrip";
 import ToolsEcosystemSection from "@/components/ToolsEcosystemSection";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+};
 
 export default function Home() {
   return (

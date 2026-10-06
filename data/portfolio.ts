@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+
 export type CaseStudyStat = {
   value: string;
   label?: string;
@@ -179,4 +181,21 @@ export const caseStudies: CaseStudy[] = [
 
 export function getCaseStudy(slug: string) {
   return caseStudies.find((study) => study.slug === slug);
+}
+
+// Per-page title, description and canonical for a case-study route.
+export function caseStudyMetadata(slug: string): Metadata {
+  const study = getCaseStudy(slug);
+
+  if (!study) {
+    return {};
+  }
+
+  return {
+    title: `${study.title} | ScopeScaler`,
+    description: study.description,
+    alternates: {
+      canonical: `/case-studies/${slug}`,
+    },
+  };
 }

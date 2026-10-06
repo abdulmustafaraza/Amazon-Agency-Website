@@ -2,6 +2,16 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import { siteContent } from "@/data/siteContent";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Terms of Service | ScopeScaler",
+  description:
+    "The terms for using the ScopeScaler website and requesting information about its services.",
+  alternates: {
+    canonical: "/terms-of-service",
+  },
+};
 
 const sections = [
   {

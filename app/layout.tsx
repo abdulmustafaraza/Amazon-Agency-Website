@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { SITE_URL } from "@/lib/constants";
 import "./globals.css";
 
 const inter = Inter({
@@ -8,7 +9,7 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const siteUrl = "https://scopescaler.com";
+const siteUrl = SITE_URL;
 const title = "ScopeScaler | Amazon Marketplace Intelligence & Brand Control";
 const description =
   "ScopeScaler helps ecommerce brands identify Amazon marketplace leakage, unauthorized seller risk, search demand, and backend operational gaps across Amazon, Shopify, Sellercloud, and multi-channel workflows.";
@@ -27,9 +28,9 @@ export const metadata: Metadata = {
     "Shopify Amazon operations",
     "Amazon Creator Connections",
   ],
-  alternates: {
-    canonical: "/",
-  },
+  // No canonical here: every page inherits root metadata, so a root
+  // canonical would mark all pages as duplicates of the homepage. Each page
+  // sets its own.
   openGraph: {
     title,
     description:

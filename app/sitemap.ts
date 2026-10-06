@@ -1,6 +1,7 @@
+import { SITE_URL } from "@/lib/constants";
 import type { MetadataRoute } from "next";
 
-const baseUrl = "https://scopescaler.com";
+const baseUrl = SITE_URL;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();

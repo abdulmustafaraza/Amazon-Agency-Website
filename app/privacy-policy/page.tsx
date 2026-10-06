@@ -2,6 +2,16 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import { siteContent } from "@/data/siteContent";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy | ScopeScaler",
+  description:
+    "How ScopeScaler collects, uses, and protects information submitted through its website.",
+  alternates: {
+    canonical: "/privacy-policy",
+  },
+};
 
 const sections = [
   {

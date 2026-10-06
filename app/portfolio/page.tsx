@@ -4,6 +4,16 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Reveal from "@/components/Reveal";
 import { caseStudies } from "@/data/portfolio";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Selected Work | ScopeScaler",
+  description:
+    "Amazon, Shopify, and multi-channel ecommerce work by ScopeScaler: creator campaigns, 20K+ SKU operations, and marketplace demand and brand leakage research.",
+  alternates: {
+    canonical: "/portfolio",
+  },
+};
 
 export default function PortfolioPage() {
   return (
