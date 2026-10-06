@@ -60,13 +60,15 @@ function useReducedMotion() {
 function FounderSlide({ founder }: { founder: Founder }) {
   return (
     <div className="team-slide">
-      <div className="team-photo team-photo-frame well-1-1">
-        <Image
-          alt={founder.name}
-          fill
-          sizes="(min-width: 768px) 260px, 220px"
-          src={founder.photo}
-        />
+      <div className="team-photo team-photo-frame">
+        <div className="team-photo-inset">
+          <Image
+            alt={founder.name}
+            fill
+            sizes="(min-width: 768px) 320px, 270px"
+            src={founder.photo}
+          />
+        </div>
       </div>
 
       <div className="team-bio">

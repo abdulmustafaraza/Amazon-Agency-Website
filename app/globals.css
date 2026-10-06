@@ -702,15 +702,23 @@ p {
   height: auto;
 }
 
-/* Cut-out portrait filling a square frame (next/image `fill`). */
+/* Cut-out portrait in a 4:5 frame (next/image `fill`). The inset box gives
+   headroom above the head and room at the sides, so the portrait never
+   runs into the frame edges. */
 .team-photo-frame {
   position: relative;
+  aspect-ratio: 4 / 5;
+}
+
+.team-photo-inset {
+  position: absolute;
+  inset: 18% 4% 0;
 }
 
 .team-photo-frame img {
   height: 100%;
   object-fit: cover;
-  object-position: top;
+  object-position: top center;
 }
 
 .team-bio p + p {
