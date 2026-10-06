@@ -1,4 +1,5 @@
 import Reveal from "@/components/Reveal";
+import Image from "next/image";
 import Link from "next/link";
 import { caseStudies } from "@/data/portfolio";
 
@@ -19,8 +20,14 @@ export default function SelectedWork() {
               delay={index * 0.08}
               key={item.slug}
             >
-              <div className="well well-16-10 rounded-none border-0 border-b">
-                Project thumbnail
+              <div className="well well-16-10 relative rounded-none border-0 border-b">
+                <Image
+                  alt={item.title}
+                  className="object-cover"
+                  fill
+                  sizes="(min-width: 881px) 340px, 100vw"
+                  src={item.image}
+                />
               </div>
               <div className="work-card-body">
                 <h3>{item.title}</h3>

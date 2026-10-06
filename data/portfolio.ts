@@ -37,7 +37,7 @@ export const caseStudies: CaseStudy[] = [
       "Affiliate Marketing",
       "Beauty Campaigns",
     ],
-    image: "/portfolio/social-content.jpeg",
+    image: "/portfolio/creator-campaigns.png",
     heroHeadline: "Creator Campaigns Driving Marketplace Sales",
     heroSummary:
       "Amazon Creator Connections campaign support for beauty and wellness products, covering campaign setup, creator targeting, product selection, copywriting, content-angle strategy, and performance tracking.",
@@ -81,7 +81,7 @@ export const caseStudies: CaseStudy[] = [
     description:
       "Backend ecommerce operations across Amazon, Shopify, eBay, Walmart, and Sellercloud — SKU management, inventory, and channel sync at 20K+ SKUs.",
     tags: ["Sellercloud", "Amazon", "Shopify", "Inventory Systems"],
-    image: "/portfolio/ecommerce.jpeg",
+    image: "/portfolio/multi-channel-operations.png",
     heroHeadline: "20K+ SKU Multi-Channel Operations Support",
     heroSummary:
       "Backend ecommerce operations support across Amazon, Shopify, eBay, Walmart, and Sellercloud, including SKU management, inventory coordination, shadow SKUs, variants, kits, bundles, N-Matrix configurations, and channel sync workflows.",
@@ -129,7 +129,7 @@ export const caseStudies: CaseStudy[] = [
     description:
       "Research workflows that surface Amazon search demand, generic listings, and unauthorized seller risk for DTC beauty brands.",
     tags: ["Helium 10", "Marketplace Audit", "Brand Control"],
-    image: "/portfolio/amazon-marketplace.jpeg",
+    image: "/portfolio/marketplace-research.png",
     heroHeadline: "Hidden Amazon Demand & Brand Leakage Research",
     heroSummary:
       "A research workflow for identifying DTC beauty brands with Amazon search demand, weak or missing official marketplace presence, generic listings, and potential unauthorized seller activity using keyword data, Amazon search behavior, and marketplace audits.",
